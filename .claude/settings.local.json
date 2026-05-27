@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:api-docs.deepseek.com)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(winget install *)",
+      "PowerShell(Start-Process \"https://github.com/signup\")",
+      "PowerShell(Start-Process \"https://git-scm.com/download/win\")",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); & \"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" --version)",
+      "PowerShell(git *)"
+    ]
+  }
+}
