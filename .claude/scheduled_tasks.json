@@ -1,0 +1,15 @@
+{
+  "tasks": [
+    {
+      "id": "cbd2db83",
+      "cron": "47 8,14,20 * * *",
+      "prompt": "检查 Mad Island 游戏更新：运行命令 `cd E:/CC/mad && node mad-island-tracker.js`，如果有新更新，将更新内容汇报给我（翻译成中文）。如果没有新更新，简单回复\"Mad Island 无新更新\"即可。如果脚本报错，运行 `cd E:/CC/mad && node mad-island-tracker.js --check` 诊断问题并汇报。",
+      "createdAt": 1781676777172,
+      "lastFiredAt": 1781837035098,
+      "recurring": true,
+      "createdBySessionId": "f46945ec-86d1-4af9-9c0c-e0b672ef9ab4",
+      "createdByPid": 12800,
+      "createdByProcStart": "639173005494060730"
+    }
+  ]
+}

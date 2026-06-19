@@ -1,0 +1,1207 @@
+{
+  "appnews": {
+    "appid": "2739590",
+    "newsitems": [
+      {
+        "gid": "1832065502821220",
+        "title": "update v0.5.10.2 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1832065502821220",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Bug FixesSeveral bug fixes have been implemented.FixesFixed visual bugs (Daruma limbs not displaying correctly, interiors in the Underground Mine being too bright)Fixed several other bugsFixed an issue where, after sleeping or similar transitions, moving to another stage before the environment color finished updating could cause the environment lighting to remain set to the outdoor configurationAdjusted the Cave Ape size type from Large to MediumAdjusted the Restraint Chain UI to display the IDs for Expression and Layer Type.",
+        "feedlabel": "Community Announcements",
+        "date": 1778503984,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1832065502817698",
+        "title": "update v0.5.10.1 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1832065502817698",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "HotfixA critical bug has been fixed.FixesFixed an issue where rewards from the Logging Site and Mining Site were not being applied correctly.",
+        "feedlabel": "Community Announcements",
+        "date": 1778340810,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1832065502817441",
+        "title": "update v0.5.10 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1832065502817441",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Beta Version NoticeThis version requires opting into the beta branch to play. Please note that stability is not guaranteed, and we strongly recommend using a separate save file when playing this version.AdditionsMilking Machine (Large Female Native, Large Girl)Daruma (Large Girl)Added 2 new animal NPCsAdded new stage: Underground MineAdded Restraint support for Female NativesAdded new field BGM tracksAdded several new itemsFixes & AdjustmentsFixed an issue where animations would stop when placing a faceless Mummy into the Milking MachineFixed an issue where weapon slash effects and other effects would sometimes fail to appearAdjusted the items obtainable from NPC jobsFixed several visual bugsExternal Content Update2 New H scenes",
+        "feedlabel": "Community Announcements",
+        "date": 1778329576,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1829528821303698",
+        "title": "update v0.5.9.1 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1829528821303698",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "HotfixA critical bug has been fixed.Fixes & AdjustmentsFixed an issue where breeding at the Breeding Facility was no longer functioningFixed several visual bugsAdjusted so that some NPCs can now use the Pregnancy AcceleratorAdjusted pregnancy checks for some NPCs during H scenes with Young Men",
+        "feedlabel": "Community Announcements",
+        "date": 1775641315,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1828894815567183",
+        "title": "update v0.5.9 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1828894815567183",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "New H ScenesYona × Son (Normal)Maiden × Male (Forced)AdditionsDismantling (Son)Gallows ( Maiden, Fat Young Man)Guillotine (Maiden, Fat Young Man)Hooks (Maiden, Fat Young Man)Punching Bag (Maiden, Fat Young Man)Wooden Horse (Maiden, Fat Young Man)Added appearance variations for Daruma (Maiden)Milking Machine (Maiden, Mummy, Underground Woman)Fixes & AdjustmentsFixed an issue where Small Native NPCs on the map were no longer wearing the “Triangle Hat”Fixed several visual bugsAdjusted so that training animations will now play even when a corpse is placed on the Punching BagFixed an issue where H scenes between Young Men and pregnant Female Natives were not playingAdjusted so that Androids will no longer start riotsAdjusted the “Breeding” job so that Milking Machines with full food and hydration are no longer selected as workplacesAdjusted so that the food and hydration values of NPCs placed in the Milking Machine are now displayedExternal Content UpdateAdded pregnancy support and facility compatibility for several NPCsGallows: +5 compatible NPCsGuillotine: +5 compatible NPCsHooks: +5 compatible NPCsPunching Bag: +5 compatible NPCsWooden Horse: +2 compatible NPCsMilking Machine: +2 compatible NPCsPregnancy: +3 compatible NPCs",
+        "feedlabel": "Community Announcements",
+        "date": 1775563309,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1825727806704926",
+        "title": "update v0.5.8.2 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1825727806704926",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Bug Fixes & AdjustmentsFixed an issue in Android H scenes where the neck and head scale values were not applied correctlyFixed an issue in Android H scenes where the penis color was not displayed correctlyFixed an issue where hairstyle edits for Android Type-A and Type-C were not loading properlyFixed incorrect neck scale values when using a Giant head in Android productionFixed an issue where the effect of the item “Bottle (Flower)” was not calculated correctly",
+        "feedlabel": "Community Announcements",
+        "date": 1772030092,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1825093633197919",
+        "title": "update v0.5.8.1 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1825093633197919",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "AdditionsAdded new Android applications for:Large Young ManLarge BoyFixes & AdjustmentsFixed several visual bugsFixed an issue where the Android’s laser firing position was misalignedAdjusted so that NPCs carried and dropped within a stage will no longer disappear immediately after reloading the stageAdjusted the Android’s neck thickness and length to appear more naturalAdjusted so that hairstyles other than the default for Kana and Lulu can now be applied to Androids",
+        "feedlabel": "Community Announcements",
+        "date": 1771946725,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1825093633192994",
+        "title": "update v0.5.8 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1825093633192994",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Beta Version NoticeThis version requires opting into the beta branch to play. Please note that stability is not guaranteed, and we strongly recommend using a separate save file when playing this version.New H ScenesMale × Prototype Type B (Normal)Male × Prototype Type C (Normal)Male × Android (Normal)AdditionsAdded approximately 20 new itemsAdded Dismantling options for:Large Female NativeLarge Male NativeChubby GuyAdded new Android applications for:Large Female NativeChubby GuyYoung LadyDaughterFixes & AdjustmentsFixed an issue where unnecessary .xml files inside the Visiting data folder could prevent Visiting data from loading correctlyAdjusted so that status points can be allocated in increments of 100 (Shift + Ctrl Click)Fixed several visual bugsAdjusted the display of item tooltip text(External Content)New H scene *1",
+        "feedlabel": "Community Announcements",
+        "date": 1771823656,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1822556746163669",
+        "title": "update v0.5.7 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1822556746163669",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "HotfixFixed a critical bug related to the Visiting feature.FixesFixed an issue where loading stage data with zero companion NPCs caused the Visiting data to fail to load properly, making the Visiting feature unusable.",
+        "feedlabel": "Community Announcements",
+        "date": 1769249111,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1821922921818961",
+        "title": "update v0.5.6 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1821922921818961",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Bug FixFixed an issue where apparel equipment colors were not applied correctly.(Under the current specification, the base equipment’s color is applied to apparel.)",
+        "feedlabel": "Community Announcements",
+        "date": 1768701769,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1821922921818133",
+        "title": "update v0.5.5 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1821922921818133",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Bug FixesSeveral bug fixes have been implemented.AdditionsAdded a feature to call followers and waiting protagonists (Accessible via the Q key)Fixes & AdjustmentsFixed an issue where Simple Houses could be moved even when NPCs were insideAdjusted so that H scenes can now be performed indoors with a waiting protagonistFixed an issue where, if Yona or Male Player clones remained in save data due to an error, they are now converted into a Young Lady and a Young Man upon loadingAdded error-handling measures when loading Visiting data from the WorkshopAdjusted so that the name of the selected Visiting data is now displayed when chosenFixed an issue where the Young Lady was not targeted during raids even when equipped with a Monster-Attracting OrnamentFixed an issue where the Young Lady’s bow did not fire from the correct positionFixed an issue where H scene counts were not being recorded in Reika’s and Keigo’s event H scenesData Fix CommandIf you have multiple Nami characters, running the following command will convert all but one Nami into “Slender Young Lady”:/fixallnami When executed with a Nami selected, the selected Nami will remain unchanged, and all other Nami will be converted into “Slender Maiden”.After executing the command, please save and reload the game to restore the friend list correctly.",
+        "feedlabel": "Community Announcements",
+        "date": 1768662952,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1821288646585430",
+        "title": "update v0.5.4 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1821288646585430",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "HotfixSeveral critical bugs have been prioritized and fixed.Fixes & AdjustmentsFixed an issue where allies were not healed by the Ent Queen’s healing skillFixed an issue where, when a wandering Native was the father, the grown-up son’s model was not generated correctlyFixed an issue where, before completing Nami’s event, inviting Nami for an H scene while “Sex Scene Lock” was turned off could cause the H scene to malfunctionFixed an issue where the Young Lady’s melee attack search range was not setFixed several visual bugsAdjusted so that Takumi’s son now grows into a “Chubby guy”About Data FixesIf you already have multiple Takumi characters, running the following command will change all Takumi characters except the selected one into “Chubby guy”:/fixalltakumi When executed with a Takumi selected, the selected Takumi will remain unchanged, and all other Takumi will be converted into “Chubby guy”.After running the command, please save and reload the game to restore the friend list correctly.Having multiple Takumi characters is not a critical issue, but converting them into “Chubby guy” allows actions such as carrying to function properly.",
+        "feedlabel": "Community Announcements",
+        "date": 1768213898,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1821288646582907",
+        "title": "update v0.5.3 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1821288646582907",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "HotfixA critical bug has been fixed.Fixes & AdjustmentsFixed an issue in Yona × Male (Missionary) H scenes where some back hair parts were not animated correctlyFixed an issue where H animations for pregnant Female Natives (before the belly becomes visible) were incorrectly using normal H animationsAdjusted so that all characters can now carry contraceptivesFixed an issue where Yona’s pregnancy state was not visually reflected after loading a saveAdjusted so that the protagonist’s maturity value (the number shown in parentheses after the name) is now saved correctlyFixed several visual bugsAdjusted so that some NPCs can now use the rejuvenation potionFixed an issue where attempting to restrain Shino during an event could cause progression to become stuckAdjusted so that Yona now wears clothing on the Workshop creation screen",
+        "feedlabel": "Community Announcements",
+        "date": 1768057117,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1821288646582323",
+        "title": "update v0.5.2 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1821288646582323",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Bug Fixes & AdjustmentsFixed an issue in Yona × Male (Missionary) H scenes where some back hair parts were not animated correctlyFixed an issue where the chest was no longer displayed during Elder Native Woman H scenesFixed an issue in Yona × Male events where non-controlled characters could sometimes fail to appearFixed an issue where NPCs born from the Maiden did not have their type properly setFixed an issue where the Maiden could not be placed on racks or chairsFixed an issue where voice audio was not played correctly when using the Flesh ToiletAdjusted Workshop stage upload thumbnails so that the title and language text are now displayed",
+        "feedlabel": "Community Announcements",
+        "date": 1768020079,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1821288646581081",
+        "title": "update v0.5.1 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1821288646581081",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "HotfixWe have fixed a critical bug.Fixes & AdjustmentsFixed an issue where the DLC update button could appear on the title screen even when the correct DLC version was installedFixed an issue where line breaks in some story text were not displayed correctlyFixed a bug where the game could soft-lock when dismantling the Elder Native Man’s headAdjusted so that affinity now increases/decreases from emotions between protagonists as well",
+        "feedlabel": "Community Announcements",
+        "date": 1767969148,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1821288646580317",
+        "title": "update v0.5 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1821288646580317",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Beta Version NoticeThis version requires opting into the beta branch to play. Please note that stability is not guaranteed, and we strongly recommend using a separate save file when playing this version.New H ScenesYona × Man (Normal) × 3New FeaturesPregnancy and childbirth system for YonaWorkshop upload feature for Visiting dataYona × Man eventsDismantling (Young Lady)Daruma (Young Lady)Enabled the Young Lady to have sex with several NPCs (Takumi, Native, Large Native, Small Native, Young Man, Elder Native, Large Young Man) Note: Young Lady graphics are not yet implemented in some scenes.Enabled Yona × Takumi (Normal H)Fixes & AdjustmentsFixed an issue where Small Native legs could no longer be dismantledAdjusted Boss Native × Yona H scene so that Kana is no longer shown after being rescuedFixed unstable behavior when sounds were played repeatedlyAdjusted so that tokens cannot be brought along when visitingFixed an issue where the protagonist’s dialogue editing could not be accessed from StatusAdjusted so that reopening Dialogue Edit restores the previously selected tabDisplay Pregnancy Progress Rate in the Status details panelFixed an issue where the appearance of the Elder Native Woman was not loaded correctly in the Body RackFixed an issue where Takumi’s Aphrodisiac Bag was not being properly detectedRaid ModeFixed an issue where NPCs set to Survivor type would stand back up after a certain time even after dying(External Content)New 2 NPCsFemale Native NPCs can now equip several bowsDismantling (2 NPCs)Daruma (2 NPCs)",
+        "feedlabel": "Community Announcements",
+        "date": 1767947429,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1815580768280873",
+        "title": "update v0.4.5.6 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1815580768280873",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We have fixed a critical bug.FixesFixed an issue where followers were not positioned correctly near the player after loading a saved game.",
+        "feedlabel": "Community Announcements",
+        "date": 1762485002,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1815580768263368",
+        "title": "update v0.4.5.5 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1815580768263368",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We have fixed a critical bug.FixesFixed an issue where contact damage hit detection caused by skills such as Cursed Hand and Reaper’s Scythe was not processed correctly.",
+        "feedlabel": "Community Announcements",
+        "date": 1762439791,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1815580768260014",
+        "title": "update v0.4.5.4 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1815580768260014",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We have fixed several critical bugs.AdditionsOutfit: Raider’s Leather OutfitFixes & AdjustmentsCorrected several localization textsFixed an issue where contact damage (e.g., Cursed Jar, Chaos Vines) could damage wandering NPCsFixed a bug where saving with a small animal NPC in the player’s backpack could reset the animal’s parametersFixed an issue in the Apparel feature where Yona’s apparel data might fail to load correctlyAdjusted Reika’s H scene so that Reika’s ribbon equipment is now properly applied",
+        "feedlabel": "Community Announcements",
+        "date": 1762431578,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1815034432955954",
+        "title": "update v0.4.5.3 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1815034432955954",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Fixes & AdjustmentsGeneralFixed an issue where descriptions for each option in the Dialogue Editing feature were not displayedAdjusted so that NPCs with custom dialogue now show a “Dialogue Edit” button in the NPC menuFixed an issue where the highlight in the eyes of the Elder Sister Native was not displayedAdded an F attack to the Chaos RingAdded a special effect to the Toy HammerRaid ModeAdjusted so that NPCs set to “Survivor type” will not become hostile and will instead use visiting dialogue linesAdjusted so that Yona can now be interacted with (R key) when downed in Raid ModeAdjusted so that companions brought along can now follow and carry othersWorkshopAdjusted so that uploaded background items will now have their tag fixed to “decoration” only",
+        "feedlabel": "Community Announcements",
+        "date": 1762053592,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1814309641529562",
+        "title": "update v0.4.5.2 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1814309641529562",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We fixed a critical bug.Fixes & AdjustmentsFixed a bug where the game could freeze when dismantling Kana’s headFixed missing material quantity settings for White Tiger Hood and White Tiger EarsFixed a visual bug related to the large young man’s dance animationAdjusted so that Kana’s and Lulu’s chest parts can now be applied to androidsMade Lulu’s corpse carryableFixed an issue where the “Dismantle Head” button for Mummy was not displayed",
+        "feedlabel": "Community Announcements",
+        "date": 1761460570,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1814309641515512",
+        "title": "update v0.4.5.1 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1814309641515512",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We fixed a critical bug.Fixes & AdjustmentsFixed a bug where Kana’s event did not consume clothing as intendedFixed an issue where Kana’s event would not trigger if the player went from the second conversation with Kana to reviving Lulu and returning to Kana without loading once (this can be resolved by saving and loading)Fixed an issue where a temporarily generated Tribal Boss was not deleted properly when Kana joined the partyFixed an issue where “Kana’s Stool” was not set as a chair-type objectFixed incorrect material requirements for “White Tiger Hood” and “White Tiger Ears”Fixed a bug where losing the battle after using “Scream” in Kana’s event caused incorrect behaviorFixed several text errors in event dialogueFixed a bug where the H scene with restrained Sally could not be triggeredFixed an issue where conversations about liked/disliked people with NPCs could cause a soft lock",
+        "feedlabel": "Community Announcements",
+        "date": 1761422009,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1814309641501964",
+        "title": "update v0.4.5 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1814309641501964",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "To play this version, you need to switch to the beta branch. Please note that this version may be unstable, so we recommend using a separate save file when playing. New H ScenesMale × Hanged Blue-Haired Girl (Normal)Male × Hanged Blue-Haired Girl (Forced)Male × Hanged Pink-Haired Girl (Normal ×2)Yona × Large Young Man (Normal)New FeaturesAdded Dialogue Editing functionAdded Event for the girl captured by the Tribal BossAdded 2 new NPCsAdded several new itemsAdded a prototype version of the Visiting feature.(This is a local system and does not use online connectivity.)Fixes & AdjustmentsFixed several visual bugsAdjusted NPC behavior so that attack animations now play to completion even if the target is lost mid-actionFixed an issue where boss battle outcomes were sometimes not processed correctlyAdded an upper limit to the number of raiders that appear based on the protagonist’s levelFixed a bug where using a tamed animal in android creation could cause control issuesAdjusted the system to stop rendering the game scene during loading, reducing load-time stressUpdated the Unity engine to a secure version (vulnerability fix)",
+        "feedlabel": "Community Announcements",
+        "date": 1761385848,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1808601382442963",
+        "title": "update v0.4.4.8 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1808601382442963",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We’ve released an emergency update to address a critical bug.■ FixesAdded fail-safe error handling for cases where loading Workshop NPCs fails. (This issue could prevent Workshop NPCs from loading and, in some cases, cause save data to fail to load.)",
+        "feedlabel": "Community Announcements",
+        "date": 1755777449,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1808061939470123",
+        "title": "update v0.4.4.7 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1808061939470123",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We identified a critical bug and have released an urgent hotfix.■ Fixes & AdjustmentsFixed several visual bugs.Fixed a bug where NPCs could not be loaded in the Workshop NPC creation mode.",
+        "feedlabel": "Community Announcements",
+        "date": 1755524441,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1808061939430471",
+        "title": "update v0.4.4.6 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1808061939430471",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Several gameplay-blocking bugs have been fixed.■ Fixes & AdjustmentsCorrected several localization texts.Adjusted so that if DLC is not applied when entering the game, a character deletion log will now be displayed.Fixed a bug where using the backpack vacuum could sometimes overwrite the contents of player or chest slots.Added error handling for cases where knocked-out animals could not be properly collected.Added error handling for friendly fire during boss battles.Fixed an issue where switching to the protagonist with arrows stuck in them would cause additional damage equal to the number of arrows.Fixed a bug where NPC workshop textures would not load correctly when Quality was set to Middle or lower.Fixed an issue where Reika and Mary could no longer equip glasses.Improved loading so that workshop NPC textures appear cleaner.Adjusted Build Manager so platforms and cooking can be loaded separately.Moved the maid outfit from the “Halloween Workbench” to the “Cute Workbench.”Adjusted so that only NPCs currently existing as allies are displayed in the equipable NPC list.Adjusted damage calculation method for allied Reapers.",
+        "feedlabel": "Community Announcements",
+        "date": 1755416923,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1807332909700610",
+        "title": "update v0.4.4.5 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1807332909700610",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Fixed incorrect item quantity settings for the Flesh Collector.Fixed an issue where external data might not load depending on the OS language settings.",
+        "feedlabel": "Community Announcements",
+        "date": 1754920295,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1807332909694949",
+        "title": "update v0.4.4.4 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1807332909694949",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Several bug fixes have been implemented.■ Fixes & AdjustmentsFixed a bug where equipping “Wisp” would unintentionally apply the contraceptive effect.Adjusted so that cloth storage can now be expanded with a Pocket.Fixed an issue where workshop item tooltips would not display when the language was set to anything other than Japanese.Fixed incorrect data for NPCs spawned during raids.Fixed an issue where female native girls could no longer equip glasses items.Fixed a bug where manually closing the map during fast travel would cause the map to remain open after fast travel.Fixed a bug where male natives’ throwing attacks had no hit detection.Added throwing and bow attack animations for young men.Fixed several visual bugs.Adjusted so that Wisp becomes hidden when carrying an NPC equipped with one.Adjusted so that young men can now perform normal H scenes with other NPCs.■ External Data Updatev1.01",
+        "feedlabel": "Community Announcements",
+        "date": 1754904808,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1807332909643483",
+        "title": "update v0.4.4.3 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1807332909643483",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We identified a critical bug and have released an urgent hotfix.■ Fixes & AdjustmentsFixed an issue where apparel visuals were not applied on load for NPCs with no equipment.Fixed a bug where swapping gear in the Apparel system could fail to save data correctly.Fixed an issue where allied NPCs’ enemy detection was being blocked by the Reaper’s aura effect.Adjusted the floating position when equipping “Wisp.”Fixed an issue where allied NPCs’ animation speed sometimes didn’t return to normal after a raid.Fixed a bug where playtime in save data would stop counting beyond a certain duration.Adjusted so the Ent Queen can equip items that are available to all characters.Fixed a bug where NPC stats calculated from the map level were not computed correctly at spawn.",
+        "feedlabel": "Community Announcements",
+        "date": 1754763950,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1807332909610077",
+        "title": "update v0.4.4.2 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1807332909610077",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We identified a critical bug and have released an urgent hotfix.■ FixesFixed a bug where raids would not occur when using the \"Raid Horn.\"Fixed a bug where the \"Black Curtain Arch\" could not be placed correctly.Fixed an issue where using R on an allied large native woman would cause the game to get stuck.Fixed several visual bugs.To play this version, you need to switch to the beta branch. Please note that this version may be unstable, so we recommend using a separate save file when playing. ",
+        "feedlabel": "Community Announcements",
+        "date": 1754673279,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1807332909601686",
+        "title": "update v 0.4.4.1 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1807332909601686",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We identified a critical bug and have released an urgent hotfix.FixesFixed an issue where parameters for stairs and lights were not loading correctly.Fixed a bug that prevented Pocket items from being used on chests and similar storage.",
+        "feedlabel": "Community Announcements",
+        "date": 1754652968,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1807332909599651",
+        "title": "update v0.4.4 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1807332909599651",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "To play this version, you need to switch to the beta branch. Please note that this version may be unstable, so we recommend using a separate save file when playing. ■ Added H ScenesMan × Reaper (Normal)■ AdditionsOutfit Coordination featureOriginal NPC loading featureWorkshop upload and subscription feature for Original NPCsReaper RaidSeveral new itemsReaper Event■ Fixes & AdjustmentsFixed several visual bugsAdjusted so that characters can still have sex during pregnancy if they don’t have a visible pregnant bellyAdjusted so that young men can perform forced H on large native womenAdjusted so that “Pocket” items can be used in chest and storage slotsFixed an issue where shurikens thrown by npcs would not hit enemiesFixed a bug where Sally’s throw attack would affect alliesAdjusted so that the HP display of NPCs being attacked by the player is always updatedFixed warning text from blocking clicksFixed an issue where using food items on a food storage box could exceed its maximum capacityFixed an issue where emotions would still affect NPCs who had been banished and become inactiveFixed a bug where the numeric input fields for colors in character edit could be hidden behind in-game objects■ External Content UpdateAdded 4 new H scenesFor more details, please check the official Discord or other channels.",
+        "feedlabel": "Community Announcements",
+        "date": 1754646783,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1807332909591954",
+        "title": "update v0.4.3.2",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1807332909591954",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "The default build of the game has been updated to version v0.4.3.2. For detailed update information, please refer to our previous posts.",
+        "feedlabel": "Community Announcements",
+        "date": 1754626558,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1801617199476210",
+        "title": "update v0.4.3.2[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1801617199476210",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We’ve urgently fixed a critical bug:■ FixesFixed a bug where Workshop item textures would fail to render when the Quality setting was set to Middle or below.",
+        "feedlabel": "Community Announcements",
+        "date": 1749349315,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1801617199473988",
+        "title": "update v0.4.3.1[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1801617199473988",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We’ve urgently fixed a critical bug:■ FixesCorrected an issue where the UI’s position would not display properly when interacting with a downed NPC.",
+        "feedlabel": "Community Announcements",
+        "date": 1749343452,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1801617199445166",
+        "title": "update v0.4.3[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1801617199445166",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Several critical bugs have been fixed.■ Fixes & AdjustmentsFixed a bug where using a growth potion on an NPC while they were being followed would prevent the transformation from processing correctly.Fixed an issue where changing skin color in the title screen edit mode also changed the nipple color to match the skinAdjusted H-scenes (Young Man x Underground Woman, Young Man x Large-Built Woman) to properly include pregnancy chanceFixed incorrect positioning of UI elements such as building move and dismantle buttonsFixed a bug where workshop item images were not displayed correctly when the quality setting was set to “Middle” or lowerFixed a bug where the durability of the weapon \"Shuriken\" was not displayedTo play this version, you need to switch to the beta branch. Please note that this version may be unstable, so we recommend using a separate save file when playing.",
+        "feedlabel": "Community Announcements",
+        "date": 1749266246,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1801617199425917",
+        "title": "update v0.4.2[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1801617199425917",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "To play this version, you must switch the game to the beta branch. Due to many changes that may affect game data, please make sure to use a separate save file.■ AdditionsPregnancy for the large female nativePregnancy for the underground womanNew NPC: Large young manNew NPC: Animal (x1)New NPC: Underground young manAdded heavy attack for KodachiNPCs equipped with shuriken can now throw themSome NPCs can now have their body color changed■ Fixes & AdjustmentsFixed a bug where food items stacked by the Meal Distributor could not exceed 1000Reduced memory usage of workshop items (texture compression)Improved NPC movement behavior to reduce sliding when idle on sloped terrainAdjusted rendering order so that the position of NPCs and the horse device displays more accuratelyFixed a bug where human body parts stored in the player's bag wouldn't save properlyDisabled the birth button during paused stateFixed an issue where pause overlay text could not be hidden during eventsFixed a bug where placed items would become invisible when moved too far from the playerMade Little & Nikki’s outfits equippable. (If they have already joined your party, they may appear naked. Little’s outfit can be crafted from the native elder woman.)■ External Content Update3 new H-scenes added4 new NPCs added For more details, please check the official Discord or other announcements.",
+        "feedlabel": "Community Announcements",
+        "date": 1749216422,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1797185861720254",
+        "title": "update v0.4.1[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1797185861720254",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Fixes & Adjustments -Fixed a bug where the food stack of the Meal Distributor was capped at 1000 -Fixed several localization errors -Fixed several visual bugs -Fixed a bug where it was impossible to access the inventory of “Withered Tree” -Fixed an issue where some sound effects were missing in the H-animation of Male Protagonist x Nami",
+        "feedlabel": "Community Announcements",
+        "date": 1745112427,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1797185861702008",
+        "title": "update v0.4 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1797185861702008",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "v0.3.4 has been set as the default version. To play this version, you need to switch to the beta branch. Please note that this version may be unstable, so we recommend using a separate save file when playing. ■ Additions -Substory between Nami and the male protagonist -Substory between Nami and Yona -Usable horse (female natives, underground women, and native boss lady) -Around 20 new items ■ New H-Scenes -Yona x Nami (normal H) -Male Protagonist x Nami (normal H) -Male Protagonist x Nami (forced H) These H-scenes become available after completing the newly added storylines. ■ Fixes & Adjustments -Fixed a bug where the UI would remain visible if an NPC woke up during a sleep rape event -Fixed an issue where downed skeletons with custom colors would partially revert to their original color -Fixed several bugs occurring during battle events with the gorilla -Reduced memory usage -Fixed several visual bugs -Corrected some localization issues -You can now trade items with the trader 10 times in a row using Shift + click",
+        "feedlabel": "Community Announcements",
+        "date": 1745062466,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1793384379500977",
+        "title": "update v0.3.4 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1793384379500977",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Fixed critical bugs. -Fixed a texture error on the floor inside enemy natives’ thatched houses. -Fixed an issue where NPCs did not return to the correct state after being grappled while unconscious. -Fixed a bug where performing the Ent King quest on save data from before v0.3 could cause inconsistencies in events when not following the Giant or Love route. -Fixed an issue where Yona could become invisible or control could switch to the male protagonist underground after the Ent King’s underground event.",
+        "feedlabel": "Community Announcements",
+        "date": 1741610232,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1793384379430939",
+        "title": "update v0.3.3 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1793384379430939",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Fixed critical bugs. ■Fixes & Adjustments -Adjusted so that if Takumi is alive but has not been rescued, the Entking battle cannot be entered. -Fixed a texture error on the floor inside the thatched house. -Fixed an issue where the bridge construction event would stop if Takumi was not present.",
+        "feedlabel": "Community Announcements",
+        "date": 1741419816,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1793384379404676",
+        "title": "update v0.3.2 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1793384379404676",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We have fixed several critical bugs. ■Additions -Applied costumes and weapons to Nami, Reika, Shino, and large-built native women. -Added a scaling function for Workshop items. ■Fixes & Adjustments -Fixed an issue where using \"Pocket\" in the inventory of a downed ally would expand the controlled protagonist's bag slots. -Fixed an issue where, after the first battle with the Entking, if the Giant's event was completed via the Love route, the subsequent events of the Entking would not progress correctly. -Fixed a bug where the Giant would remain hidden after returning from the battle until a reload. -Fixed an issue where swapping a dyed item with an undyed item at the dyeing workbench would display the previous color information on the sprite. -Fixed an issue where the circle and capacity values displayed when interacting with the food storage would sometimes not disappear. -Fixed an issue where after the first battle with the Entking, Yona's weapon remained hidden. -Fixed an issue where the quest name display was incorrect after the first battle with the Entking.",
+        "feedlabel": "Community Announcements",
+        "date": 1741350062,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1792751526042729",
+        "title": "Update v0.3.1 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1792751526042729",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■Fixes & Adjustments -Fixed an issue where the non-controlled protagonist's waiting position was set to the Ent King’s battlefield after the battle event ended. -Fixed an issue where Nami and Reika would disappear after returning from the underground battle with the Ent King (can be resolved by saving & loading). -Fixed an issue where Jonah and the Giant could not be interacted with properly after the Queen event ended.",
+        "feedlabel": "Community Announcements",
+        "date": 1740750350,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1792751526036574",
+        "title": "update v0.3 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1792751526036574",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "To play this version, you need to switch to the beta version. As it may be unstable, we recommend keeping a separate save file when playing. ■ Additions - Continuation of the Main Story. - Dismantling (Young Man) ■ Fixes & Adjustments - Adjusted Snow Dome (item icon) and picture frames to display opaque items more clearly. - Fixed typos in the Santa event text. - Fixed an issue where the skip function remained disabled during the battle to protect the reindeer in the Santa event. - Adjusted enemy spawn rate during events to make them less frequent. - Fixed a bug where summoning a recovered raider NPC while the raid was still ongoing caused the raid to not end properly, leading to gameplay issues. - Fixed an issue where creating a picture frame while having the sub-inventory open displayed the icon of the first item in the sub-inventory. - Adjusted the final position of the death animation for the male protagonist and young man to be more centered on the character. - Adjusted the game so that pausing is canceled when returning to the title screen. - Fixed an issue where using the same Daruma Machine repeatedly caused the door animation position to become misaligned. - Fixed a bug where grappling an NPC during sex caused a temporary duplication of character graphics. - Fixed unnecessary scale values in the Chaos Lake and Blood Area.",
+        "feedlabel": "Community Announcements",
+        "date": 1740735558,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1786573930683185",
+        "title": "update v0.2.7",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1786573930683185",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "The stuck bug has been fixed, and the version has been updated to v0.2.7.",
+        "feedlabel": "Community Announcements",
+        "date": 1734774418,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1786573930682294",
+        "title": "Apology for the Stuck Bug",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1786573930682294",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We sincerely apologize for the inconvenience caused by the stacking bug that occurred in the latest update (v0.2.7). The issue resulted in players getting stuck after actions like cutting down trees, prompting us to temporarily downgrade the version to v0.2.6. We are currently investigating the problem and will provide a fix as soon as possible. Thank you for your understanding and continued support.",
+        "feedlabel": "Community Announcements",
+        "date": 1734771127,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1786573930679705",
+        "title": "update v0.2.7",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1786573930679705",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "The current build has been set as the default build. For details on the changes, please refer to previous news updates. Several bugs have been fixed. ■ Fixes and Adjustments - Adjusted to display the detailed status page for all NPCs, including animals. - Fixed a bug where house IDs were not set correctly after loading the game. - Fixed an issue where the blinking effect on an NPC after interaction would be canceled when nearby NPCs completed their works. - Adjusted logs to retain only up to 100 entries. - Added an option to toggle the display of task icons on or off. - Added an option to enable or disable the blinking effect on NPCs after interaction. - Assigned personality traits to Merry and the Reindeer, as they were previously unset. ",
+        "feedlabel": "Community Announcements",
+        "date": 1734763780,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1786409468866811",
+        "title": "update v0.2.6 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1786409468866811",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Several critical bugs have been fixed. ■ Fixes and Adjustments - Fixed an issue where color changes to the male character's hips were not correctly reflected in the Merry x Male H scene. - Fixed a bug where NPCs carried inside a house retained their house ID. - Fixed an issue where rafts could not be used. - Fixed a bug where saving the game while an NPC with their waiting position set outside was sleeping inside a house caused them to remain linked to the house after loading, preventing them from using it properly. - Fixed an issue where house ID information would not update unless the status page of the status menu was open. - Adjusted so that house IDs are displayed even for thatched-roof houses.",
+        "feedlabel": "Community Announcements",
+        "date": 1734591017,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1786409468834954",
+        "title": "update v0.2.5[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1786409468834954",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Several bug fixes have been implemented. ■ Fixes and Adjustments - Fixed a bug where the event switch for the \"Present Hunt\" could not be activated after completing the Santa Event. - Fixed an issue where summoning an NPC from the inventory inside a house did not set the summoning location as the NPC's waiting position. - Removed hit detection from cage traps. - Changed the color of repeat quest icons displayed on the map. - Adjusted so that NPC appearances update when their equipment is vacuumed using the Maid Ruck. - Adjusted so that NPCs other than raiders do not target trees. - Fixed a bug where the color of icons did not revert when moving dye workbench, picture frames, etc. - Fixed an issue where the appearance of unique NPC corpses did not load correctly. - Fixed several visual bugs. - Updated NPC status screens to display their current house ID. - Adjusted to display house IDs when interacting with your own house. - Fixed a bug where NPC colors occasionally did not revert when they were",
+        "feedlabel": "Community Announcements",
+        "date": 1734507163,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1785774543608938",
+        "title": "update v0.2.4[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1785774543608938",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Added H Content -Male Protagonist x Santa (Standard H Scene) ■ Additions -Santa Event -2 New NPCs -Over 30 New items, including new decorations and clothing items -Picture Frame (an item for displaying icons) ■ Fixes and Adjustments -Fixed a bug where event icons for ongoing events were displayed on the map. -Added damage to Sally’s throw attack. -Fixed an issue where the list of subscribed workshop items on the title screen was limited to 50 items. -Added an equipment preview function in Preview Mode. To play the beta version, you need to configure it from the properties menu. {STEAM_CLAN_IMAGE}/44906878/e362d1b886636b70ef2669ef148ed6c784246181.jpg",
+        "feedlabel": "Community Announcements",
+        "date": 1734231563,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1783872412004426",
+        "title": "update v0.2.3 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1783872412004426",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We have fixed bugs that were impacting gameplay. - Fixed an issue where NPCs on platforms would fall through the floor after loading save data. - Corrected several visual bugs.",
+        "feedlabel": "Community Announcements",
+        "date": 1732254520,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "1783238125271203",
+        "title": "update v0.2.2 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1783238125271203",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Additional H-scenes - Buttock Wall (Underground Woman, Elder Native Woman) - Yona x Large Native Man (Standard H-scene) ■ Additions - Applicable to Execution Pillory (Large Native Woman, Underground Woman, Elder Native Woman) - Limbless Form (Large Native Woman, Underground Woman, Elder Native Woman) - Applicable to Androids (Elder Native Man) ■ Fixes and Adjustments - Added conditions for NPC tracking actions to time out - Fixed a bug where some effect sounds were not playing - Adjusted save data loading speed when there are a large number of NPCs or buildings - Fixed a bug where NPC carry counts were not updated when backpacks and pockets were exchanged at the trader - Fixed an issue where items from the crafting window could be discarded - Adjusted to allow retrieval of corpses of unique NPCs that have not been allied - Fixed a bug where the male protagonist's hair color was not reflected on the back hair of children",
+        "feedlabel": "Community Announcements",
+        "date": 1731741425,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "6212244583186893529",
+        "title": "update v0.2.1 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/6212244583186893529",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Additions - Dismantling (Elder Native) - Chaos Storage ■ Fixes and Adjustments - Fixed an issue where Yona's skin color was not correctly reflected in certain parts of the animation after the defeat H-scene - Fixed a bug where the heavy attack from the Wooden Bow was not firing - Fixed a bug where periodic rewards from NPC jobs were being placed in non-harvesting inventories, such as herb planters - Fixed a bug where the max stack size of Chaos Stand Torches was set to 1 - Fixed a bug where honey could not be harvested from beehives - Changed skeletons' weapons and shields to equippable items (skeletons that are already allied will have no equipment) - Fixed an issue where the attack direction was not calculated correctly when there was no floor under the cursor - Fixed clipping issues with several costumes",
+        "feedlabel": "Community Announcements",
+        "date": 1729431881,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "6212244583178344646",
+        "title": "update v0.2 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/6212244583178344646",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Additions -4 new animal NPCs -Chaos Cave -Added functionality for NPCs to harvest items generated from beehives, fish traps, mushroom cultivation, and herb planters -About 20 new items -Added a heavy attack option to bows ■ Fixes and Adjustments -Fixed a bug where enemies defeated at the raid spawn point could not be collected by the Flesh Collector -Changed the crafting location for the Chaos Axe -Fixed a bug where the swamp's slow effect applied even when on platforms or in the air -Fixed the issue where expelling an allied NPC inside the house did not unlink the house from the NPC -Weather conditions will no longer be processed until the game finishes loading -Fixed a bug where the position of arrows stuck in enemies would shift when the enemies moved -Fixed an issue where the time of day display wouldn't switch while inside a stage -Fixed a bug in the event where you give Takumi food, which caused the player's inventory to become Takumi's inventory if the player's bag was open when the next event started -Modified the performance of the Heart Wand -Fixed a bug where quest icons on the map might not display correctly after loading",
+        "feedlabel": "Community Announcements",
+        "date": 1729229251,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "6242640076608253484",
+        "title": "update v0.1.8",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/6242640076608253484",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "A critical bug was found and has been fixed. ■ Fixes and Adjustments - Adjusted the parameters of the Dark Tree - The Chaos Totem now displays the current raid level and the number of raiders - Fixed a bug where NPCs would disappear when fast traveling to a distant location while accompanied by them",
+        "feedlabel": "Community Announcements",
+        "date": 1725815152,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "6242640076607581723",
+        "title": "update v0.1.7",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/6242640076607581723",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "We have fixed several critical bugs. ■ Additions - Item that allows you to set the raid level and number of enemies via numeric settings - Item stand (Orb) ■ Additional H-Scenes - Yona x Elder Native (Standard) - Male x Female Native (Forced during pregnancy) ■ Fixes and Adjustments - Fixed a bug where the appearance information of dismantled parts would disappear when assigned to an NPC - Fixed a bug where the face paint of female natives was not correctly reflected during masturbation - Fixed a bug where NPCs would become inactive if the \"Return\" function in the friends list was used while leading NPCs, and their waiting location was far from the player's current location - Fixed an issue where the damage calculation for the giant's attack on the player was not working correctly - Fixed a bug where swapping chickens in the poultry farm when up to three chickens were placed would cause the original chickens to disappear - Fixed a bug where, after defeating the underground woman and fast traveling while the inventory was open, the inventory would not function properly",
+        "feedlabel": "Community Announcements",
+        "date": 1725799227,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5875595438682648735",
+        "title": "v0.1.6 has been set as the default build.",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5875595438682648735",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "The updates made as beta versions since June 29 have now been set as the standard build. For update details since June 29, please refer to the previous news posts. ■ Important Changes Some buildings can now be destroyed by enemies. If these buildings are already placed, they will load in a broken state. You can repair them by having the protagonist repair them directly or assigning an NPC to the \"Repair\" job.",
+        "feedlabel": "Community Announcements",
+        "date": 1724201020,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "6909171012606588222",
+        "title": "update v0.1.6 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/6909171012606588222",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "This update includes several critical bug fixes and adjustments. No additional content has been included. ■ Fixes and Adjustments - Enabled the protagonist to open each individual inventory - Fixed a bug where the generation of raiding NPCs could be delayed after loading, depending on the game's startup time - Fixed a bug where the waiting position would not load correctly if the game was saved while the protagonist was inside the house and waiting - Fixed a bug where the required experience points were not calculated correctly for levels above 716,327 - Fixed a bug where saving more than a certain number of status points would cause them not to be reflected correctly - Fixed a bug where the calculation of reflected stun damage on the meat wall was ten times higher than intended - Adjusted NPC behavior, primarily for underwater NPCs and mermaids - Adjusted so that raiding enemies do not spawn while the game is paused - Added an option to limit the number of raiders generated ■Additional Notes　8/19 A patch update has been made to fix the issue where the button to show/hide all names on the friends list was not functioning correctly.",
+        "feedlabel": "Community Announcements",
+        "date": 1723986482,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5963414363396605887",
+        "title": "update v0.1.5 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5963414363396605887",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Additions - Item to prevent miscarriage ■ Fixes - Fixed a bug in version 0.1.4 where NPCs could not be summoned to the player's location when summoned inside the house - Fixed a bug where the stun damage from the ore needle bed would not apply to deceased NPCs",
+        "feedlabel": "Community Announcements",
+        "date": 1723268054,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5963414363393615886",
+        "title": "update v0.1.4 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5963414363393615886",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Additions - Set nearby companions to react when an enemy is detected - Elite small native - Added a feature to designate targets for followers to attack（(Designate by holding Q and right-clicking)） ■ Additional H-Scenes - Yona x Male Protagonist (While Down) - Yona x Small Native (Standard) ■ Fixes and Adjustments - Added a distance limit to the retreat movement - Fixed a bug where NPCs who finished work would sometimes stop moving - Fixed a bug where structures placed on water would not load in the correct position - The number of defeats during a raid is now displayed - Removed the speed increase limit from cooking effects - Fixed a bug where chickens in the poultry farm would not update their display except when loading - Fixed a bug where NPCs with a waiting position set inside the house would sometimes lose their entry information - Removed the feature where all buildings would be repaired after a raid - Fixed a bug where the head of the subterranean woman would not be displayed on androids - Increased the amount of food obtained from the \"Food\" job - Adjusted so that the status level numbers of NPCs generated during raids are now assigned - Adjusted so that mouse operations are disabled during backpack vacuuming - Adjusted so that NPCs in torture devices can still progress in pregnancy - Adjusted so that NPCs miscarry when using a \"meat toilet\" - Changed the initial clothing of small natives to equipment (small natives already recruited will become naked. The old woman can craft clothes for small natives.) - Adjusted so that if a raid does not occur after using an item that triggers it, the item will be returned - Fixed a bug where childbirth would still occur even when using an abortion pill during delivery",
+        "feedlabel": "Community Announcements",
+        "date": 1723197182,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5963413094354631768",
+        "title": "update v 0.1.3 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5963413094354631768",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "深刻なバグがあったため修正いたしました。 ■ Fixes and Adjustments - Fixed a bug where all items would fit onto the platform during construction - Adjusted so that items do not fit onto the platform when the Shift key is held down during construction - Adjusted so that only items of the same type will fit onto the platform - Fixed a bug where the state of being inside the house would not be cleared when the protagonist leaves the house (If you cannot build a house while outside, try entering and exiting the house once to resolve the issue.)",
+        "feedlabel": "Community Announcements",
+        "date": 1722064220,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5963413094353975757",
+        "title": "update v0.1.2 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5963413094353975757",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "An update has been made to fix critical bugs. ■ Additions - Mushroom cultivation - Beehive - Planter for medicinal herbs and red herbs ■ Fixes and Adjustments - Fixed a bug where item information was not correctly swapped when switching items between a companion animal and a newly captured animal - Fixed a bug where the white tiger would turn white upon loading - Adjusted the platform fitting program - Fixed a bug where the main collider layer was not correctly loaded when loading items in the workshop - Fixed a bug where the calculation would fail and behavior would become abnormal when the required experience points exceeded the function limit - Adjusted so that NPC guards are also applied to stun attacks - Adjusted so that raids start even if the generation of raiding NPCs is not completed - Adjusted to temporarily pause the generation of raiding NPCs if the frame rate drops below 7fps - Move the crafting location of fake tree-type items from the wood workbench to the plant workbench.",
+        "feedlabel": "Community Announcements",
+        "date": 1722048673,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5969041959972340329",
+        "title": "updage v0.1.1[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5969041959972340329",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Additions ・Item that increases the recovery amount of libido ・When wearing the Ring of Lust and there is no partner for sex, the character will masturbate instead �� Fixes and Adjustments ・Fixed a bug where masturbation was not performed in the correct position ・Fixed a bug where the spider's food box would turn into a normal food box upon loading ・Fixed a bug where effects triggered by ground contact were not occurring (e.g., throwing by small natives)",
+        "feedlabel": "Community Announcements",
+        "date": 1721487303,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5969041959968392147",
+        "title": "update v0.1.0 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5969041959968392147",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Due to significant functional adjustments, this will be released as a beta version. Those who wish to participate, please switch to the beta version to play. ■ Additions: ・NPC job \"Repair\" ・Gallows support (Large female natives) ■ New H features: ・Masturbation (female natives) ■ Fixes and Adjustments: ・Fixed an issue where the transport display was not correctly reflected when retrieving medium-sized animals. ・Fixed an issue where dismembered NPCs could still be summoned (added an option to make them summonable). ・Reduced the issue where enemies sometimes do not die even when their health reaches zero. ・Fixed an issue where NPCs in a rampage due to minimum morale could not be interacted with when following. ・Fixed an issue where NPCs would get stuck if they were assigned a job in an empty animal pen. ・Set damage attenuation for Crystal Sword skills. ・Adjusted NPC movement behaviors. ・Adjusted to allow interaction with downed ally NPCs. ・Fixed an issue where Yona's weapon and shield colors were not loading correctly. ・Fixed an issue where buildings placed on the water surface of seawater blocks were not positioned correctly upon loading. ・Changed the experience calculation method required for leveling up beyond level 100. ・Adjusted character edit colors to be set by numeric input. ・Adjusted the conditions for using \"meat toilet.\" ・Added a function to repair all buildings with the Build Manager. ■■■■■■■■Attention■■■■■■■■■ ■Objects like tables can now be destroyed. Buildings that are now destructible will load in a broken state. You can repair them by either using the protagonist (consuming water) or assigning the NPC the \"repair\" job. Alternatively, all items can be repaired using the \"Build Manager.\" ■Since it is highly likely that operations will become unstable, we recommend saving separately from the main save data. ■For the added conditions for using the \"meat toilet\" and masturbation: If the NPC options have \"Allow love\" set to OFF and \"Allow sex\" set to ON, it ...",
+        "feedlabel": "Community Announcements",
+        "date": 1721393706,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5842939267313544562",
+        "title": "update v0.0.12",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5842939267313544562",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■Fixes and adjustments ・When a tree is being cut down, it is canceled by pressing the \"wasd\" key. ・When save data is overwritten, the original data is rewritten to Autosave. ・Added \"Return all NPCs to the waiting place\" button to the friends list. ・-Fixed a bug that caused the main ground floor to come loose when entering a stage. Fixed a fatal bug that caused the main ground to be lost when entering a stage. If you lose the main character while waiting, use the Enter key to bring up the command field and then press the /change command. You can forcibly change the main character.",
+        "feedlabel": "Community Announcements",
+        "date": 1719588664,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5842939267311521735",
+        "title": "update v0.0.11",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5842939267311521735",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Fixed a bug that prevented logs from being displayed",
+        "feedlabel": "Community Announcements",
+        "date": 1719540749,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5842939267310374498",
+        "title": "update v0.0.10",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5842939267310374498",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "Several critical bugs have been fixed and the default build has been set to the latest version. The changes from v0.0.8 include the following ■Added ・Update function of items in the Workshop. ・Added button to call nearby NPCs to the player's location ■ Bug fixes ・Fixed a problem in which the reference to parameters was lost when NPCs were given dismantled parts and saved. ・Adjustment so that the player always goes to the saved position after loading is complete, even if the player moves around during loading. ・Fixed a bug that prevented picking up a skeleton that had not been made a companion when dropping it after save and load. ・Reduced the problem of NPCs placed in the stage falling through the floor. ・Fixed a problem with misalignment of attack judgments during enemy movement attacks ・Fixed a bug that caused NPCs to periodically die if they fell into a hole in the ruins for as long as they remained in that level. update v0.0.9",
+        "feedlabel": "Community Announcements",
+        "date": 1719513559,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5759622039975487011",
+        "title": "update v0.0.9[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5759622039975487011",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "The default build has been updated to ■ Added ・Added the ability to create your own background items. ・Added the ability to register for workshops. The workshop is currently only available in a beta test version. Workshop guide. https://emadeplus.com/workshop/ ■ Bug fixes ・Fixed a bug in which when the level of the transport skill reaches 5, it is displayed as MAX (can be increased up to 10 levels). ・Fixed a bug in which the presence or absence of the blood of a subterranean woman was not reflected correctly. ・Fixed a bug that the items that can be found in the excavation area are not selected correctly. ・Fixed a bug that caused the slowdown effect of the swamp when building a house on top of a swamp, even if you entered the house. ・Fixed a bug that made it more difficult to escape from the wall when using the sword technique inside a native's house.",
+        "feedlabel": "Community Announcements",
+        "date": 1718872405,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5746109972563642876",
+        "title": "update v0.0.8[beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5746109972563642876",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Bug fixes ・Fixed a problem in which the Blood Sword skill would cause not only corpses but also stunned NPCs to explode. ・Fixed a problem that caused loading to not work correctly when saving a game with harvesting boxes or mining sites outside of the map. ・Fixed a problem in which once an NPC was made a companion, it would not behave correctly when discarded with the H key after returning it to the inventory. ・Fixed a problem in which the male protagonist would not fall down by stun attack. ・Adjustments to the way DLC is updated and loaded ・Fixed an issue where NPCs set as \"Survivor\" could not be defeated to resolve their morale when they went out of control.",
+        "feedlabel": "Community Announcements",
+        "date": 1718029767,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5746109972545186121",
+        "title": "update v0.0.6 [beta]",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5746109972545186121",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "・Fixed a bug that caused NPC and animal items to disappear and other item information to be corrupted when using the “ALL OUT” button with chests and other items when the main inventory was full. ・Fixed a bug that forest grass and chaos grass could not be collected after installation. ・Fixed a bug that caused Takumi events to be duplicated. ・Fixed a bug that prevented the localization of Chinese (Simplified Chinese). ・Fixed a bug that the target of a raid cannot be retrieved. ・Fixed a bug in which the count of hauls and the calculation of hauls were not being done correctly. ・Fixed a bug that allowed other houses to be placed inside the house. ・Fixed a bug that when the male protagonist was stunned by a large female aborigine, the hair of the man was not correctly described. ・Fixed a bug that Dharma's H-animation was not displayed correctly. ・Added the ability to update DLC ・Add options such as eliminating invisible walls, putting a house inside a house, removing building restrictions. ・Fixed a bug where the raid on the waiting protagonist did not end when the waiting protagonist was targeted and knockdown. We have fixed some critical bugs, but have also implemented some things that we are not sure will function properly, such as the ability to update DLC, so we have uploaded it as a beta version. {STEAM_CLAN_IMAGE}/44906878/e362d1b886636b70ef2669ef148ed6c784246181.jpg We hope you will be able to participate in the testing. If you are unable to load your save data even though it has been saved successfully, please send us your save data on Discord or by email (emadeplus@gmail.com) and we may be able to resolve the issue. We are planning to open a Workshop in the near future.",
+        "feedlabel": "Community Announcements",
+        "date": 1717592368,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5742731639334254368",
+        "title": "update v0.0.5",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5742731639334254368",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Bug fixes ・Fixed a bug in which the contents of a chest would disappear when an NPC with maximum likability was hovered over by a chest, and the chest was closed by WASD movement and then dropped. ・Fixed a bug that when saving at the ruins, the game does not start from the starting staircase of the saved level. ・Fixed a bug in which a golden egg would turn into an omelette when placed as a dish. ・Fixed a bug in the animation of the gallows of the female natives where the layers were in the wrong order. ・Fixed a typo in an item. ・Fixed a bug that prevented the main character from asking for sex even with NPCs in a state of lewdness. ・Fixed a bug that the main character was not affected by the magical charms. ・Fixed a bug that fast-traveling while suffering from food poisoning would result in a very large amount of food poisoning damage. ・Fixed a bug in which the rewards for work in the breeding farm were not being selected correctly. ・Fixed a bug that the All in and All out buttons could not be used when hovering over an item. ・Fixed errors in loading",
+        "feedlabel": "Community Announcements",
+        "date": 1717173892,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5742731639329043259",
+        "title": "update v0.0.4",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5742731639329043259",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Bug fixes ・Fixed a bug that prevented saves from loading properly if the body of an NPC who died after a failed rescue was in the player's possession. ・Fixed a bug that caused the body of an NPC who died after a failed rescue to disappear after being placed in a chest or other inventory. ・Fixed a bug that localized the name of unique characters when they join a group. ・Fixed a bug that the skin color of a young man was applied to a female NPC in a young man's sex scene. ・Fixed a bug that caused equipment to be duplicated when interacting with a neutral NPC, such as a trader, and removing the equipment after the interaction was over. ・Fixed a bug in which the display of NPCs with you remained off when you entered the Giant's event with Yona. ・Fixed a bug that Takumi's H history in Takumi's event was not reflected to Takumi when he became a friend. ・Fixed a bug that NPCs that use warp, such as ghosts, do not die immediately when their life is reduced to 0 during warp. ・Fixed a bug that NPCs in chests were dropped as item bags when dropped. ・Fixed a bug in the behavior of the display and non-display of the fence of the milking machine. ・Fixed a bug that the display of the stomach remains on the milking machine. ・Fixed a bug that the demolition status of the underground woman and Mummy did not load properly. ・Cooking: Fixed the wrong appearance of fried egg and omelette when they are placed. ・Fixed a bug that the \"Ruck\" would slide away when vacuuming on a slope. ・Fixed one of the missing reward items in the ruins. ・Fixed a problem with the NPCs in the wooden toilet. ■Adjustments ・Adjusted the conditions under which the young man and other NPCs h ・Changed the animation of NPCs in the wooden toilet to be the same as that of chairs. ・The current progress status of the event to give food to Takumi is now displayed. ・Adjusted so that hit judgments are not performed on characters with “Survival” combat type. ・Adjusted the crafting window to refresh when a collection is acq...",
+        "feedlabel": "Community Announcements",
+        "date": 1717050404,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5741605105620522084",
+        "title": "update v0.0.3",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5741605105620522084",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■ Bug fixes and adjustments ・Fixed a bug where the white tiger would not appear. ・Fixed a bug where a log saying \"Base changed\" would appear during loading if the base flag was placed. ・Fixed a bug where the ally Keigo would remain displayed after Keigo was killed in an event. ・Fixed a bug where young men could not impregnate others. Adjusted pregnancy determination during sex between natives. ・Fixed a bug where food would be used up in the food storage after interacting with it until another item with inventory was touched. ・Fixed a bug where NPCs would stop moving when switching from a bow to another weapon.",
+        "feedlabel": "Community Announcements",
+        "date": 1716784406,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5741605105614501053",
+        "title": "update v0.0.2",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5741605105614501053",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■Fixes and adjustments ・Fixed a bug that prevented normal operation when items other than equipment were dropped into an equipment slot ・Fixed a bug that prevented “pocket” items from being used for chests, etc. ・Fixed a bug in which the display of hauling counts did not change when animals were dismantled or when dropped animal items were picked up ・Fixed item descriptions for \"Growing Potion\" ・Inventory cannot be closed while Ruck is vacuuming ・Fixed a bug that caused the effect of lewdness to remain when swapping and equipping other accessories while the ring of lewdness is equipped. ■Localize ・(English) Wood Wall => Log Wall ・Localize the UI that appears when the Q key is pressed",
+        "feedlabel": "Community Announcements",
+        "date": 1716641667,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      },
+      {
+        "gid": "5741605105609396286",
+        "title": "update v0.0.1",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/5741605105609396286",
+        "is_external_url": true,
+        "author": "emadeplus",
+        "contents": "■Bug Fix ・Fixed a bug where moving the \"Base Flag\" would prevent the user from taking action. ・Localization of text for standby poses now works. ・Fixed a bug in which the waiting pause did not play until Sally took some action after loading. ・Fixed a bug that the increase/decrease in the durability value of the Chaos Axe was not being reflected. ",
+        "feedlabel": "Community Announcements",
+        "date": 1716520675,
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 2739590,
+        "tags": [
+          "patchnotes"
+        ]
+      }
+    ]
+  }
+}

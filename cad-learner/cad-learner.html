@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全屋定制CAD学习工具箱 Pro</title>
+<style>
+:root{--wood-dark:#4E342E;--wood-mid:#6D4C41;--wood-light:#BCAAA4;--bg:#FAF5EF;--card:#FFFEFB;--accent:#E65100;--accent-light:#FFF3E0;--text:#3E2723;--text-secondary:#6D4C41;--border:#E0D5CD;--success:#2E7D32;--danger:#c62828;--info:#1565C0;--radius:10px;--shadow:0 2px 16px rgba(62,39,35,0.07)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+header{background:linear-gradient(135deg,var(--wood-dark),var(--wood-mid));color:#fff;padding:18px 24px;text-align:center;box-shadow:0 2px 20px rgba(62,39,35,0.2)}
+header h1{font-size:1.5rem;font-weight:700;letter-spacing:.03em}
+header p{font-size:.82rem;opacity:.82;margin-top:2px}
+nav{display:flex;gap:2px;padding:8px 12px;background:var(--card);border-bottom:1px solid var(--border);overflow-x:auto;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
+nav button{flex-shrink:0;padding:7px 12px;border:none;background:transparent;color:var(--text-secondary);border-radius:7px;cursor:pointer;font-size:.8rem;font-weight:500;transition:.15s;white-space:nowrap}
+nav button:hover{background:var(--accent-light);color:var(--accent)}
+nav button.active{background:var(--accent);color:#fff}
+main{max-width:1140px;margin:0 auto;padding:16px 12px 40px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.card h2{font-size:1.15rem;color:var(--wood-dark);margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid var(--wood-light);display:flex;align-items:center;gap:8px}
+.card h3{font-size:.95rem;color:var(--wood-mid);margin:14px 0 6px}
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:10px;top:6px;bottom:6px;width:3px;background:linear-gradient(180deg,var(--accent),var(--wood-light));border-radius:2px}
+.tl-item{position:relative;margin-bottom:22px;padding-left:14px}
+.tl-item::before{content:'';position:absolute;left:-21px;top:4px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);box-shadow:0 0 0 3px var(--accent-light)}
+.tl-phase{font-weight:700;color:var(--accent);font-size:.78rem;letter-spacing:.04em}
+.tl-title{font-size:1rem;font-weight:600;margin:1px 0}
+.tl-desc{font-size:.82rem;color:var(--text-secondary)}
+.tl-days{display:inline-block;background:var(--accent-light);color:var(--accent);padding:1px 10px;border-radius:10px;font-size:.75rem;font-weight:600;margin-top:3px}
+.sub-tabs{display:flex;gap:3px;margin-bottom:14px;flex-wrap:wrap}
+.sub-tabs button{padding:6px 14px;border:1.5px solid var(--border);background:var(--card);border-radius:6px;cursor:pointer;font-size:.8rem;font-weight:500;color:var(--text-secondary);transition:.15s}
+.sub-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+.sub-tabs button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.explorer{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+@media(max-width:840px){.explorer{grid-template-columns:1fr}}
+@media(max-width:640px){
+  header{padding:12px 14px}
+  header h1{font-size:1.15rem}
+  header p{font-size:.72rem}
+  nav{padding:6px 8px;gap:1px}
+  nav button{padding:6px 10px;font-size:.72rem;border-radius:6px}
+  main{padding:10px 6px 30px}
+  .card{padding:14px;margin-bottom:10px}
+  .card h2{font-size:1rem;margin-bottom:10px}
+  .card h3{font-size:.85rem}
+  .explorer{grid-template-columns:1fr}
+  .svg-wrap{min-height:280px;padding:8px}
+  .info-panel .name{font-size:1.1rem}
+  .info-panel .desc{font-size:.8rem}
+  .info-panel .specs{font-size:.75rem}
+  .ref-grid{grid-template-columns:1fr;gap:8px}
+  .ref-card{padding:12px}
+  .ref-card h4{font-size:.82rem}
+  .ref-card table{font-size:.72rem}
+  .ref-card th,.ref-card td{padding:4px 5px}
+  .quiz-options{grid-template-columns:1fr;gap:8px;max-width:100%}
+  .quiz-options button{padding:14px;font-size:.9rem}
+  .quiz-box{padding:8px}
+  .input-row{flex-direction:column;align-items:stretch;gap:4px}
+  .input-row label{min-width:auto}
+  .input-row input{width:100%;padding:10px;font-size:1rem}
+  .btn-submit{width:100%;padding:12px;font-size:.9rem}
+  .sub-tabs{flex-wrap:nowrap;overflow-x:auto;gap:2px}
+  .sub-tabs button{flex-shrink:0;padding:5px 10px;font-size:.72rem}
+  .measure-fields{grid-template-columns:1fr}
+  .hole-judge{flex-direction:column;gap:6px}
+  .hole-judge button{width:100%;padding:12px}
+  .exercise-card{padding:12px}
+  .exercise-card .ex-title{font-size:.85rem}
+  .verify-scene{padding:10px}
+  .note{font-size:.75rem;padding:8px 10px}
+  .tooltip{font-size:.7rem;max-width:160px;white-space:normal;text-align:center}
+  .quiz-box .q{font-size:.9rem}
+  .measure-scene{padding:12px}
+  .measure-scene .ms-title{font-size:.82rem}
+  footer{font-size:.7rem;padding:12px}
+  table{font-size:.7rem!important}
+  td,th{padding:4px!important}
+  input[type=number],input[type=text]{font-size:16px!important}
+}
+.svg-wrap{background:#FFFEFB;border-radius:var(--radius);border:2px solid var(--border);padding:12px;display:flex;justify-content:center;align-items:center;min-height:420px;position:relative}
+.svg-wrap svg{max-width:100%;height:auto}
+.svg-wrap .part{cursor:pointer;transition:opacity .12s,filter .12s}
+.svg-wrap .part:hover{filter:brightness(.88) drop-shadow(0 0 7px rgba(230,81,0,.55))}
+.svg-wrap .part.highlight{filter:brightness(.82) drop-shadow(0 0 12px rgba(230,81,0,.75))}
+.info-panel{display:flex;flex-direction:column;gap:12px}
+.info-panel .name{font-size:1.3rem;font-weight:700;color:var(--wood-dark);min-height:32px}
+.info-panel .desc{font-size:.85rem;color:var(--text-secondary);flex:1}
+.info-panel .specs{background:var(--accent-light);border-radius:8px;padding:10px 14px;font-size:.8rem}
+.info-panel .specs strong{color:var(--accent)}
+.info-panel .spec-row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dotted var(--border);font-size:.78rem}
+.info-panel .spec-row:last-child{border:none}
+.info-panel .spec-row .k{color:var(--text-secondary)}
+.info-panel .spec-row .v{font-weight:600;color:var(--wood-dark)}
+.info-panel .hint{font-size:.78rem;color:#999;text-align:center;padding:20px}
+.tooltip{position:absolute;pointer-events:none;background:rgba(62,39,35,.9);color:#fff;padding:4px 10px;border-radius:6px;font-size:.75rem;font-weight:600;white-space:nowrap;z-index:50;transform:translate(-50%,-130%);opacity:0;transition:opacity .12s}
+.tooltip.on{opacity:1}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.ref-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.ref-card h4{font-size:.9rem;color:var(--wood-dark);margin-bottom:10px}
+.ref-card table{width:100%;font-size:.78rem;border-collapse:collapse}
+.ref-card th{text-align:left;color:var(--accent);padding:5px 6px;border-bottom:2px solid var(--wood-light);font-weight:600}
+.ref-card td{padding:5px 6px;border-bottom:1px solid #f5f0ea;color:var(--text-secondary)}
+.ref-card tr:last-child td{border:none}
+.quiz-box{text-align:center;padding:16px}
+.quiz-box .q{font-size:1.05rem;margin-bottom:16px}
+.quiz-box .highlight-part{display:inline-block;background:var(--accent-light);padding:3px 14px;border-radius:16px;font-weight:700;color:var(--accent)}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:480px;margin:0 auto}
+.quiz-options button{padding:12px;border:2px solid var(--border);background:var(--card);border-radius:8px;cursor:pointer;font-size:.88rem;font-weight:500;transition:.15s}
+.quiz-options button:hover{border-color:var(--accent);background:var(--accent-light)}
+.quiz-options button.correct{border-color:var(--success);background:#E8F5E9;color:var(--success)}
+.quiz-options button.wrong{border-color:var(--danger);background:#FFEBEE;color:var(--danger)}
+.quiz-score{font-size:1.1rem;font-weight:700;margin:14px 0;color:var(--wood-dark)}
+.quiz-score span{color:var(--accent)}
+.verify-scene{background:#FFFEFB;border-radius:var(--radius);border:2px dashed var(--danger);padding:16px;margin-bottom:14px;position:relative}
+.verify-scene .bug-label{position:absolute;top:-10px;left:14px;background:var(--danger);color:#fff;padding:2px 12px;border-radius:10px;font-size:.72rem;font-weight:700}
+.verify-hint{background:#FFF3E0;border-radius:8px;padding:12px;font-size:.82rem;margin-top:10px;display:none}
+.verify-hint.show{display:block}
+.note{background:#FFF8E1;border-left:3px solid #FFB300;padding:10px 14px;border-radius:0 6px 6px 0;font-size:.82rem;color:var(--text-secondary);margin:10px 0}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7rem;font-weight:600;margin-right:4px}
+.tag-red{background:#FFEBEE;color:var(--danger)}
+.tag-green{background:#E8F5E9;color:var(--success)}
+.tag-blue{background:#E3F2FD;color:var(--info)}
+
+/* EXERCISE STYLES */
+.exercise-card{background:var(--bg);border-radius:8px;padding:18px;margin-bottom:14px;border:1px solid var(--border)}
+.exercise-card .ex-num{display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;background:var(--accent);color:#fff;border-radius:50%;font-weight:700;font-size:.85rem;margin-right:8px}
+.exercise-card .ex-title{font-weight:700;font-size:.95rem;display:inline}
+.exercise-card .ex-desc{font-size:.82rem;color:var(--text-secondary);margin:8px 0}
+.input-row{display:flex;align-items:center;gap:8px;margin:8px 0;flex-wrap:wrap}
+.input-row label{font-size:.82rem;font-weight:600;min-width:70px;color:var(--wood-dark)}
+.input-row input{padding:8px 10px;border:2px solid var(--border);border-radius:6px;font-size:.85rem;width:100px;text-align:center;font-family:monospace}
+.input-row input:focus{outline:none;border-color:var(--accent)}
+.input-row .unit{font-size:.78rem;color:var(--text-secondary)}
+.btn-submit{padding:8px 20px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:.85rem;font-weight:600;margin-top:8px}
+.btn-submit:hover{opacity:.9}
+.result-box{padding:12px;border-radius:8px;margin-top:10px;font-size:.84rem;display:none}
+.result-box.show{display:block}
+.result-box.ok{background:#E8F5E9;border:1px solid #A5D6A7;color:var(--success)}
+.result-box.err{background:#FFEBEE;border:1px solid #EF9A9A;color:var(--danger)}
+.result-box .correct-answer{margin-top:6px;font-weight:600}
+
+.hole-scene{background:#FFFEFB;border-radius:8px;border:2px solid var(--border);padding:16px;margin-bottom:12px;text-align:center}
+.hole-scene .scene-label{font-size:.82rem;font-weight:600;color:var(--wood-dark);margin-bottom:8px}
+.hole-judge{display:flex;gap:10px;justify-content:center;margin-top:8px}
+.hole-judge button{padding:8px 24px;border:2px solid var(--border);border-radius:7px;cursor:pointer;font-size:.85rem;font-weight:500;transition:.15s;background:var(--card)}
+.hole-judge button:hover{border-color:var(--accent)}
+.hole-judge button.chosen-correct{border-color:var(--success);background:#E8F5E9;color:var(--success)}
+.hole-judge button.chosen-wrong{border-color:var(--danger);background:#FFEBEE;color:var(--danger)}
+
+.measure-scene{background:#FFFEFB;border-radius:8px;border:2px solid var(--border);padding:16px;margin-bottom:14px}
+.measure-scene .ms-title{font-weight:700;font-size:.9rem;color:var(--wood-dark);margin-bottom:8px}
+.measure-fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}
+footer{text-align:center;padding:20px;color:var(--text-secondary);font-size:.75rem;opacity:.5}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>全屋定制 CAD 学习工具箱 Pro</h1>
+  <p>从0到拆单 — 五金系统 · 排孔规则 · 结构验证 · 实战练习</p>
+</header>
+
+<nav id="nav">
+  <button data-tab="roadmap" class="active">🗺️ 路线</button>
+  <button data-tab="hardware">🔩 五金</button>
+  <button data-tab="wardrobe">🗄️ 衣柜</button>
+  <button data-tab="cabinet">🍳 橱柜</button>
+  <button data-tab="door">🚪 室内门</button>
+  <button data-tab="bom">📐 拆单原理</button>
+  <button data-tab="calc">🧮 拆单计算</button>
+  <button data-tab="shortcut">⌨️ 快捷键</button>
+  <button data-tab="holes">🎯 排孔练习</button>
+  <button data-tab="measure">📏 量尺模拟</button>
+  <button data-tab="verify">⚠️ 结构验证</button>
+  <button data-tab="reference">📋 速查</button>
+  <button data-tab="quiz">✏️ 练习</button>
+</nav>
+
+<main>
+<!-- ROADMAP -->
+<section id="tab-roadmap" class="tab-panel active">
+  <div class="card">
+    <h2>8 周加速路径：0 基础 → 独立出图</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-phase">第 1 阶段</div><div class="tl-title">行业扫盲 + 柜体结构认知</div><div class="tl-desc">理解产业链（工厂→门店→设计师→安装）。搞懂衣柜和橱柜结构。去建材市场/展厅看实物，对照本工具的五金和衣柜模块反复过。</div><div class="tl-days">3–5 天</div></div>
+      <div class="tl-item"><div class="tl-phase">第 2 阶段</div><div class="tl-title">32mm 排孔系统 + 五金精通</div><div class="tl-desc">32mm排孔规则、三合一连接、铰链三种安装方式。这是拆单根基——孔位错了拆单全废。用五金模块交互学习后用排孔练习验证。</div><div class="tl-days">3–4 天</div></div>
+      <div class="tl-item"><div class="tl-phase">第 3 阶段</div><div class="tl-title">量尺基本功 + 手绘草图</div><div class="tl-desc">激光测距仪+卷尺。现场量尺：墙体垂直度、天花倾斜、阴阳角、梁柱避让。用量尺模拟模块练习常见场景。</div><div class="tl-days">5–7 天</div></div>
+      <div class="tl-item"><div class="tl-phase">第 4 阶段</div><div class="tl-title">酷家乐入门到熟练</div><div class="tl-desc">B站搜"酷家乐全屋定制"跟练。第1周基础操作，第2周完整空间设计+灯光+材质，第3周渲染+报价+拆单输出。</div><div class="tl-days">14–21 天</div></div>
+      <div class="tl-item"><div class="tl-phase">第 5 阶段</div><div class="tl-title">拆单实战 + 结构验证</div><div class="tl-desc">用拆单计算模块练习板件尺寸计算和封边标注。拆10套柜子，每套核对孔位。结构验证模块帮你避坑。</div><div class="tl-days">7–14 天</div></div>
+      <div class="tl-item"><div class="tl-phase">第 6 阶段</div><div class="tl-title">实战跟单</div><div class="tl-desc">跟设计师去工地量尺，在酷家乐还原真实案例。见尺寸→脑补方案→出图。</div><div class="tl-days">持续</div></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
+    <div style="background:#FFF3E0;padding:12px;border-radius:8px"><strong style="color:var(--accent)">先结构后软件</strong><p style="font-size:.78rem;color:var(--text-secondary);margin-top:2px">看不懂柜体才致命。先在五金和衣柜模块吃透结构。</p></div>
+    <div style="background:#E8F5E9;padding:12px;border-radius:8px"><strong style="color:var(--success)">酷家乐第一优先</strong><p style="font-size:.78rem;color:var(--text-secondary);margin-top:2px">90%门店用酷家乐。先效果图签约再CAD出施工图。</p></div>
+    <div style="background:#E3F2FD;padding:12px;border-radius:8px"><strong style="color:var(--info)">量尺比画图值钱</strong><p style="font-size:.78rem;color:var(--text-secondary);margin-top:2px">量尺错了全部报废。量尺能力决定收入下限。</p></div>
+    <div style="background:#FCE4EC;padding:12px;border-radius:8px"><strong style="color:var(--danger)">拆单决定利润</strong><p style="font-size:.78rem;color:var(--text-secondary);margin-top:2px">一个孔位错误=整块板报废=利润归零。</p></div>
+    <div style="background:#F3E5F5;padding:12px;border-radius:8px"><strong style="color:#7B1FA2">计算能力是核心</strong><p style="font-size:.78rem;color:var(--text-secondary);margin-top:2px">板件尺寸靠算不是靠猜。拆单计算模块每天练3题。</p></div>
+  </div>
+</section>
+
+<!-- HARDWARE -->
+<section id="tab-hardware" class="tab-panel">
+  <div class="card">
+    <h2>五金系统</h2>
+    <div class="sub-tabs" id="hw-tabs">
+      <button data-hw="32mm" class="active">32mm 排孔系统</button>
+      <button data-hw="cam">三合一连接件</button>
+      <button data-hw="hinge">铰链系统</button>
+      <button data-hw="slide">滑轨系统</button>
+      <button data-hw="straightener">拉直器</button>
+    </div>
+    <div class="explorer"><div class="svg-wrap" id="hw-svg"></div><div class="info-panel" id="hw-info"><div class="hint">👆 鼠标悬停或点击了解五金细节</div></div></div>
+  </div>
+</section>
+
+<!-- WARDROBE -->
+<section id="tab-wardrobe" class="tab-panel">
+  <div class="card">
+    <h2>衣柜结构探索</h2>
+    <div class="sub-tabs" id="wd-tabs">
+      <button data-wd="external" class="active">平开门·外观</button>
+      <button data-wd="internal">平开门·内部</button>
+      <button data-wd="section">平开门·剖面</button>
+      <button data-wd="sliding">推拉门衣柜</button>
+      <button data-wd="corner">转角柜</button>
+    </div>
+    <div class="explorer"><div class="svg-wrap" id="wd-svg"></div><div class="info-panel" id="wd-info"><div class="hint">👆 点击柜体部件查看详细信息</div></div></div>
+  </div>
+</section>
+
+<!-- CABINET -->
+<section id="tab-cabinet" class="tab-panel">
+  <div class="card"><h2>橱柜结构探索</h2>
+    <div class="explorer"><div class="svg-wrap" id="cb-svg"></div><div class="info-panel" id="cb-info"><div class="hint">👆 点击部件查看详细信息</div></div></div>
+  </div>
+</section>
+
+<!-- DOOR -->
+<section id="tab-door" class="tab-panel">
+  <div class="card"><h2>室内门结构探索</h2>
+    <div class="explorer"><div class="svg-wrap" id="dr-svg"></div><div class="info-panel" id="dr-info"><div class="hint">👆 点击部件查看详细信息</div></div></div>
+  </div>
+</section>
+
+<!-- BOM -->
+<section id="tab-bom" class="tab-panel">
+  <div class="card">
+    <h2>拆单原理</h2>
+    <div class="note">拆单 = 将设计方案转化为生产指令。设计好不好看决定客户签不签，拆单对不对决定工厂亏不亏。</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div style="background:#E3F2FD;padding:14px;border-radius:8px"><strong style="color:var(--info)">分拆单</strong><p style="font-size:.82rem;color:var(--text-secondary);margin-top:4px">解析三维模型 → 识别每块板件尺寸/材质/连接关系 → 标注封边/开槽/打孔 → BOM物料清单+孔位图</p></div>
+      <div style="background:#E8F5E9;padding:14px;border-radius:8px"><strong style="color:var(--success)">生产拆单</strong><p style="font-size:.82rem;color:var(--text-secondary);margin-top:4px">优化排版（提高板材利用率） → NC代码 → 加工标签 → 包装清单</p></div>
+    </div>
+    <h3>BOM核心字段</h3>
+    <div style="overflow-x:auto"><table style="width:100%;font-size:.78rem;border-collapse:collapse;margin-bottom:12px">
+      <tr style="background:var(--accent-light)"><th style="padding:7px;text-align:left;color:var(--accent)">字段</th><th style="padding:7px;text-align:left">示例</th><th style="padding:7px;text-align:left">说明</th></tr>
+      <tr><td style="padding:5px 7px;border-bottom:1px solid var(--border)">板件编号</td><td>1001</td><td style="color:var(--text-secondary)">柜内唯一编号</td></tr>
+      <tr><td style="padding:5px 7px;border-bottom:1px solid var(--border)">板件名称</td><td>左侧板</td><td style="color:var(--text-secondary)">侧板/层板/门板/背板/踢脚板</td></tr>
+      <tr><td style="padding:5px 7px;border-bottom:1px solid var(--border)">成型尺寸 L×W×T</td><td>2400×550×18</td><td style="color:var(--text-secondary)">长×宽×厚 mm</td></tr>
+      <tr><td style="padding:5px 7px;border-bottom:1px solid var(--border)">封边方向</td><td>↑1.0 ↓1.0 ←0.5 →1.0</td><td style="color:var(--text-secondary)">箭头+厚度，暴露面必须封边</td></tr>
+      <tr><td style="padding:5px 7px;border-bottom:1px solid var(--border)">正反面信息</td><td>正面孔/反面槽</td><td style="color:var(--text-secondary)">标注正反面孔/槽/铣型</td></tr>
+      <tr><td style="padding:5px 7px;border-bottom:1px solid var(--border)">基材+颜色</td><td>颗粒板/暖白</td><td style="color:var(--text-secondary)">材质+颜色+纹理方向</td></tr>
+      <tr><td style="padding:5px 7px;border-bottom:1px solid var(--border)">数量</td><td>2</td><td style="color:var(--text-secondary)">同规格板件数量</td></tr>
+    </table></div>
+    <h3>封边标注规则</h3>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+      <div style="background:var(--bg);padding:10px;border-radius:6px;text-align:center"><strong>↑ 1.0</strong><p style="font-size:.75rem;color:var(--text-secondary)">上边封1.0mm</p></div>
+      <div style="background:var(--bg);padding:10px;border-radius:6px;text-align:center"><strong>↓ 1.0</strong><p style="font-size:.75rem;color:var(--text-secondary)">下边封1.0mm</p></div>
+      <div style="background:var(--bg);padding:10px;border-radius:6px;text-align:center"><strong>← 0.5</strong><p style="font-size:.75rem;color:var(--text-secondary)">左边封0.5mm</p></div>
+      <div style="background:var(--bg);padding:10px;border-radius:6px;text-align:center"><strong>→ 1.0</strong><p style="font-size:.75rem;color:var(--text-secondary)">右边封1.0mm</p></div>
+    </div>
+    <div class="note">核心原则：<strong>暴露面必须封边</strong>（防甲醛、防潮、防变形）。不可见面可不封或薄封。PVC常见0.5/1.0mm，ABS封边1.0mm，激光封边无缝。</div>
+    <h3>侧板排孔与拆单关系</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:#FFF3E0;padding:14px;border-radius:8px"><strong style="color:var(--accent)">系统孔（排孔）</strong><p style="font-size:.8rem;color:var(--text-secondary);margin-top:3px">φ5mm，间距32mm，深13mm。安装层板托、铰链底座。贯穿侧板的纵向排孔。遵循32mm模数。</p></div>
+      <div style="background:#FCE4EC;padding:14px;border-radius:8px"><strong style="color:var(--danger)">结构孔（连接孔）</strong><p style="font-size:.8rem;color:var(--text-secondary);margin-top:3px">三合一孔：φ15mm偏心轮+φ8mm连接杆。木榫孔：φ8mm。这些孔位必须落在两排系统孔之间避免冲突。</p></div>
+    </div>
+  </div>
+  <div class="card"><h2>板件标签示例</h2>
+    <div style="background:#FFFEFB;border:2px solid var(--border);border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.8;max-width:500px">
+      ┌──────────────────────────────────┐<br>
+      │ <strong>板件编号: 1001</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户: 张三 │<br>
+      │ 柜名: 主卧衣柜A &nbsp;&nbsp;&nbsp; 板名: <strong>左侧板</strong> │<br>
+      │ 尺寸: <strong>2400 × 550 × 18</strong> mm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │<br>
+      │ 封边: <strong>↑1.0 ↓1.0 ←0.5 →1.0</strong> &nbsp;&nbsp; │<br>
+      │ 基材: 颗粒板 / 暖白 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │<br>
+      │ 正面: 系统孔φ5×13 &nbsp; 反面: 无 │<br>
+      │ 大板: 3-1 &nbsp; 开料顺序: 5 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │<br>
+      └──────────────────────────────────┘
+    </div>
+  </div>
+</section>
+
+<!-- CALC - 拆单计算练习 -->
+<section id="tab-calc" class="tab-panel">
+  <div class="card">
+    <h2>拆单计算练习</h2>
+    <div class="sub-tabs" id="calc-tabs">
+      <button data-calc="size" class="active">板件尺寸计算</button>
+      <button data-calc="edge">封边标注判断</button>
+      <button data-calc="design">方案设计判断</button>
+    </div>
+    <div id="calc-content"></div>
+  </div>
+</section>
+
+<!-- HOLES - 排孔练习 -->
+<section id="tab-holes" class="tab-panel">
+  <div class="card">
+    <h2>孔位排布练习</h2>
+    <p style="color:var(--text-secondary);font-size:.84rem;margin-bottom:14px">以下 4 张侧板排孔图，判断每张图排孔是否正确。如果不正确，说出问题所在。</p>
+    <div id="holes-content"></div>
+  </div>
+</section>
+
+<!-- MEASURE - 量尺模拟 -->
+<section id="tab-measure" class="tab-panel">
+  <div class="card">
+    <h2>量尺场景模拟</h2>
+    <p style="color:var(--text-secondary);font-size:.84rem;margin-bottom:14px">模拟真实量尺场景。每个场景都有需要特别注意的"坑"，仔细看图回答问题。</p>
+    <div id="measure-content"></div>
+  </div>
+</section>
+
+<!-- SHORTCUT -->
+<section id="tab-shortcut" class="tab-panel">
+  <div class="card">
+    <h2>CAD 快捷键速查与练习</h2>
+    <div class="sub-tabs" id="sc-tabs">
+      <button data-sc="ref" class="active">📋 速查表</button>
+      <button data-sc="practice">✏️ 快捷键练习</button>
+      <button data-sc="sub">🔍 子命令练习</button>
+      <button data-sc="stats">📊 错误统计</button>
+    </div>
+    <div id="sc-content"></div>
+  </div>
+</section>
+
+<!-- VERIFY -->
+<section id="tab-verify" class="tab-panel">
+  <div class="card">
+    <h2>结构验证：6大常见致命缺陷</h2>
+    <p style="color:var(--text-secondary);font-size:.84rem;margin-bottom:14px">点击每个场景查看详情。</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px" id="verify-grid"></div>
+  </div>
+  <div class="card">
+    <h2>交互式找错练习</h2>
+    <p style="color:var(--text-secondary);font-size:.84rem;margin-bottom:12px">下图衣柜存在 <strong id="bug-count">3</strong> 处设计缺陷，点击有问题的区域找出来。</p>
+    <div class="verify-scene" id="verify-scene">
+      <div class="bug-label" id="bugs-found-label">已找到 0/3</div>
+      <div id="verify-svg-container" style="text-align:center"></div>
+    </div>
+    <div class="verify-hint" id="verify-hint"></div>
+  </div>
+</section>
+
+<!-- REFERENCE -->
+<section id="tab-reference" class="tab-panel"><div class="ref-grid" id="ref-grid"></div></section>
+
+<!-- QUIZ -->
+<section id="tab-quiz" class="tab-panel">
+  <div class="card"><h2>部件识别练习</h2>
+    <p style="color:var(--text-secondary);font-size:.84rem;margin-bottom:14px">看描述猜部件名称，包含衣柜、橱柜、门、五金各类。</p>
+    <div class="quiz-box" id="quiz-box">
+      <div class="q" id="quiz-q"></div>
+      <div style="background:var(--bg);padding:20px;border-radius:10px;margin-bottom:14px" id="quiz-diagram"></div>
+      <div class="quiz-options" id="quiz-opts"></div>
+      <div class="quiz-score">正确：<span id="sc">0</span> / <span id="st">0</span></div>
+      <button id="quiz-next" style="padding:10px 22px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:500;display:none">下一题 →</button>
+    </div>
+  </div>
+</section>
+</main>
+<footer>全屋定制 CAD 学习工具箱 Pro — 仅供学习参考，具体尺寸以工厂工艺为准</footer>
+
+<script>
+// ==================== DATA ====================
+const hw32mmParts=[{id:'sb',label:'侧板（旁板）',desc:'18mm厚侧板。系统孔φ5mm间距32mm深13mm。第一排孔距前边缘37mm（全盖门标准）。',x:80,y:10,w:18,h:380,color:'#BCAAA4',specs:{'厚度':'18mm','排孔间距':'32mm','系统孔径':'φ5mm','孔深':'13mm','前沿距':'37mm'}},{id:'hole1',label:'系统孔',desc:'每个系统孔间距32mm。全屋定制基础模数。',x:100,y:40,w:5,h:5,color:'#E65100',specs:{'孔径':'φ5mm','深度':'13mm','间距':'32mm'}},{id:'hole2',label:'系统孔',desc:'',x:100,y:72,w:5,h:5,color:'#E65100'},{id:'hole3',label:'系统孔',desc:'',x:100,y:104,w:5,h:5,color:'#E65100'},{id:'hole4',label:'系统孔',desc:'',x:100,y:136,w:5,h:5,color:'#E65100'},{id:'hole5',label:'系统孔',desc:'',x:100,y:168,w:5,h:5,color:'#E65100'},{id:'hole6',label:'系统孔',desc:'',x:100,y:200,w:5,h:5,color:'#E65100'},{id:'hole7',label:'系统孔',desc:'',x:100,y:232,w:5,h:5,color:'#E65100'},{id:'hole8',label:'系统孔',desc:'',x:100,y:264,w:5,h:5,color:'#E65100'},{id:'hole9',label:'系统孔',desc:'',x:100,y:296,w:5,h:5,color:'#E65100'},{id:'hole10',label:'系统孔',desc:'',x:100,y:328,w:5,h:5,color:'#E65100'},{id:'hole11',label:'系统孔',desc:'',x:100,y:360,w:5,h:5,color:'#E65100'},{id:'struct-hole',label:'三合一结构孔',desc:'偏心轮孔φ15mm，位于两排系统孔之间。不能与系统孔重合！',x:114,y:302,w:15,h:15,color:'#c62828',specs:{'孔径':'φ15mm','注意':'必须避开系统孔'}}];
+const hwCamParts=[{id:'cam-side',label:'侧板',desc:'侧板预埋偏心轮。偏心轮孔φ15mm深12-14mm距板边7mm。',x:260,y:60,w:20,h:300,color:'#A1887F',specs:{'偏心轮孔径':'φ15mm','深度':'12-14mm','距板边':'7mm'}},{id:'cam-shelf',label:'层板',desc:'层板端面嵌入预埋螺母φ10mm，连接杆孔φ8mm深32mm。',x:20,y:200,w:300,h:20,color:'#D7CCC8',specs:{'预埋螺母孔':'φ10mm','连接杆孔径':'φ8mm','深度':'32mm'}},{id:'cam-wheel',label:'偏心轮',desc:'φ15mm偏心轮。三角标记对准连接杆方向，顺时针旋转150-190°锁紧。偏心距约7mm。',x:282,y:210,w:18,h:18,color:'#BDBDBD',specs:{'直径':'φ15mm','偏心距':'约7mm','锁紧角度':'150-190°'}},{id:'cam-rod',label:'连接杆',desc:'一端旋入预埋螺母，另一端插入偏心轮孔。总长约40mm杆径6mm。',x:40,y:208,w:240,h:6,color:'#9E9E9E',specs:{'总长':'约40mm','杆径':'6mm'}},{id:'cam-nut',label:'预埋螺母',desc:'φ10mm预埋螺母嵌入层板端面。胶锤轻敲至与板面齐平。',x:30,y:202,w:10,h:16,color:'#757575',specs:{'直径':'φ10mm'}},{id:'cam-dowel',label:'定位木榫',desc:'φ8mm木榫辅助定位防旋转。通常2个/层板端部。',x:120,y:200,w:8,h:10,color:'#D7CCC8',specs:{'直径':'φ8mm'}},{id:'cam-dowel2',label:'定位木榫',desc:'',x:200,y:200,w:8,h:10,color:'#D7CCC8'}];
+const hwHingeParts=[{id:'fh-side',label:'侧板（全盖）',desc:'全盖铰链直臂C=18mm。门板完全覆盖侧板端面。',x:30,y:80,w:18,h:240,color:'#BCAAA4'},{id:'fh-door',label:'门板（全盖）',desc:'覆盖侧板18mm。杯孔φ35mm距门边5mm。门外边到柜边间隙1.5-2mm。',x:10,y:60,w:35,h:230,color:'#D7CCC8',specs:{'覆盖量':'18mm','杯孔距门边':'5mm','杯孔直径':'φ35mm'}},{id:'fh-hinge',label:'全盖铰链（直弯）',desc:'直臂铰链。',x:28,y:140,w:14,h:20,color:'#BDBDBD'},{id:'hh-side',label:'中侧板（半盖）',desc:'半盖铰链中弯C=9mm。两扇门共用中侧板每扇覆盖约9mm。',x:200,y:80,w:18,h:240,color:'#BCAAA4',specs:{'覆盖量':'约9mm','两门间隙':'约2mm'}},{id:'hh-door-l',label:'左门板（半盖）',desc:'左门覆盖中侧板左半。',x:178,y:60,w:22,h:230,color:'#D7CCC8'},{id:'hh-door-r',label:'右门板（半盖）',desc:'右门覆盖中侧板右半。两门间留约2mm间隙。',x:220,y:60,w:22,h:230,color:'#D7CCC8'},{id:'hh-hinge-l',label:'半盖铰链',desc:'铰臂弯曲约9mm。',x:196,y:140,w:10,h:20,color:'#BDBDBD'},{id:'hh-hinge-r',label:'半盖铰链',desc:'',x:212,y:140,w:10,h:20,color:'#BDBDBD'},{id:'ih-side',label:'侧板（内侧）',desc:'内侧铰链大弯C=0mm。门板嵌入侧板内。',x:370,y:80,w:18,h:240,color:'#BCAAA4',specs:{'覆盖量':'0mm'}},{id:'ih-door',label:'门板（内嵌）',desc:'门板嵌在侧板之间完全不覆盖侧板。精度要求最高。',x:390,y:80,w:28,h:210,color:'#D7CCC8'},{id:'ih-hinge',label:'内侧铰链（大弯）',desc:'铰臂大幅弯曲使门板可嵌入柜体。',x:388,y:140,w:16,h:20,color:'#BDBDBD'}];
+const hwSlideParts=[{id:'sl-cab',label:'柜体侧板',desc:'滑轨固定在柜体侧板内侧。',x:40,y:40,w:15,h:300,color:'#A1887F'},{id:'sl-rail',label:'滑轨（三节轨）',desc:'三节滑轨：外轨(固定柜体)+中轨+内轨(固定抽屉)。百隆/DTC。长250-550mm。',x:55,y:140,w:50,h:8,color:'#BDBDBD',specs:{'类型':'三节滚珠','拉伸':'100%全行程','品牌':'百隆/DTC'}},{id:'sl-drawer',label:'抽屉侧板',desc:'抽屉侧板固定在滑轨内轨上。',x:105,y:100,w:90,h:10,color:'#D7CCC8'},{id:'sl-front',label:'抽屉面板',desc:'抽屉面板安装在抽屉前板外侧。',x:185,y:80,w:12,h:60,color:'#8D6E63'}];
+const hwStraightenerParts=[{id:'st-door',label:'门板（超高）',desc:'门板超1.5m有变形风险，超2m几乎必变形。需拉直器。',x:130,y:20,w:60,h:400,color:'#D7CCC8',specs:{'变形临界':'1.5m','严重变形':'>2.0m'}},{id:'st-groove',label:'拉直器开槽',desc:'在门板背面开槽距门边约80mm。',x:180,y:30,w:6,h:380,color:'#c62828',specs:{'开槽位置':'距门边80mm'}},{id:'st-bar',label:'拉直器',desc:'铝合金材质嵌入槽内可调张力校正弯曲。分段式设计更可靠。',x:178,y:30,w:10,h:380,color:'#9E9E9E',specs:{'材质':'铝合金','替代':'分段式设计'}}];
+const hardwareData={'32mm':{parts:hw32mmParts,w:280,h:400,title:'32mm排孔系统',desc:'系统孔φ5mm间距32mm前沿37mm。结构孔须避开系统孔。'},cam:{parts:hwCamParts,w:320,h:340,title:'三合一连接件',desc:'偏心轮+连接杆+预埋螺母。6步安装：打孔→装螺母→拧杆→插榫→对接→锁紧。'},hinge:{parts:hwHingeParts,w:420,h:340,title:'铰链系统',desc:'全盖C=18mm半盖C=9mm内侧C=0mm。杯孔φ35mm距门边5mm。'},slide:{parts:hwSlideParts,w:240,h:360,title:'滑轨系统',desc:'三节滚珠滑轨全行程拉伸。外轨固定柜体内轨固定抽屉。'},straightener:{parts:hwStraightenerParts,w:260,h:440,title:'拉直器',desc:'门板>1.5m必须加拉直器。背面开槽(距边80mm)嵌入铝合金拉直器。'}};
+
+const wdExternalParts=[{id:'we-top',label:'顶线/顶封板',desc:'柜顶装饰封板遮盖柜顶与天花缝隙。高50-80mm。',x:50,y:8,w:420,h:24,color:'#A1887F',specs:{'高度':'50-80mm'}},{id:'we-ldoor',label:'左柜门',desc:'平开门门板单扇≤500mm。超1.2m需3铰链超1.5m加拉直器。',x:50,y:38,w:200,h:350,color:'#D7CCC8',specs:{'宽度':'≤500mm','高>1.2m':'3铰链','高>1.5m':'加拉直器'}},{id:'we-rdoor',label:'右柜门',desc:'右扇平开门。',x:255,y:38,w:215,h:350,color:'#D7CCC8'},{id:'we-hl',label:'拉手',desc:'材质不锈钢/锌合金。孔距常见96/128/160mm。',x:225,y:220,w:16,h:5,color:'#BDBDBD',specs:{'孔距':'96/128/160mm'}},{id:'we-hr',label:'拉手',desc:'',x:445,y:220,w:16,h:5,color:'#BDBDBD'},{id:'we-kick',label:'踢脚板',desc:'底部挡板高80mm内缩50mm防尘防虫。',x:50,y:392,w:420,h:26,color:'#8D6E63',specs:{'高度':'80mm','内缩':'50mm'}},{id:'we-ls',label:'左侧板',desc:'18mm竖板承重结构。门板通过铰链固定于其上。',x:40,y:6,w:14,h:414,color:'#BCAAA4'},{id:'we-rs',label:'右侧板',desc:'',x:466,y:6,w:14,h:414,color:'#BCAAA4'}];
+const wdInternalParts=[{id:'wi-top',label:'顶板',desc:'最上方水平板三合一连接+木榫固定。',x:50,y:6,w:420,h:18,color:'#A1887F'},{id:'wi-bot',label:'底板',desc:'最下方水平板承载柜内物品。',x:50,y:398,w:420,h:18,color:'#A1887F'},{id:'wi-ls',label:'左侧板',desc:'18mm竖板排有系统孔(φ5mm间距32mm距前边37mm)。',x:40,y:6,w:14,h:412,color:'#BCAAA4',specs:{'厚度':'18mm','排孔间距':'32mm','前沿距':'37mm'}},{id:'wi-rs',label:'右侧板',desc:'',x:466,y:6,w:14,h:412,color:'#BCAAA4'},{id:'wi-s1',label:'层板(短衣区上)',desc:'固定层板三合一连接。',x:54,y:110,w:230,h:18,color:'#D7CCC8'},{id:'wi-s2',label:'层板(叠放区)',desc:'活动层板搁于层板托上可调高度。',x:300,y:110,w:170,h:18,color:'#D7CCC8',specs:{'类型':'活动层板'}},{id:'wi-s3',label:'层板(叠放区)',desc:'',x:300,y:190,w:170,h:18,color:'#D7CCC8'},{id:'wi-dr1',label:'抽屉',desc:'抽屉面板高160-200mm。滑轨安装在抽屉侧板外侧。注意不能设推拉门重叠位！',x:300,y:240,w:170,h:40,color:'#EFEBE9',specs:{'面板高':'160-200mm'}},{id:'wi-dr2',label:'抽屉',desc:'',x:300,y:284,w:170,h:40,color:'#EFEBE9'},{id:'wi-back',label:'背板',desc:'5mm或9mm薄板插槽安装不承重。',x:58,y:26,w:404,h:5,color:'#E8E0DB',specs:{'厚度':'5mm/9mm'}},{id:'wi-rod',label:'挂衣杆',desc:'φ25mm椭圆铝合金杆距上层板40-60mm。',x:54,y:135,w:220,h:4,color:'#BDBDBD',specs:{'直径':'φ25mm椭圆','距层板':'40-60mm'}},{id:'wi-kick',label:'踢脚板',desc:'底部踢脚板80mm。',x:50,y:418,w:420,h:18,color:'#8D6E63'},{id:'wi-sh1',label:'系统排孔',desc:'侧板上φ5mm系统孔间距32mm。',x:56,y:52,w:4,h:4,color:'#E65100'},{id:'wi-sh2',label:'系统排孔',desc:'',x:56,y:84,w:4,h:4,color:'#E65100'},{id:'wi-sh3',label:'系统排孔',desc:'',x:56,y:116,w:4,h:4,color:'#E65100'},{id:'wi-sh4',label:'系统排孔',desc:'',x:56,y:148,w:4,h:4,color:'#E65100'},{id:'wi-sh5',label:'系统排孔',desc:'',x:56,y:180,w:4,h:4,color:'#E65100'}];
+const wdSectionParts=[{id:'ws-side',label:'侧板(剖面)',desc:'18mm侧板深550-600mm。',x:28,y:10,w:18,h:410,color:'#BCAAA4',specs:{'深度':'550-600mm'}},{id:'ws-back',label:'背板(剖面)',desc:'5mm/9mm薄板插槽安装于侧板后方。',x:550,y:14,w:6,h:402,color:'#E8E0DB'},{id:'ws-door',label:'门板(剖面)',desc:'18mm门板铰链连接在侧板前端。',x:2,y:22,w:18,h:388,color:'#D7CCC8'},{id:'ws-top',label:'顶板',desc:'',x:28,y:10,w:528,h:18,color:'#A1887F'},{id:'ws-bot',label:'底板',desc:'',x:28,y:402,w:528,h:18,color:'#A1887F'},{id:'ws-s1',label:'层板',desc:'层板深通常比柜深少20-30mm留背板槽和门板空间。',x:28,y:180,w:522,h:18,color:'#D7CCC8',specs:{'深度':'530-580mm'}},{id:'ws-kick',label:'踢脚板',desc:'内缩50mm形成踢脚空间。',x:78,y:422,w:472,h:18,color:'#8D6E63',specs:{'内缩':'50mm'}}];
+const wdSlidingParts=[{id:'wsl-tr',label:'上轨道',desc:'推拉门上轨道引导门板。吊轨式还承载门重。',x:48,y:6,w:420,h:10,color:'#9E9E9E'},{id:'wsl-br',label:'下轨道',desc:'下轨道承载门板重量。凹槽易积灰需定期清理。吊轨式无下轨。',x:48,y:410,w:420,h:8,color:'#9E9E9E',specs:{'注意':'凹槽易积灰'}},{id:'wsl-bd',label:'后扇推拉门',desc:'后扇在内侧轨道。推拉门一次只能开一半柜体。',x:56,y:24,w:196,h:380,color:'#D7CCC8'},{id:'wsl-fd',label:'前扇推拉门',desc:'前扇在外侧轨道。前后错开滑动。',x:248,y:24,w:198,h:380,color:'#EFEBE9'},{id:'wsl-ls',label:'左侧板',desc:'推拉门柜深≥600mm(建议630mm)比平开门深50-100mm。轨道占80-120mm。',x:40,y:6,w:12,h:416,color:'#BCAAA4',specs:{'深度':'≥600mm','建议':'630mm','轨道占用':'80-120mm'}},{id:'wsl-rs',label:'右侧板',desc:'',x:466,y:6,w:12,h:416,color:'#BCAAA4'},{id:'wsl-sa',label:'层板(挂衣区)',desc:'推拉门挂衣区净深仅480-500mm（扣除轨道）冬装可能偏紧。',x:52,y:100,w:410,h:14,color:'#A1887F',specs:{'挂衣净深':'480-500mm','注意':'冬装偏紧'}},{id:'wsl-sb',label:'层板(叠放区)',desc:'活动层板。',x:52,y:200,w:410,h:14,color:'#A1887F'},{id:'wsl-dr',label:'抽屉区',desc:'推拉门抽屉必须避开移门重叠位置否则拉不出！最常犯错误！',x:52,y:280,w:200,h:48,color:'#EFEBE9',specs:{'⚠️关键':'避开移门重叠位'}},{id:'wsl-kick',label:'踢脚板',desc:'',x:48,y:420,w:420,h:16,color:'#8D6E63'}];
+const wdCornerParts=[{id:'wc-lc',label:'左侧柜体',desc:'转角柜左翼深550-600mm。',x:20,y:30,w:150,h:400,color:'#A1887F'},{id:'wc-rc',label:'右侧柜体',desc:'转角柜右翼深550-600mm。',x:20,y:30,w:400,h:150,color:'#8D6E63'},{id:'wc-corner',label:'转角区',desc:'转角柜核心难点：转角空间利用。方案：旋转衣架/转角拉篮/留空做次净衣区。',x:20,y:30,w:150,h:150,color:'#5D4037',specs:{'难点':'转角空间利用','方案':'旋转衣架/拉篮/留空'}},{id:'wc-post',label:'转角柱',desc:'转角处结构柱左右柜体都连接在此。需特别设计封板收口。',x:168,y:28,w:14,h:402,color:'#BCAAA4',specs:{'注意':'收口处理'}},{id:'wc-ld',label:'左翼门板',desc:'转角柜门板需大角度铰链(165°/175°)。',x:2,y:28,w:20,h:195,color:'#D7CCC8',specs:{'铰链':'165°/175°大角度'}},{id:'wc-bd',label:'右翼门板',desc:'',x:170,y:430,w:250,h:18,color:'#D7CCC8'}];
+const wardrobeData={external:{parts:wdExternalParts,w:520,h:440,title:'平开门衣柜·外观',desc:'双门平开含顶线、门板、拉手、踢脚板。平开门深550-600mm。'},internal:{parts:wdInternalParts,w:520,h:460,title:'平开门衣柜·内部',desc:'去掉门板的内部布局。左挂衣区（上短下长）右叠放+抽屉区。系统排孔（橙色）可见。'},section:{parts:wdSectionParts,w:580,h:460,title:'平开门衣柜·侧剖面',desc:'侧剖视图展示深度方向结构。柜深550-600mm层板深约530-580mm。'},sliding:{parts:wdSlidingParts,w:600,h:460,title:'推拉门衣柜',desc:'推拉门柜深≥600mm(建议630mm)。轨道占80-120mm。抽屉必须避开移门重叠位！'},corner:{parts:wdCornerParts,w:440,h:480,title:'转角柜(L型)',desc:'L型转角柜。核心难点：转角空间利用和收口处理。铰链选165°/175°大角度。'}};
+
+const cabinetParts=[{id:'cb-wall',label:'墙体',desc:'',x:8,y:0,w:10,h:410,color:'#E0D5CD'},{id:'cb-counter',label:'台面',desc:'石英石/岩板台面厚15-20mm比柜体前凸30mm。',x:45,y:142,w:420,h:18,color:'#ECEFF1',specs:{'厚度':'15-20mm','前凸':'30mm'}},{id:'cb-splash',label:'挡水条',desc:'台面靠墙侧挡水条防溅水。高约50mm。',x:45,y:132,w:420,h:10,color:'#ECEFF1',specs:{'高度':'约50mm'}},{id:'cb-upper',label:'吊柜',desc:'吊柜深320-350mm比地柜浅避免碰头。底部距台面700-750mm。',x:120,y:8,w:280,h:120,color:'#D7CCC8',specs:{'深度':'320-350mm','距台面':'700-750mm'}},{id:'cb-hood',label:'烟机预留位',desc:'吊柜中间预留烟机。标配宽900mm距台面650-750mm。',x:140,y:18,w:240,h:60,color:'#B0BEC5',specs:{'宽度':'900mm','距台面':'650-750mm'}},{id:'cb-base',label:'地柜',desc:'地柜深550-600mm建议18mm多层板(防潮优于颗粒板)。',x:55,y:170,w:410,h:210,color:'#A1887F',specs:{'深度':'550-600mm','柜体':'多层板(防潮)'}},{id:'cb-sink',label:'水槽柜',desc:'水槽柜内不设层板留空间给水管。通常做在窗户下方需防潮处理。',x:70,y:180,w:150,h:80,color:'#B0BEC5',specs:{'内部':'不设层板','特殊要求':'防潮处理'}},{id:'cb-drawer',label:'抽屉组',desc:'用于碗碟/餐具收纳。滑轨选阻尼缓冲型。',x:260,y:190,w:200,h:70,color:'#EFEBE9'},{id:'cb-kick',label:'踢脚板+调整脚',desc:'高100mm内部调整脚可微调±20mm水平。',x:55,y:384,w:410,h:18,color:'#8D6E63',specs:{'高度':'100mm','调整脚':'可调±20mm'}}];
+
+const doorParts=[{id:'dr-wall',label:'墙体(剖面)',desc:'',x:70,y:10,w:350,h:440,color:'#F5F0EB'},{id:'dr-ft',label:'门套上框',desc:'门套装饰固定框架。上框需牢固安装承受门扇重量。',x:80,y:16,w:340,h:20,color:'#A1887F',specs:{'材质':'实木/多层板','安装':'发泡胶+枪钉'}},{id:'dr-fl',label:'门套左框',desc:'',x:80,y:36,w:20,h:418,color:'#A1887F'},{id:'dr-fr',label:'门套右框',desc:'主套外表面覆盖副套线(装饰线条)。',x:400,y:36,w:20,h:418,color:'#A1887F'},{id:'dr-leaf',label:'门扇',desc:'门扇厚40-45mm。内部：框架+填充(蜂窝纸/桥洞力学板/实木)+面板。标准宽800/850/900mm。',x:118,y:56,w:264,h:382,color:'#D7CCC8',specs:{'厚度':'40-45mm','填充':'蜂窝纸/桥洞力学板','标准宽':'800/850/900mm'}},{id:'dr-h1',label:'合页(上)',desc:'连接门扇与门框。标准3个/扇轴承合页。嵌入铣槽保证平整。',x:98,y:80,w:18,h:3,color:'#BDBDBD',specs:{'数量':'3个/扇','材质':'不锈钢'}},{id:'dr-h2',label:'合页(中)',desc:'',x:98,y:250,w:18,h:3,color:'#BDBDBD'},{id:'dr-h3',label:'合页(下)',desc:'底部合页承受大部分重量。',x:98,y:400,w:18,h:3,color:'#BDBDBD'},{id:'dr-lock',label:'门锁+把手',desc:'室内分体锁。安装高度距地900-1050mm。',x:224,y:240,w:12,h:12,color:'#BDBDBD',specs:{'安装高度':'900-1050mm','类型':'分体锁/磁吸锁'}},{id:'dr-seal',label:'密封条',desc:'门扇边缘密封条隔音+密封+缓冲。硅胶/TPE。',x:118,y:56,w:264,h:2,color:'#757575',specs:{'材质':'硅胶/TPE'}},{id:'dr-stop',label:'门吸',desc:'固定于地面或墙面防门扇撞墙。',x:388,y:396,w:8,h:8,color:'#9E9E9E',specs:{'安装':'地面/墙面','类型':'磁吸/机械'}}];
+
+const verifyFlaws=[{title:'门板超高无拉直器',scene:'门板2400mm无拉直器。',symptom:'3个月后门板中部弯曲4-6mm门缝上下不齐。',cause:'板材自重+湿度变化。超1.5m门板内应力不可忽略。',fix:'超1.5m必须加拉直器(距门边80mm开槽)。或分段式设计。',tags:['拉直器','门板变形']},{title:'层板过长下沉',scene:'书柜层板跨度1000mm厚18mm。',symptom:'放满书2周后层板下沉5-8mm。',cause:'18mm颗粒板跨度>800mm重载时强度不足。',fix:'跨度>800mm层板后加金属角码连背板。重载建议25mm板或加强筋。',tags:['层板弯曲']},{title:'抽屉与推拉门冲突',scene:'推拉门衣柜抽屉在柜体中部。',symptom:'抽屉拉出撞到推拉门扇。',cause:'推拉门重叠位置挡住抽屉路径。',fix:'抽屉布置在推拉门非重叠侧或加挡板。先定门型再规划内部格局。',tags:['推拉门','抽屉冲突']},{title:'三合一孔与系统孔重合',scene:'三合一结构孔(φ15mm)落在系统排孔(φ5mm)路径上。',symptom:'无法安装偏心轮——孔位被系统孔占了。',cause:'拆单未做孔位碰撞检测。结构孔必须安排在相邻两排系统孔之间。',fix:'用专业拆单软件自动碰撞检测。绝不可现场随意钻孔！',tags:['孔位冲突','拆单']},{title:'前沿距用错',scene:'全盖门但前沿距用了55mm(内嵌门标准)。',symptom:'铰链底座装不上——系统孔太靠后。',fix:'全盖门37mm；内嵌门37mm+门厚。安装前确认铰链类型。',tags:['前沿距','铰链']},{title:'推拉门柜深不足',scene:'推拉门衣柜深仅550mm照搬平开门标准。',symptom:'挂衣区实际可用深仅430mm冬装袖口夹在门和背板间。',cause:'推拉门轨道占80-120mm。550mm-轨道=430-470mm。',fix:'推拉门最少600mm建议≥630mm。挂衣区才能有480-500mm净深。',tags:['推拉门','柜深']}];
+const verifyBugParts=[{id:'vb-door',label:'门板',x:56,y:40,w:190,h:370,color:'#D7CCC8',hasBug:true,bugDesc:'门板高2400mm但无拉直器！超1.5m门板3个月内必弯曲。需在门板背面距边80mm开槽加装拉直器。'},{id:'vb-drawer',label:'抽屉',x:290,y:300,w:170,h:60,color:'#EFEBE9',hasBug:false},{id:'vb-shelf',label:'层板',x:290,y:160,w:170,h:18,color:'#D7CCC8',hasBug:false},{id:'vb-rod',label:'挂衣杆',x:56,y:190,w:220,h:5,color:'#BDBDBD',hasBug:false},{id:'vb-side',label:'侧板',x:44,y:6,w:14,h:420,color:'#BCAAA4',hasBug:false},{id:'vb-side2',label:'侧板',x:466,y:6,w:14,h:420,color:'#BCAAA4',hasBug:false},{id:'vb-syshole',label:'系统排孔',x:60,y:220,w:5,h:5,color:'#E65100',hasBug:false},{id:'vb-struct',label:'三合一孔',x:60,y:222,w:15,h:15,color:'#c62828',hasBug:true,bugDesc:'三合一结构孔(φ15mm)与系统排孔(φ5mm)重合！偏心轮无法安装。结构孔须安排在相邻两排系统孔之间。'},{id:'vb-kick',label:'踢脚板',x:52,y:428,w:416,h:18,color:'#8D6E63',hasBug:false},{id:'vb-back',label:'背板',x:60,y:26,w:404,h:5,color:'#E8E0DB',hasBug:true,bugDesc:'背板厚仅3mm(过薄)。标准背板至少5mm建议9mm。过薄的背板无法稳定柜体易受潮变形。'}];
+
+const refCards=[{title:'板材类型',rows:[['颗粒板','性价比高握钉力好','柜体主流'],['多层板','防潮好强度高','橱柜卫浴柜'],['欧松板','环保稳定性好','高端柜体'],['密度板','表面细腻易造型','门板(吸塑)'],['生态板','免漆花色多','柜体层板']]},{title:'封边工艺',rows:[['EVA','有胶线普通','低成本'],['PUR','防水胶线细','中端主流'],['激光','无缝高端','高成本']]},{title:'衣柜尺寸规范',rows:[['柜体深(含门)','550-600mm'],['侧板厚','18mm'],['背板厚','5mm/9mm'],['踢脚板高','80mm'],['短衣区','900-1000mm'],['长衣区','1400-1600mm'],['叠放区层距','300-400mm'],['抽屉面板高','160-200mm'],['单扇门宽','≤500mm']]},{title:'橱柜尺寸规范',rows:[['地柜高(含台面)','800-850mm'],['地柜深','550-600mm'],['吊柜深','320-350mm'],['吊柜距台面','700-750mm'],['台面厚','15-20mm'],['调整脚','100mm(可调±20)']]},{title:'五金规格',rows:[['铰链杯径','φ35mm'],['铰链杯距门边','5mm'],['三节滑轨长','250-550mm'],['衣通','φ25mm椭圆'],['拉手孔距','96/128/160mm'],['拉直器槽位','距门边80mm']]},{title:'连接件规格',rows:[['三合一偏心轮','φ15×12mm'],['三合一连接杆','φ6×40mm'],['预埋螺母','φ10mm'],['定位木榫','φ8mm'],['系统排孔','φ5mm深13mm'],['前沿距(全盖)','37mm']]},{title:'铰链选择表',rows:[['门高≤900mm','2个铰链'],['门高900-1500mm','3个铰链'],['门高>1500mm','4个+拉直器'],['全盖(C=18)','直弯/直臂'],['半盖(C=9)','中弯'],['内侧(C=0)','大弯']]}];
+
+// ============ CALC EXERCISE DATA ============
+const sizeExercises=[
+  {
+    title:'基础衣柜 — 顶板尺寸计算',
+    desc:'衣柜外观：宽1600mm × 高2400mm × 深600mm。侧板18mm厚，顶板18mm厚。顶板夹在两侧板之间。',
+    svg:`<svg viewBox="0 0 400 240"><rect x="10" y="10" width="14" height="220" fill="#BCAAA4"/><rect x="376" y="10" width="14" height="220" fill="#BCAAA4"/><rect x="24" y="10" width="352" height="16" fill="#E65100" stroke="#BF360C" stroke-width="2"/><rect x="24" y="214" width="352" height="16" fill="#A1887F"/><text x="200" y="8" text-anchor="middle" font-size="10" fill="#E65100" font-weight="700">顶板 = ?</text><text x="200" y="238" text-anchor="middle" font-size="10" fill="#6D4C41">1600mm (外宽)</text><text x="2" y="125" font-size="10" fill="#6D4C41" transform="rotate(-90,2,125)">2400mm</text></svg>`,
+    questions:[
+      {label:'顶板长度',unit:'mm',answer:1564,hint:'外宽1600mm - 左侧板18mm - 右侧板18mm = 1564mm'},
+      {label:'顶板宽度',unit:'mm',answer:600,hint:'宽度=柜体深度=600mm（顶板宽度方向与柜深一致）'},
+      {label:'顶板厚度',unit:'mm',answer:18,hint:'标准板厚18mm'}
+    ]
+  },
+  {
+    title:'书柜 — 层板尺寸计算',
+    desc:'书柜外观：宽1200mm × 高2000mm × 深350mm。侧板18mm。中间有1块中竖板（18mm）将书柜分成左右两格。计算左格层板的长度。',
+    svg:`<svg viewBox="0 0 400 240"><rect x="10" y="10" width="14" height="190" fill="#BCAAA4"/><rect x="196" y="10" width="14" height="190" fill="#BCAAA4"/><rect x="376" y="10" width="14" height="190" fill="#BCAAA4"/><rect x="24" y="80" width="172" height="14" fill="#E65100" stroke="#BF360C" stroke-width="2"/><text x="110" y="76" text-anchor="middle" font-size="10" fill="#E65100" font-weight="700">左格层板 = ?</text><text x="200" y="216" text-anchor="middle" font-size="10" fill="#6D4C41">1200mm (外宽)</text></svg>`,
+    questions:[
+      {label:'左格层板长度',unit:'mm',answer:573,hint:'左格净宽=(1200-3×18)/2=573mm。即(外宽-两侧板-中竖板)÷2。'},
+      {label:'层板宽度(深度)',unit:'mm',answer:330,hint:'柜深350mm - 留背板槽约20mm = 330mm。实际层板比柜深少20-30mm。'}
+    ]
+  },
+  {
+    title:'双抽屉柜 — 抽屉面板宽度',
+    desc:'双抽屉并排。柜内净宽1564mm（即已扣除两侧板）。两抽屉间留3mm缝隙，两侧各留1.5mm。求单块抽屉面板宽度。',
+    svg:`<svg viewBox="0 0 400 200"><rect x="10" y="30" width="14" height="150" fill="#BCAAA4"/><rect x="376" y="30" width="14" height="150" fill="#BCAAA4"/><rect x="24" y="60" width="170" height="80" fill="#E65100" stroke="#BF360C" stroke-width="2"/><rect x="206" y="60" width="170" height="80" fill="#E65100" stroke="#BF360C" stroke-width="2"/><text x="109" y="105" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">面板1=?</text><text x="291" y="105" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">面板2=?</text><text x="200" y="190" text-anchor="middle" font-size="10" fill="#6D4C41">柜内净宽1564mm</text></svg>`,
+    questions:[
+      {label:'单块抽屉面板宽度',unit:'mm',answer:780,hint:'(1564 - 3缝隙 - 1.5×2侧隙)/2 = 779mm≈780mm取整'}
+    ]
+  },
+  {title:'榻榻米 — 侧板高度计算',desc:'榻榻米地台外观：宽2000mm × 长2500mm × 高400mm。侧板18mm厚，底板18mm厚，面板18mm厚。侧板夹在底板和面板之间。',svg:`<svg viewBox="0 0 400 140"><rect x="10" y="50" width="14" height="80" fill="#BCAAA4"/><rect x="376" y="50" width="14" height="80" fill="#BCAAA4"/><rect x="24" y="44" width="352" height="14" fill="#A1887F"/><rect x="24" y="120" width="352" height="14" fill="#A1887F"/><line x1="24" y1="70" x2="376" y2="70" stroke="#E65100" stroke-width="2"/><text x="200" y="66" text-anchor="middle" font-size="10" fill="#E65100" font-weight="700">侧板高度=?</text><text x="200" y="40" text-anchor="middle" font-size="9" fill="#6D4C41">面板18mm</text><text x="200" y="136" text-anchor="middle" font-size="9" fill="#6D4C41">底板18mm</text></svg>`,questions:[{label:'侧板高度',unit:'mm',answer:364,hint:'总高400mm - 面板18mm - 底板18mm = 364mm。侧板夹在面板和底板之间。'}]},
+  {title:'电视柜 — 顶板尺寸',desc:'电视柜外观：宽2400mm × 高550mm × 深400mm。18mm侧板2块，18mm中竖板2块（将柜体等分为3格）。顶板覆盖在侧板上方。',svg:`<svg viewBox="0 0 440 130"><rect x="10" y="40" width="14" height="80" fill="#BCAAA4"/><rect x="146" y="40" width="14" height="80" fill="#8D6E63"/><rect x="276" y="40" width="14" height="80" fill="#8D6E63"/><rect x="416" y="40" width="14" height="80" fill="#BCAAA4"/><rect x="8" y="32" width="424" height="16" fill="#E65100" stroke="#BF360C" stroke-width="2"/><text x="220" y="28" text-anchor="middle" font-size="10" fill="#E65100" font-weight="700">顶板长度=?</text></svg>`,questions:[{label:'顶板长度',unit:'mm',answer:2400,hint:'顶板覆盖在侧板上方不夹在中间。长度=外宽=2400mm。顶板宽度=深度=400mm。'}]
+  }
+];
+
+const edgeExercises=[
+  {
+    title:'左侧板 — 封边标注',
+    desc:'柜体左侧板尺寸2400×550×18mm。左边缘暴露在外（客户可见），右边缘朝向柜内（不可见）。上下边缘均暴露。',
+    svg:`<svg viewBox="0 0 300 200"><rect x="20" y="20" width="260" height="160" fill="#D7CCC8" stroke="#8D6E63" stroke-width="2"/><text x="150" y="105" text-anchor="middle" font-size="13" fill="#6D4C41" font-weight="700">左侧板</text><text x="150" y="125" text-anchor="middle" font-size="10" fill="#999">2400×550×18</text><text x="10" y="105" font-size="10" fill="#c62828" font-weight="700">←暴露</text><text x="260" y="105" font-size="10" fill="#999">柜内→</text><text x="150" y="14" font-size="10" fill="#c62828">↑暴露</text><text x="150" y="192" font-size="10" fill="#c62828">↓暴露</text></svg>`,
+    options:[
+      {label:'↑1.0 ↓1.0 ←1.0 →0.5',correct:true,why:'暴露面(上下左)封1.0mm，柜内面(右)薄封0.5mm即可。'},
+      {label:'↑1.0 ↓1.0 ←0.5 →1.0',correct:false,why:'左边缘是暴露面应该封1.0mm而非0.5mm。'},
+      {label:'↑0.5 ↓0.5 ←0.5 →0.5',correct:false,why:'暴露面封0.5mm太薄不符合标准。'},
+      {label:'↑1.0 ↓1.0 ←1.0 →1.0',correct:false,why:'右边朝向柜内不需要封1.0mm，浪费成本。'}
+    ]
+  },
+  {
+    title:'固定层板 — 封边标注',
+    desc:'层板尺寸1564×550×18mm。前边缘（朝向门板方向）暴露可见，后边缘插入背板槽中不可见。左右两边缘均与侧板三合一连接不可见。上下两面均可见（层板上方和下方都是储物空间）。',
+    svg:`<svg viewBox="0 0 300 200"><rect x="20" y="20" width="260" height="160" fill="#D7CCC8" stroke="#8D6E63" stroke-width="2"/><text x="150" y="105" text-anchor="middle" font-size="13" fill="#6D4C41" font-weight="700">固定层板</text><text x="150" y="125" text-anchor="middle" font-size="10" fill="#999">1564×550×18</text><text x="10" y="105" font-size="10" fill="#c62828" font-weight="700">←暴露</text><text x="258" y="105" font-size="10" fill="#999">背板槽→</text><text x="150" y="192" font-size="10" fill="#999">↓三合一连接</text><text x="150" y="14" font-size="10" fill="#999">↑三合一连接</text></svg>`,
+    options:[
+      {label:'↑0.5 ↓0.5 ←1.0 →—',correct:true,why:'前边缘暴露封1.0mm。上下边三合一连接处可薄封0.5mm。后边入背板槽不封(—)。'},
+      {label:'↑1.0 ↓1.0 ←1.0 →1.0',correct:false,why:'四边全封1.0mm浪费。后边入背板槽不需要封边。'},
+      {label:'↑— ↓— ←1.0 →—',correct:false,why:'上下边完全不封会导致甲醛释放和受潮。'},
+      {label:'↑1.0 ↓1.0 ←0.5 →—',correct:false,why:'前边缘是主要暴露面应该封1.0mm。'}
+    ]
+  },
+  {
+    title:'背板 — 封边标注',
+    desc:'背板尺寸(2400-80)×(1600-36)×5mm。四周均插入侧板/顶板/底板的背板槽中，完全不可见。',
+    svg:`<svg viewBox="0 0 260 200"><rect x="20" y="20" width="220" height="160" fill="#E8E0DB" stroke="#BCAAA4" stroke-width="1.5"/><text x="130" y="105" text-anchor="middle" font-size="13" fill="#8D6E63" font-weight="700">背板</text><text x="130" y="125" text-anchor="middle" font-size="10" fill="#999">2320×1564×5</text><text x="10" y="105" font-size="10" fill="#999">←插槽</text><text x="228" y="105" font-size="10" fill="#999">插槽→</text><text x="130" y="14" font-size="10" fill="#999">↑插槽</text><text x="130" y="192" font-size="10" fill="#999">↓插槽</text></svg>`,
+    options:[
+      {label:'↑— ↓— ←— →—',correct:true,why:'四边均插入背板槽完全不可见，不需要封边。'},
+      {label:'↑0.5 ↓0.5 ←0.5 →0.5',correct:false,why:'四边全封不必要。背板嵌入槽内封边反而影响安装。'},
+      {label:'↑1.0 ↓1.0 ←1.0 →1.0',correct:false,why:'严重浪费。背板不暴露不需要封边。'}
+    ]
+  },
+  {title:'抽屉面板 — 封边标注',desc:'抽屉面板尺寸800×200×18mm。四个边缘全部暴露可见（面板正面和四边都是见光面）。',svg:`<svg viewBox="0 0 260 140"><rect x="40" y="20" width="180" height="100" fill="#D7CCC8" stroke="#8D6E63" stroke-width="2"/><text x="130" y="75" text-anchor="middle" font-size="13" fill="#6D4C41" font-weight="700">抽屉面板</text><text x="130" y="95" text-anchor="middle" font-size="10" fill="#999">800×200×18</text><text x="20" y="75" font-size="9" fill="#c62828">←暴露</text><text x="225" y="75" font-size="9" fill="#c62828">暴露→</text><text x="130" y="14" font-size="9" fill="#c62828">↑暴露</text><text x="130" y="132" font-size="9" fill="#c62828">↓暴露</text></svg>`,options:[{label:'↑1.0 ↓1.0 ←1.0 →1.0',correct:true,why:'四边全是见光面标准封边1.0mm。抽屉面板是客户最直接看到的部件封边必须到位。'},{label:'↑1.0 ↓1.0 ←0.5 →0.5',correct:false,why:'左右边缘也是见光面不应缩水到0.5mm。'},{label:'↑0.5 ↓0.5 ←0.5 →0.5',correct:false,why:'主要可见面板封0.5mm显得廉价。1.0mm是标准。'}]},
+  {title:'踢脚板 — 封边标注',desc:'踢脚板尺寸(1600-36)×80×18mm。上边缘可见（柜内从底板往下看），前边缘可见（门板下方看得到）。下边缘贴地不可见，左右两端嵌入侧板槽中不可见。',svg:`<svg viewBox="0 0 300 120"><rect x="20" y="30" width="260" height="60" fill="#8D6E63" stroke="#6D4C41" stroke-width="2"/><text x="150" y="65" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">踢脚板</text><text x="150" y="82" text-anchor="middle" font-size="9" fill="#EFEBE9">(1600-36)×80×18</text><text x="10" y="65" font-size="9" fill="#999">←侧槽</text><text x="275" y="65" font-size="9" fill="#999">侧槽→</text><text x="150" y="24" font-size="9" fill="#c62828">↑可见</text><text x="150" y="104" font-size="9" fill="#999">↓贴地</text></svg>`,options:[{label:'↑1.0 ↓— ←— →—',correct:true,why:'上边可见封1.0mm。下边贴地不需封。左右入侧板槽不封。踢脚板只有一个可见面。'},{label:'↑1.0 ↓1.0 ←1.0 →1.0',correct:false,why:'四边全封浪费。下边贴地左右入槽根本看不见。'},{label:'↑— ↓— ←— →—',correct:false,why:'上边缘可见不封边会导致受潮和甲醛释放。'}]}
+];
+
+const designExercises=[
+  {
+    title:'推拉门衣柜 + 抽屉',
+    desc:'客户要求在推拉门衣柜中设置两组抽屉。设计师将抽屉放在了柜体正中位置。这个方案可行吗？',
+    issue:'不可行。推拉门两扇门重叠位置正好在柜体中部，抽屉拉出时会撞到门扇。抽屉必须布置在推拉门非重叠侧（即靠近侧板的两侧区域），或者改用平开门。',
+    ok:false
+  },
+  {
+    title:'书柜层板跨度',
+    desc:'客户需要一个1200mm宽的书柜放大量书籍（约40kg/格）。设计师用了18mm厚颗粒板层板单格跨度1200mm。这个方案可行吗？',
+    issue:'不可行。18mm颗粒板跨度>800mm放重物必定弯曲。方案A：中间加中竖板将跨度减为600mm。方案B：层板改用25mm厚并在后加金属加强筋。方案C：改用多层板(抗弯强度更好)。',
+    ok:false
+  },
+  {
+    title:'衣柜靠墙量尺',
+    desc:'量尺时发现：房间宽3000mm。左墙垂直(偏差<1mm)，右墙顶部比底部向内倾斜8mm。设计师按地面尺寸设计了一组2950mm宽的衣柜。这个方案可行吗？',
+    issue:'有问题。右墙倾斜8mm意味着顶部实际可用宽度=3000-8=2992mm。2950mm宽的柜子理论上有42mm余量，但如果安装时从顶部定位，底部与墙会有8mm缝隙需要收口处理。正确做法：量尺时分别量顶部和底部宽度，取最小值，并在倾斜侧预留收口板。',
+    ok:true
+  },
+  {title:'橱柜水槽柜位置',desc:'客户厨房窗户在东墙宽1200mm。设计师将水槽柜(宽1000mm)放在了北墙地柜中间。这个方案合理吗？',issue:'不合理。水槽柜应优先放在窗户下方利用自然光。且水槽柜内有水管和下水，放在北墙中间会导致排水管过长增加堵塞风险。正确做法：水槽柜应优先靠窗。',ok:false},
+  {title:'衣柜门板分段设计',desc:'客户层高2750mm要做一门到顶衣柜。设计师直接做了2750mm高的单扇门板。这个方案可行吗？',issue:'不可行。2750mm超高的门板即使加拉直器也极容易变形。建议方案：顶部做500mm顶柜(储棉被)+下部2200mm做分段门板。这样每扇门高约1100mm在安全范围。既满足一门到顶的视觉效果又控制了变形风险。',ok:false}
+];
+
+// Hole practice scenarios
+const holeScenarios=[
+  {
+    label:'场景A：标准全盖门排孔',
+    svg:`<svg viewBox="0 0 220 340"><rect x="30" y="10" width="18" height="320" fill="#BCAAA4"/><circle cx="50" cy="40" r="3" fill="#E65100"/><circle cx="50" cy="72" r="3" fill="#E65100"/><circle cx="50" cy="104" r="3" fill="#E65100"/><circle cx="50" cy="136" r="3" fill="#E65100"/><circle cx="50" cy="168" r="3" fill="#E65100"/><circle cx="50" cy="200" r="3" fill="#E65100"/><circle cx="50" cy="232" r="3" fill="#E65100"/><circle cx="50" cy="264" r="3" fill="#E65100"/><circle cx="50" cy="296" r="3" fill="#E65100"/><line x1="30" y1="8" x2="48" y2="8" stroke="#1565C0" stroke-width="1"/><text x="20" y="8" font-size="8" fill="#1565C0">37mm</text><line x1="60" y1="38" x2="70" y2="38" stroke="#1565C0" stroke-width="0.8"/><text x="62" y="34" font-size="7" fill="#1565C0">32</text></svg>`,
+    correct:true,
+    explanation:'正确！系统孔间距32mm（32的整数倍），前沿距37mm（全盖门标准）。排孔规整符合32mm系统。'
+  },
+  {
+    label:'场景B：结构孔与系统孔重合',
+    svg:`<svg viewBox="0 0 220 340"><rect x="30" y="10" width="18" height="320" fill="#BCAAA4"/><circle cx="50" cy="40" r="3" fill="#E65100"/><circle cx="50" cy="72" r="3" fill="#E65100"/><circle cx="50" cy="104" r="3" fill="#E65100"/><circle cx="50" cy="136" r="3" fill="#E65100"/><circle cx="50" cy="168" r="8" fill="#c62828" opacity="0.8"/><circle cx="50" cy="200" r="3" fill="#E65100"/><circle cx="50" cy="232" r="3" fill="#E65100"/><circle cx="50" cy="264" r="3" fill="#E65100"/><text x="64" y="172" font-size="8" fill="#c62828" font-weight="700">冲突!</text></svg>`,
+    correct:false,
+    explanation:'错误！φ15mm结构孔（红色大圆）与φ5mm系统孔位置重合。结构孔必须安排在相邻两排系统孔之间（如放在y=152或y=184位置）。'
+  },
+  {
+    label:'场景C：前沿距错误',
+    svg:`<svg viewBox="0 0 220 340"><rect x="30" y="10" width="18" height="320" fill="#BCAAA4"/><circle cx="60" cy="40" r="3" fill="#E65100"/><circle cx="60" cy="72" r="3" fill="#E65100"/><circle cx="60" cy="104" r="3" fill="#E65100"/><circle cx="60" cy="136" r="3" fill="#E65100"/><circle cx="60" cy="168" r="3" fill="#E65100"/><circle cx="60" cy="200" r="3" fill="#E65100"/><circle cx="60" cy="232" r="3" fill="#E65100"/><circle cx="60" cy="264" r="3" fill="#E65100"/><line x1="30" y1="8" x2="58" y2="8" stroke="#c62828" stroke-width="1.5"/><text x="20" y="8" font-size="8" fill="#c62828">55mm❌</text></svg>`,
+    correct:false,
+    explanation:'错误！前沿距用了55mm（内嵌门标准），但这是全盖门设计。全盖门标准前沿距应为37mm。这个排孔会导致铰链底座偏后无法正确安装门板。'
+  },
+  {
+    label:'场景D：孔距不是32倍数',
+    svg:`<svg viewBox="0 0 220 340"><rect x="30" y="10" width="18" height="320" fill="#BCAAA4"/><circle cx="50" cy="40" r="3" fill="#E65100"/><circle cx="50" cy="75" r="3" fill="#E65100"/><circle cx="50" cy="110" r="3" fill="#E65100"/><circle cx="50" cy="145" r="3" fill="#E65100"/><circle cx="50" cy="180" r="3" fill="#E65100"/><circle cx="50" cy="215" r="3" fill="#E65100"/><line x1="60" y1="38" x2="70" y2="38" stroke="#c62828" stroke-width="1.5"/><text x="72" y="34" font-size="7" fill="#c62828">35❌</text><text x="62" y="48" font-size="7" fill="#c62828">不是32倍数!</text></svg>`,
+    correct:false,
+    explanation:'错误！孔间距35mm不是32的整数倍（应为32、64、96、128...）。这会导致层板托和五金件无法对齐32mm模数的定位网格。整个全屋定制行业都基于32mm系统。'
+  },
+  {label:'场景E：缺少三合一结构孔',svg:`<svg viewBox="0 0 220 340"><rect x="30" y="10" width="18" height="320" fill="#BCAAA4"/><circle cx="50" cy="40" r="3" fill="#E65100"/><circle cx="50" cy="72" r="3" fill="#E65100"/><circle cx="50" cy="104" r="3" fill="#E65100"/><circle cx="50" cy="136" r="3" fill="#E65100"/><circle cx="50" cy="168" r="3" fill="#E65100"/><circle cx="50" cy="200" r="3" fill="#E65100"/><circle cx="50" cy="232" r="3" fill="#E65100"/><circle cx="50" cy="264" r="3" fill="#E65100"/><rect x="210" y="168" width="140" height="40" fill="#FFFEFB" stroke="#c62828" stroke-width="1.5" rx="4"/><text x="280" y="190" text-anchor="middle" font-size="9" fill="#c62828" font-weight="700">层板位置</text><text x="280" y="202" text-anchor="middle" font-size="8" fill="#c62828">缺三合一孔!</text></svg>`,correct:false,explanation:'错误！侧板在层板安装高度处(约168mm处)缺少三合一结构孔。仅靠系统孔不足以连接层板——系统孔是给层板托的，三合一孔才是主要连接结构。每块固定层板至少需要2个三合一孔+2个木榫孔。'},
+  {label:'场景F：铰链安装排孔',svg:`<svg viewBox="0 0 220 340"><rect x="30" y="10" width="18" height="320" fill="#BCAAA4"/><circle cx="50" cy="40" r="3" fill="#E65100"/><circle cx="50" cy="72" r="3" fill="#E65100"/><circle cx="50" cy="104" r="3" fill="#E65100"/><circle cx="50" cy="200" r="3" fill="#E65100"/><circle cx="50" cy="232" r="3" fill="#E65100"/><circle cx="50" cy="264" r="3" fill="#E65100"/><circle cx="50" cy="136" r="6" fill="#4CAF50" opacity="0.7"/><circle cx="50" cy="168" r="6" fill="#4CAF50" opacity="0.7"/><text x="64" y="140" font-size="8" fill="#4CAF50">铰链</text><text x="64" y="172" font-size="8" fill="#4CAF50">底座孔</text></svg>`,correct:true,explanation:'正确！系统孔间距32mm，铰链底座安装孔(绿色大孔)利用系统孔位置。铰链底座通常跨越2-3个系统孔安装，不需要额外打孔。铰链杯孔(φ35mm)在门板上。'}
+];
+
+// Measure scenarios
+const measureScenes=[
+  {
+    title:'场景1：标准卧室墙面',
+    desc:'卧室宽3200mm。左墙垂直偏差<2mm，右墙垂直偏差<2mm。天花高度2550mm，地面平整。要做一整面墙的平开门衣柜。',
+    svg:`<svg viewBox="0 0 400 180"><rect x="10" y="15" width="380" height="8" fill="#E0D5CD"/><rect x="10" y="160" width="380" height="8" fill="#D7CCC8"/><rect x="10" y="23" width="8" height="137" fill="#E0D5CD"/><rect x="382" y="23" width="8" height="137" fill="#E0D5CD"/><text x="200" y="12" text-anchor="middle" font-size="10" fill="#6D4C41">天花 2550mm</text><text x="200" y="178" text-anchor="middle" font-size="10" fill="#6D4C41">地面 3200mm</text><text x="5" y="90" font-size="10" fill="#6D4C41" transform="rotate(-90,5,90)">墙垂直&lt;2mm</text></svg>`,
+    questions:[
+      {q:'柜体设计高度(mm)？留天顶缝10mm。',answer:2540,hint:'天花2550mm - 天顶缝10mm - 底部无需留 = 2540mm。实际还需扣除踢脚板高度。'},
+      {q:'柜体设计宽度(mm)？两侧各留20mm收口。',answer:3160,hint:'3200mm - 20mm左 - 20mm右 = 3160mm'}
+    ]
+  },
+  {
+    title:'场景2：带梁柱的墙角',
+    desc:'墙角有一根250×250mm的柱子。左墙到柱子距离1800mm，柱子到右墙距离2200mm。要做L型转角衣柜包住柱子。',
+    svg:`<svg viewBox="0 0 440 200"><rect x="10" y="20" width="380" height="8" fill="#E0D5CD"/><rect x="10" y="20" width="8" height="160" fill="#E0D5CD"/><rect x="160" y="20" width="30" height="30" fill="#5D4037"/><text x="175" y="38" text-anchor="middle" font-size="8" fill="#fff">柱</text><text x="90" y="48" text-anchor="middle" font-size="10" fill="#6D4C41">1800mm</text><text x="280" y="48" text-anchor="middle" font-size="10" fill="#6D4C41">2200mm</text></svg>`,
+    questions:[
+      {q:'柱左侧柜体最大可用宽度(mm)？留20mm收口。',answer:1780,hint:'1800mm - 20mm收口 = 1780mm。柱子本身占据250mm空间。'},
+      {q:'转角柜设计时柱子怎么处理？',answer:'包覆',hint:'正确做法是用柜体板材将柱子包覆在内，外观上柱子"消失"在柜体中。注意：柱子可能与柜体内部功能分区冲突。'}
+    ]
+  },
+  {
+    title:'场景3：倾斜墙面',
+    desc:'量尺发现：房间宽度在底部为3000mm，在2400mm高度处为2992mm（右墙倾斜8mm）。客户要装到顶衣柜。',
+    svg:`<svg viewBox="0 0 460 180"><rect x="10" y="15" width="380" height="8" fill="#E0D5CD"/><rect x="10" y="160" width="380" height="8" fill="#D7CCC8"/><line x1="18" y1="23" x2="10" y2="160" stroke="#c62828" stroke-width="2"/><rect x="390" y="23" width="8" height="137" fill="#E0D5CD"/><text x="22" y="14" font-size="9" fill="#c62828">↓2992mm(顶)</text><text x="24" y="178" font-size="9" fill="#6D4C41">3000mm(底)</text><text x="44" y="100" font-size="9" fill="#c62828" font-weight="700">左墙倾斜8mm</text></svg>`,
+    questions:[
+      {q:'按哪个宽度设计柜体？顶部还是底部？',answer:'底部',hint:'取最小宽度2992mm设计（顶部）。底部多出8mm缝隙用收口板遮盖。如果按底部3000mm设计，顶部装不下。'},
+      {q:'倾斜侧预留多少收口空间？',answer:20,hint:'倾斜侧预留至少15-20mm给收口板调节空间。收口板现场根据实际倾斜角度裁切。'}
+    ]
+  },
+  {title:'场景4：天花倾斜',desc:'量尺发现天花在2400mm处测量为2455mm，在2500mm处为2450mm（左高右低差5mm）。客户要装到顶衣柜。',svg:`<svg viewBox="0 0 440 160"><line x1="10" y1="60" x2="390" y2="50" stroke="#c62828" stroke-width="2"/><rect x="10" y="100" width="380" height="8" fill="#D7CCC8"/><text x="200" y="42" text-anchor="middle" font-size="9" fill="#c62828">←2450mm &nbsp; 2455mm→ (差5mm)</text><text x="200" y="120" text-anchor="middle" font-size="9" fill="#6D4C41">地面水平</text></svg>`,questions:[{q:'柜体设计高度取哪个值？',answer:'2440',hint:'取最小天花高度2450mm-10mm顶部缝=2440mm。在较低一侧(右边)柜顶留10mm缝，较高一侧(左边)柜顶与天花的缝隙会更大(15mm)用顶封板遮盖。'},{q:'较高侧的缝隙如何处理？',answer:'顶封板',hint:'用可裁切的顶封板(收口板)现场根据实际缝隙填塞。绝对不能把柜子做高去"顶死"天花——板材会受压变形。'}]},
+  {title:'场景5：墙面开关插座避让',desc:'客户卧室墙宽3000mm要做满墙衣柜。墙面上距地900mm处有一个电源插座(宽86mm)，距左墙1200mm。',svg:`<svg viewBox="0 0 400 200"><rect x="10" y="20" width="380" height="8" fill="#E0D5CD"/><rect x="10" y="160" width="380" height="8" fill="#D7CCC8"/><rect x="10" y="28" width="8" height="132" fill="#E0D5CD"/><rect x="130" y="90" width="16" height="16" fill="#c62828"/><text x="138" y="104" text-anchor="middle" font-size="7" fill="#fff">插座</text><text x="70" y="80" text-anchor="middle" font-size="9" fill="#c62828">1200mm→</text></svg>`,questions:[{q:'插座位置怎么处理？',answer:'背板开孔',hint:'在背板对应位置开一个86×86mm方孔让插座面板露出。注意开孔位置必须在现场量尺时精确记录。绝不能简单地用柜体遮住插座——存在安全隐患且违反电气规范。'},{q:'如果插座刚好在侧板位置怎么办？',answer:'侧板开孔',hint:'在侧板对应位置开孔让出插座。如果无法避开则需要整体向左或向右偏移柜体位置。极端情况下需请电工移位插座。'}]
+  }
+];
+
+// ==================== HELPERS ====================
+function makeExplorer(containerId,infoId,parts,w,h){
+  const c=document.getElementById(containerId);c.style.position='relative';
+  let svg=`<svg viewBox="0 0 ${w} ${h}" width="${w>500?'100%':w}" height="${h}" xmlns="http://www.w3.org/2000/svg">`;
+  parts.forEach(p=>{svg+=`<rect id="${p.id}" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="${p.h<10?2:4}" fill="${p.color}" stroke="#8D6E63" stroke-width="1.2" class="part" data-pid="${p.id}"/>`;});
+  svg+=`</svg>`;c.innerHTML=svg+'<div class="tooltip" id="tt-'+containerId+'"></div>';
+  const tt=c.querySelector('#tt-'+containerId);
+  c.querySelectorAll('.part').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{const p=parts.find(pp=>pp.id===el.dataset.pid);if(p&&p.label){tt.textContent=p.label;tt.classList.add('on');}});
+    el.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();tt.style.left=(e.clientX-r.left)+'px';tt.style.top=(e.clientY-r.top)+'px';});
+    el.addEventListener('mouseleave',()=>tt.classList.remove('on'));
+    el.addEventListener('click',()=>{const p=parts.find(pp=>pp.id===el.dataset.pid);if(p)showInfo(infoId,p);c.querySelectorAll('.part').forEach(e=>e.classList.remove('highlight'));el.classList.add('highlight');});
+  });
+}
+function showInfo(panelId,part){
+  const panel=document.getElementById(panelId);let specs='';
+  if(part.specs){specs='<div class="specs"><strong>规格参数</strong>';Object.entries(part.specs).forEach(([k,v])=>{specs+=`<div class="spec-row"><span class="k">${k}</span><span class="v">${v}</span></div>`;});specs+='</div>';}
+  panel.innerHTML=`<div class="name">${part.label}</div><div class="desc">${part.desc||''}</div>${specs}`;
+}
+
+// ==================== TAB SWITCHING ====================
+document.getElementById('nav').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  const tab=e.target.dataset.tab;
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(tab==='hardware')renderHardware('32mm');
+  if(tab==='wardrobe')renderWardrobe('external');
+  if(tab==='cabinet')renderCabinet();
+  if(tab==='door')renderDoor();
+  if(tab==='calc')renderCalc('size');
+  if(tab==='holes')renderHoles();
+  if(tab==='shortcut')renderShortcut('ref');
+  if(tab==='measure')renderMeasure();
+  if(tab==='verify')renderVerify();
+  if(tab==='quiz')renderQuiz();
+  if(tab==='reference')renderReference();
+});
+
+// ==================== HARDWARE ====================
+function renderHardware(key){const d=hardwareData[key];makeExplorer('hw-svg','hw-info',d.parts,d.w,d.h);document.getElementById('hw-info').innerHTML=`<div class="name">${d.title}</div><div class="desc">${d.desc}</div><div class="hint" style="text-align:left;padding:10px 0">👆 悬停或点击查看部件详情</div>`;}
+document.getElementById('hw-tabs').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;document.querySelectorAll('#hw-tabs button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderHardware(e.target.dataset.hw);});
+
+// ==================== WARDROBE ====================
+function renderWardrobe(key){const d=wardrobeData[key];makeExplorer('wd-svg','wd-info',d.parts,d.w,d.h);document.getElementById('wd-info').innerHTML=`<div class="name">${d.title}</div><div class="desc">${d.desc}</div><div class="hint" style="text-align:left;padding:10px 0">👆 点击部件查看详情</div>`;}
+document.getElementById('wd-tabs').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;document.querySelectorAll('#wd-tabs button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderWardrobe(e.target.dataset.wd);});
+
+// ==================== CABINET ====================
+function renderCabinet(){makeExplorer('cb-svg','cb-info',cabinetParts,500,420);}
+
+// ==================== DOOR ====================
+function renderDoor(){makeExplorer('dr-svg','dr-info',doorParts,520,480);}
+
+// ==================== CALC ====================
+let calcState={};
+function renderCalc(key){
+  document.querySelectorAll('#calc-tabs button').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`#calc-tabs button[data-calc="${key}"]`).classList.add('active');
+  const container=document.getElementById('calc-content');
+  if(key==='size')renderSizeExercises(container);
+  else if(key==='edge')renderEdgeExercises(container);
+  else if(key==='design')renderDesignExercises(container);
+}
+document.getElementById('calc-tabs').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  renderCalc(e.target.dataset.calc);
+});
+
+function renderSizeExercises(container){
+  calcState={};
+  let html='';
+  sizeExercises.forEach((ex,i)=>{
+    html+=`<div class="exercise-card">
+      <span class="ex-num">${i+1}</span><span class="ex-title">${ex.title}</span>
+      <p class="ex-desc">${ex.desc}</p>
+      <div style="text-align:center;margin:10px auto;max-width:340px">${ex.svg}</div>`;
+    ex.questions.forEach((q,j)=>{
+      html+=`<div class="input-row">
+        <label>${q.label}：</label>
+        <input type="number" id="size-${i}-${j}" placeholder="?">
+        <span class="unit">${q.unit}</span>
+      </div>`;
+    });
+    html+=`<button class="btn-submit" onclick="checkSizeEx(${i})">提交验证</button>
+      <div class="result-box" id="size-result-${i}"></div>
+    </div>`;
+  });
+  container.innerHTML=html;
+}
+
+function checkSizeEx(i){
+  const ex=sizeExercises[i];
+  const resultBox=document.getElementById('size-result-'+i);
+  let allCorrect=true;
+  ex.questions.forEach((q,j)=>{
+    const input=document.getElementById('size-'+i+'-'+j);
+    const val=parseInt(input.value);
+    if(val===q.answer){
+      input.style.borderColor='var(--success)';
+      input.style.background='#E8F5E9';
+    }else{
+      input.style.borderColor='var(--danger)';
+      input.style.background='#FFEBEE';
+      allCorrect=false;
+    }
+  });
+  if(allCorrect){
+    resultBox.className='result-box ok show';
+    resultBox.innerHTML='✅ <strong>全部正确！</strong>板件尺寸计算过关。';
+  }else{
+    resultBox.className='result-box err show';
+    let hints='<strong>部分答案需要修正：</strong><br>';
+    ex.questions.forEach((q,j)=>{
+      const input=document.getElementById('size-'+i+'-'+j);
+      if(parseInt(input.value)!==q.answer){
+        hints+=`• ${q.label}：正确答案 <strong>${q.answer}${q.unit}</strong> — ${q.hint}<br>`;
+      }
+    });
+    resultBox.innerHTML=hints;
+  }
+}
+
+function renderEdgeExercises(container){
+  let html='';
+  edgeExercises.forEach((ex,i)=>{
+    html+=`<div class="exercise-card">
+      <span class="ex-num">${i+1}</span><span class="ex-title">${ex.title}</span>
+      <p class="ex-desc">${ex.desc}</p>
+      <div style="text-align:center;margin:10px auto;max-width:340px">${ex.svg}</div>
+      <p style="font-size:.82rem;font-weight:600;margin-bottom:6px">选择正确的封边方案：</p>`;
+    ex.options.forEach((opt,j)=>{
+      html+=`<div style="margin:6px 0">
+        <button class="edge-opt-btn" id="edge-${i}-${j}" style="padding:8px 14px;border:2px solid var(--border);border-radius:7px;background:var(--card);cursor:pointer;font-size:.82rem;width:100%;text-align:left" onclick="checkEdgeOpt(${i},${j})">${opt.label}</button>
+        <div class="result-box" id="edge-result-${i}-${j}" style="margin-top:4px"></div>
+      </div>`;
+    });
+    html+=`</div>`;
+  });
+  container.innerHTML=html;
+}
+
+function checkEdgeOpt(exIdx,optIdx){
+  const ex=edgeExercises[exIdx];
+  const opt=ex.options[optIdx];
+  const btn=document.getElementById('edge-'+exIdx+'-'+optIdx);
+  const resultBox=document.getElementById('edge-result-'+exIdx+'-'+optIdx);
+  // Reset all buttons for this exercise
+  ex.options.forEach((_,j)=>{document.getElementById('edge-'+exIdx+'-'+j).style.borderColor='var(--border)';});
+  if(opt.correct){
+    btn.style.borderColor='var(--success)';
+    btn.style.background='#E8F5E9';
+    resultBox.className='result-box ok show';
+    resultBox.innerHTML='✅ <strong>正确！</strong>'+opt.why;
+  }else{
+    btn.style.borderColor='var(--danger)';
+    btn.style.background='#FFEBEE';
+    resultBox.className='result-box err show';
+    resultBox.innerHTML='❌ <strong>不正确。</strong>'+opt.why;
+  }
+}
+
+function renderDesignExercises(container){
+  let html='';
+  designExercises.forEach((ex,i)=>{
+    html+=`<div class="exercise-card">
+      <span class="ex-num">${i+1}</span><span class="ex-title">${ex.title}</span>
+      <p class="ex-desc">${ex.desc}</p>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button class="design-btn" id="design-ok-${i}" style="padding:8px 20px;border:2px solid var(--border);border-radius:7px;cursor:pointer;font-size:.84rem;font-weight:500;background:var(--card)" onclick="checkDesign(${i},true)">✅ 可行</button>
+        <button class="design-btn" id="design-no-${i}" style="padding:8px 20px;border:2px solid var(--border);border-radius:7px;cursor:pointer;font-size:.84rem;font-weight:500;background:var(--card)" onclick="checkDesign(${i},false)">❌ 不可行</button>
+      </div>
+      <div class="result-box" id="design-result-${i}" style="margin-top:8px"></div>
+    </div>`;
+  });
+  container.innerHTML=html;
+}
+
+function checkDesign(i,userSaysOk){
+  const ex=designExercises[i];
+  const resultBox=document.getElementById('design-result-'+i);
+  document.getElementById('design-ok-'+i).style.borderColor='var(--border)';
+  document.getElementById('design-no-'+i).style.borderColor='var(--border)';
+  if(userSaysOk===ex.ok){
+    document.getElementById('design-'+(ex.ok?'ok':'no')+'-'+i).style.borderColor='var(--success)';
+    document.getElementById('design-'+(ex.ok?'ok':'no')+'-'+i).style.background='#E8F5E9';
+    resultBox.className='result-box ok show';
+    resultBox.innerHTML='✅ <strong>判断正确！</strong>'+ex.issue;
+  }else{
+    document.getElementById('design-'+(userSaysOk?'ok':'no')+'-'+i).style.borderColor='var(--danger)';
+    document.getElementById('design-'+(userSaysOk?'ok':'no')+'-'+i).style.background='#FFEBEE';
+    resultBox.className='result-box err show';
+    resultBox.innerHTML='❌ <strong>判断错误。</strong>'+ex.issue;
+  }
+}
+
+// ==================== HOLES ====================
+function renderHoles(){
+  const container=document.getElementById('holes-content');
+  let html='';
+  holeScenarios.forEach((s,i)=>{
+    html+=`<div class="hole-scene">
+      <div class="scene-label">${s.label}</div>
+      <div style="text-align:center">${s.svg}</div>
+      <div class="hole-judge">
+        <button id="hole-ok-${i}" onclick="judgeHole(${i},true)">✅ 正确</button>
+        <button id="hole-no-${i}" onclick="judgeHole(${i},false)">❌ 有误</button>
+      </div>
+      <div class="result-box" id="hole-result-${i}" style="margin-top:8px"></div>
+    </div>`;
+  });
+  container.innerHTML=html;
+}
+
+function judgeHole(i,userSaysCorrect){
+  const s=holeScenarios[i];
+  const resultBox=document.getElementById('hole-result-'+i);
+  document.getElementById('hole-ok-'+i).classList.remove('chosen-correct','chosen-wrong');
+  document.getElementById('hole-no-'+i).classList.remove('chosen-correct','chosen-wrong');
+  if(userSaysCorrect===s.correct){
+    document.getElementById('hole-'+(s.correct?'ok':'no')+'-'+i).classList.add('chosen-correct');
+    resultBox.className='result-box ok show';
+    resultBox.innerHTML='✅ <strong>判断正确！</strong>'+s.explanation;
+  }else{
+    document.getElementById('hole-'+(userSaysCorrect?'ok':'no')+'-'+i).classList.add('chosen-wrong');
+    resultBox.className='result-box err show';
+    resultBox.innerHTML='❌ <strong>判断错误。</strong>'+s.explanation;
+  }
+}
+
+// ==================== MEASURE ====================
+let measureState={};
+function renderMeasure(){
+  measureState={};
+  const container=document.getElementById('measure-content');
+  let html='';
+  measureScenes.forEach((s,i)=>{
+    html+=`<div class="measure-scene">
+      <div class="ms-title">${s.title}</div>
+      <p style="font-size:.82rem;color:var(--text-secondary);margin-bottom:8px">${s.desc}</p>
+      <div style="text-align:center">${s.svg}</div>
+      <div class="measure-fields">`;
+    s.questions.forEach((q,j)=>{
+      const isNum=typeof q.answer==='number';
+      html+=`<div>
+        <p style="font-size:.78rem;font-weight:600;color:var(--wood-dark);margin-bottom:4px">${q.q}</p>
+        ${isNum?`<input type="number" id="ms-${i}-${j}" placeholder="输入数值" style="padding:8px;border:2px solid var(--border);border-radius:6px;font-size:.85rem;width:120px;text-align:center;font-family:monospace"> <span style="font-size:.78rem;color:var(--text-secondary)">mm</span>`:
+        `<input type="text" id="ms-${i}-${j}" placeholder="输入你的方案" style="padding:8px;border:2px solid var(--border);border-radius:6px;font-size:.85rem;width:100%">`}
+      </div>`;
+    });
+    html+=`</div>
+      <button class="btn-submit" onclick="checkMeasure(${i})" style="margin-top:12px">提交验证</button>
+      <div class="result-box" id="ms-result-${i}"></div>
+    </div>`;
+  });
+  container.innerHTML=html;
+}
+
+function checkMeasure(i){
+  const s=measureScenes[i];
+  const resultBox=document.getElementById('ms-result-'+i);
+  let allOk=true;
+  s.questions.forEach((q,j)=>{
+    const input=document.getElementById('ms-'+i+'-'+j);
+    if(typeof q.answer==='number'){
+      const val=parseInt(input.value);
+      if(val===q.answer){input.style.borderColor='var(--success)';input.style.background='#E8F5E9';}
+      else{input.style.borderColor='var(--danger)';input.style.background='#FFEBEE';allOk=false;}
+    }else{
+      const val=input.value.trim().toLowerCase();
+      const expected=q.answer.toLowerCase();
+      if(val.includes(expected)||expected.includes(val)){input.style.borderColor='var(--success)';input.style.background='#E8F5E9';}
+      else{input.style.borderColor='var(--danger)';input.style.background='#FFEBEE';allOk=false;}
+    }
+  });
+  if(allOk){
+    resultBox.className='result-box ok show';
+    resultBox.innerHTML='✅ <strong>全部正确！</strong>量尺基本功扎实。';
+  }else{
+    resultBox.className='result-box err show';
+    let hints='<strong>部分答案需要修正：</strong><br>';
+    s.questions.forEach((q,j)=>{
+      const input=document.getElementById('ms-'+i+'-'+j);
+      const isOk=typeof q.answer==='number'?parseInt(input.value)===q.answer:input.value.trim().toLowerCase().includes(q.answer.toLowerCase());
+      if(!isOk)hints+=`• ${q.q} 正确答案：<strong>${q.answer}</strong> — ${q.hint||''}<br>`;
+    });
+    resultBox.innerHTML=hints;
+  }
+}
+
+// ==================== VERIFY ====================
+function renderVerify(){
+  const grid=document.getElementById('verify-grid');
+  grid.innerHTML=verifyFlaws.map(f=>`
+    <div class="ref-card" style="cursor:pointer">
+      <h4>⚠️ ${f.title}</h4>
+      <p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:6px">${f.scene}</p>
+      <div style="font-size:.78rem;margin-top:6px">${f.tags.map(t=>`<span class="tag tag-red">${t}</span>`).join(' ')}</div>
+      <div style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)" class="flaw-detail">
+        <p><strong>症状：</strong>${f.symptom}</p><p style="margin-top:4px"><strong>原因：</strong>${f.cause}</p>
+        <p style="margin-top:4px;color:var(--success)"><strong>方案：</strong>${f.fix}</p>
+      </div>
+    </div>`).join('');
+  grid.querySelectorAll('.ref-card').forEach(c=>{c.addEventListener('click',function(){const d=this.querySelector('.flaw-detail');if(this.classList.contains('expanded')){d.style.display=d.style.display==='none'?'block':'none';}else{this.classList.add('expanded');d.style.display='block';}});});
+  renderBugHunt();
+}
+
+let bugsFound=[];
+function renderBugHunt(){
+  bugsFound=[];
+  document.getElementById('bugs-found-label').textContent='已找到 0/3';
+  document.getElementById('verify-hint').classList.remove('show');
+  const c=document.getElementById('verify-svg-container');c.style.position='relative';
+  const w=520,h=520;
+  let svg=`<svg viewBox="0 0 ${w} ${h}" width="100%" height="440" xmlns="http://www.w3.org/2000/svg">`;
+  // Draw parts
+  verifyBugParts.forEach(p=>{svg+=`<rect id="v-${p.id}" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="${p.h<10?2:4}" fill="${p.color}" stroke="#8D6E63" stroke-width="1.2" data-vid="${p.id}" style="cursor:pointer"/>`;});
+  // Part labels
+  svg+=`<text x="100" y="38" text-anchor="middle" font-size="9" fill="#6D4C41">背板(3mm)</text>`;
+  svg+=`<text x="150" y="430" text-anchor="middle" font-size="9" fill="#6D4C41">左门板</text>`;
+  svg+=`<text x="380" y="200" text-anchor="middle" font-size="9" fill="#6D4C41">抽屉</text>`;
+  svg+=`<text x="380" y="172" text-anchor="middle" font-size="9" fill="#6D4C41">层板</text>`;
+  svg+=`<text x="150" y="200" text-anchor="middle" font-size="9" fill="#6D4C41">挂衣杆</text>`;
+  svg+=`<text x="30" y="220" font-size="8" fill="#6D4C41">左</text><text x="30" y="232" font-size="8" fill="#6D4C41">侧</text><text x="30" y="244" font-size="8" fill="#6D4C41">板</text>`;
+  // Door height dimension (2400mm - too tall without straightener)
+  svg+=`<line x1="252" y1="40" x2="270" y2="40" stroke="#c62828" stroke-width="1"/><line x1="252" y1="410" x2="270" y2="410" stroke="#c62828" stroke-width="1"/><line x1="262" y1="40" x2="262" y2="410" stroke="#c62828" stroke-width="1" stroke-dasharray="4,3"/>`;
+  svg+=`<text x="278" y="230" font-size="10" fill="#c62828" font-weight="700" transform="rotate(90,278,230)">门板高 2400mm</text>`;
+  svg+=`<text x="278" y="250" font-size="8" fill="#c62828" transform="rotate(90,278,250)">(超1.5m需拉直器!)</text>`;
+  // Back panel thickness (3mm - too thin)
+  svg+=`<line x1="450" y1="26" x2="450" y2="31" stroke="#c62828" stroke-width="1"/><text x="456" y="32" font-size="9" fill="#c62828" font-weight="700">背板仅3mm!</text>`;
+  svg+=`<text x="456" y="44" font-size="8" fill="#c62828">(标准≥5mm)</text>`;
+  // Structure hole vs system hole annotation
+  svg+=`<text x="76" y="230" font-size="9" fill="#c62828" font-weight="700">孔位重叠区!</text>`;
+  svg+=`<text x="76" y="242" font-size="8" fill="#c62828">φ5系统孔 vs φ15结构孔</text>`;
+  // Overall dimensions
+  svg+=`<text x="260" y="510" text-anchor="middle" font-size="10" fill="#999">点击你认为有问题的区域 (共3处缺陷)</text>`;
+  svg+=`<text x="260" y="20" text-anchor="middle" font-size="10" fill="#6D4C41">衣柜内部结构图 (尺寸已标注, 请审查设计缺陷)</text>`;
+  svg+=`</svg>`;
+  c.innerHTML=svg;
+  c.querySelectorAll('[data-vid]').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const p=verifyBugParts.find(pp=>pp.id===el.dataset.vid);
+      if(!p||bugsFound.includes(p.id))return;
+      const hint=document.getElementById('verify-hint');
+      if(p.hasBug){
+        bugsFound.push(p.id);el.style.fill='#4CAF50';el.style.stroke='#2E7D32';el.style.strokeWidth='2.5';
+        hint.innerHTML=`✅ <strong>找到了！</strong>${p.bugDesc}`;hint.className='verify-hint show';hint.style.background='#E8F5E9';
+      }else{
+        el.style.fill='#EF9A9A';
+        hint.innerHTML=`❌ <strong>不是缺陷。</strong>${p.label||'该部件'}本身没问题。再仔细看看。`;
+        hint.className='verify-hint show';hint.style.background='#FFEBEE';
+        setTimeout(()=>{el.style.fill=p.color;el.style.stroke='#8D6E63';el.style.strokeWidth='1.2';},800);
+      }
+      document.getElementById('bugs-found-label').textContent=`已找到 ${bugsFound.length}/3`;
+      if(bugsFound.length===3){hint.innerHTML='🎉 <strong>全部找到！</strong>1)门板超高无拉直器 2)三合一孔与系统排孔重合 3)背板过薄(<5mm)。';hint.style.background='#E8F5E9';}
+    });
+  });
+}
+
+// ==================== REFERENCE ====================
+function renderReference(){
+  document.getElementById('ref-grid').innerHTML=refCards.map(c=>`<div class="ref-card"><h4>${c.title}</h4><table>${c.rows.map((r,i)=>`<tr>${i===0?`<th>${r[0]}</th><th>${r[1]}</th>${r[2]?`<th>${r[2]}</th>`:''}`:`<td>${r[0]}</td><td>${r[1]}</td>${r[2]?`<td>${r[2]}</td>`:''}`}</tr>`).join('')}</table></div>`).join('');
+}
+
+// ==================== QUIZ SCENES ====================
+const quizScenes=[
+  {
+    name:'衣柜内部结构',
+    w:480,h:420,
+    parts:[
+      {id:'qz-top',label:'顶板',x:46,y:6,w:388,h:16,color:'#A1887F'},
+      {id:'qz-bot',label:'底板',x:46,y:378,w:388,h:16,color:'#A1887F'},
+      {id:'qz-ls',label:'左侧板',x:36,y:6,w:14,h:390,color:'#BCAAA4'},
+      {id:'qz-rs',label:'右侧板',x:430,y:6,w:14,h:390,color:'#BCAAA4'},
+      {id:'qz-s1',label:'层板',x:50,y:100,w:210,h:14,color:'#D7CCC8'},
+      {id:'qz-s2',label:'活动层板',x:276,y:100,w:158,h:14,color:'#D7CCC8'},
+      {id:'qz-s3',label:'层板',x:276,y:175,w:158,h:14,color:'#D7CCC8'},
+      {id:'qz-rod',label:'挂衣杆',x:50,y:130,w:210,h:4,color:'#BDBDBD'},
+      {id:'qz-dr1',label:'抽屉',x:276,y:220,w:158,h:35,color:'#EFEBE9'},
+      {id:'qz-dr2',label:'抽屉',x:276,y:260,w:158,h:35,color:'#EFEBE9'},
+      {id:'qz-back',label:'背板',x:54,y:24,w:372,h:4,color:'#E8E0DB'},
+      {id:'qz-kick',label:'踢脚板',x:50,y:396,w:384,h:16,color:'#8D6E63'},
+      {id:'qz-hole',label:'系统排孔',x:52,y:48,w:4,h:4,color:'#A1887F'},
+    ]
+  },
+  {
+    name:'橱柜结构',
+    w:440,h:380,
+    parts:[
+      {id:'qz2-wall',label:'墙体',x:8,y:6,w:8,h:366,color:'#E0D5CD'},
+      {id:'qz2-counter',label:'台面',x:42,y:130,w:388,h:16,color:'#ECEFF1'},
+      {id:'qz2-splash',label:'挡水条',x:42,y:120,w:388,h:10,color:'#CFD8DC'},
+      {id:'qz2-upper',label:'吊柜',x:120,y:8,w:260,h:108,color:'#D7CCC8'},
+      {id:'qz2-hood',label:'烟机位',x:140,y:16,w:220,h:55,color:'#B0BEC5'},
+      {id:'qz2-base',label:'地柜',x:50,y:156,w:380,h:200,color:'#A1887F'},
+      {id:'qz2-sink',label:'水槽柜',x:66,y:166,w:140,h:70,color:'#B0BEC5'},
+      {id:'qz2-drawer',label:'抽屉组',x:240,y:175,w:180,h:60,color:'#EFEBE9'},
+      {id:'qz2-kick',label:'踢脚板',x:50,y:360,w:380,h:14,color:'#8D6E63'},
+    ]
+  },
+  {
+    name:'三合一连接件',
+    w:320,h:300,
+    parts:[
+      {id:'qz3-side',label:'侧板',x:240,y:40,w:18,h:240,color:'#A1887F'},
+      {id:'qz3-shelf',label:'层板',x:18,y:170,w:240,h:18,color:'#D7CCC8'},
+      {id:'qz3-cam',label:'偏心轮',x:260,y:185,w:16,h:16,color:'#BDBDBD'},
+      {id:'qz3-rod',label:'连接杆',x:38,y:178,w:220,h:5,color:'#9E9E9E'},
+      {id:'qz3-nut',label:'预埋螺母',x:28,y:172,w:9,h:14,color:'#757575'},
+      {id:'qz3-dowel',label:'定位木榫',x:110,y:170,w:7,h:9,color:'#D7CCC8'},
+      {id:'qz3-dowel2',label:'定位木榫',x:180,y:170,w:7,h:9,color:'#D7CCC8'},
+    ]
+  },
+  {
+    name:'室内门结构',
+    w:440,h:420,
+    parts:[
+      {id:'qz4-ft',label:'门套上框',x:80,y:14,w:310,h:18,color:'#A1887F'},
+      {id:'qz4-fl',label:'门套左框',x:80,y:32,w:18,h:372,color:'#A1887F'},
+      {id:'qz4-fr',label:'门套右框',x:372,y:32,w:18,h:372,color:'#A1887F'},
+      {id:'qz4-leaf',label:'门扇',x:110,y:50,w:250,h:340,color:'#D7CCC8'},
+      {id:'qz4-h1',label:'合页(上)',x:98,y:80,w:14,h:3,color:'#BDBDBD'},
+      {id:'qz4-h2',label:'合页(中)',x:98,y:230,w:14,h:3,color:'#BDBDBD'},
+      {id:'qz4-h3',label:'合页(下)',x:98,y:360,w:14,h:3,color:'#BDBDBD'},
+      {id:'qz4-lock',label:'门锁+把手',x:220,y:210,w:10,h:10,color:'#BDBDBD'},
+      {id:'qz4-seal',label:'密封条',x:110,y:50,w:250,h:2,color:'#757575'},
+      {id:'qz4-stop',label:'门吸',x:364,y:370,w:6,h:6,color:'#9E9E9E'},
+    ]
+  },
+  {
+    name:'铰链对比(全盖/半盖/内侧)',
+    w:460,h:260,
+    parts:[
+      {id:'qz5-fh-side',label:'侧板(全盖)',x:28,y:70,w:16,h:180,color:'#BCAAA4'},
+      {id:'qz5-fh-door',label:'门板(全盖)',x:10,y:58,w:30,h:170,color:'#D7CCC8'},
+      {id:'qz5-fh-hinge',label:'全盖铰链',x:26,y:130,w:12,h:16,color:'#BDBDBD'},
+      {id:'qz5-hh-side',label:'中侧板(半盖)',x:190,y:70,w:16,h:180,color:'#BCAAA4'},
+      {id:'qz5-hh-dl',label:'左门板(半盖)',x:170,y:58,w:20,h:170,color:'#D7CCC8'},
+      {id:'qz5-hh-dr',label:'右门板(半盖)',x:210,y:58,w:20,h:170,color:'#D7CCC8'},
+      {id:'qz5-hh-hinge',label:'半盖铰链',x:186,y:130,w:10,h:16,color:'#BDBDBD'},
+      {id:'qz5-ih-side',label:'侧板(内侧)',x:350,y:70,w:16,h:180,color:'#BCAAA4'},
+      {id:'qz5-ih-door',label:'门板(内嵌)',x:368,y:70,w:26,h:160,color:'#D7CCC8'},
+      {id:'qz5-ih-hinge',label:'内侧铰链',x:366,y:130,w:14,h:16,color:'#BDBDBD'},
+    ]
+  },
+  {
+    name:'推拉门衣柜',
+    w:480,h:420,
+    parts:[
+      {id:'qz6-tr',label:'上轨道',x:44,y:6,w:392,h:8,color:'#9E9E9E'},
+      {id:'qz6-br',label:'下轨道',x:44,y:388,w:392,h:8,color:'#9E9E9E'},
+      {id:'qz6-bd',label:'后扇门',x:52,y:20,w:182,h:362,color:'#D7CCC8'},
+      {id:'qz6-fd',label:'前扇门',x:232,y:20,w:184,h:362,color:'#EFEBE9'},
+      {id:'qz6-ls',label:'左侧板',x:36,y:6,w:12,h:392,color:'#BCAAA4'},
+      {id:'qz6-rs',label:'右侧板',x:432,y:6,w:12,h:392,color:'#BCAAA4'},
+      {id:'qz6-sa',label:'层板(挂衣区)',x:48,y:90,w:380,h:12,color:'#A1887F'},
+      {id:'qz6-sb',label:'层板(叠放区)',x:48,y:186,w:380,h:12,color:'#A1887F'},
+      {id:'qz6-dr',label:'抽屉区',x:48,y:256,w:186,h:44,color:'#EFEBE9'},
+      {id:'qz6-kick',label:'踢脚板',x:44,y:398,w:392,h:14,color:'#8D6E63'},
+    ]
+  },
+  {name:'抽屉结构',w:420,h:280,parts:[
+    {id:'qz7-panel',label:'抽屉面板',x:160,y:10,w:100,h:60,color:'#D7CCC8'},
+    {id:'qz7-lside',label:'抽屉左侧板',x:60,y:50,w:14,h:180,color:'#BCAAA4'},
+    {id:'qz7-rside',label:'抽屉右侧板',x:260,y:50,w:14,h:180,color:'#BCAAA4'},
+    {id:'qz7-back',label:'抽屉背板',x:70,y:215,w:190,h:14,color:'#A1887F'},
+    {id:'qz7-bottom',label:'抽屉底板',x:74,y:90,w:186,h:5,color:'#E8E0DB'},
+    {id:'qz7-rail-l',label:'滑轨(左)',x:74,y:140,w:7,h:40,color:'#BDBDBD'},
+    {id:'qz7-rail-r',label:'滑轨(右)',x:253,y:140,w:7,h:40,color:'#BDBDBD'},
+    {id:'qz7-handle',label:'拉手',x:192,y:30,w:36,h:4,color:'#9E9E9E'},
+    {id:'qz7-screw',label:'滑轨安装螺丝',x:80,y:155,w:3,h:3,color:'#757575'},
+  ]},
+  {name:'32mm排孔系统',w:300,h:360,parts:[
+    {id:'qz8-side',label:'侧板',x:80,y:10,w:18,h:340,color:'#BCAAA4'},
+    {id:'qz8-h1',label:'系统排孔',x:100,y:36,w:5,h:5,color:'#E65100'},
+    {id:'qz8-h2',label:'系统排孔',x:100,y:68,w:5,h:5,color:'#E65100'},
+    {id:'qz8-h3',label:'系统排孔',x:100,y:100,w:5,h:5,color:'#E65100'},
+    {id:'qz8-h4',label:'系统排孔',x:100,y:132,w:5,h:5,color:'#E65100'},
+    {id:'qz8-h5',label:'系统排孔',x:100,y:164,w:5,h:5,color:'#E65100'},
+    {id:'qz8-h6',label:'系统排孔',x:100,y:196,w:5,h:5,color:'#E65100'},
+    {id:'qz8-h7',label:'系统排孔',x:100,y:228,w:5,h:5,color:'#E65100'},
+    {id:'qz8-struct',label:'三合一结构孔',x:114,y:270,w:14,h:14,color:'#c62828'},
+    {id:'qz8-front',label:'前沿距(37mm)',x:80,y:6,w:18,h:3,color:'#1565C0'},
+    {id:'qz8-gap',label:'32mm间距',x:108,y:34,w:1,h:36,color:'#1565C0'},
+  ]},
+  {name:'书柜/展示柜',w:420,h:400,parts:[
+    {id:'qz9-top',label:'顶板',x:40,y:6,w:340,h:16,color:'#A1887F'},
+    {id:'qz9-bot',label:'底板',x:40,y:378,w:340,h:16,color:'#A1887F'},
+    {id:'qz9-ls',label:'左侧板',x:30,y:6,w:14,h:390,color:'#BCAAA4'},
+    {id:'qz9-rs',label:'右侧板',x:376,y:6,w:14,h:390,color:'#BCAAA4'},
+    {id:'qz9-ms',label:'中竖板',x:206,y:22,w:14,h:362,color:'#8D6E63'},
+    {id:'qz9-s1',label:'层板(左格上)',x:44,y:90,w:162,h:12,color:'#D7CCC8'},
+    {id:'qz9-s2',label:'层板(左格中)',x:44,y:172,w:162,h:12,color:'#D7CCC8'},
+    {id:'qz9-s3',label:'层板(左格下)',x:44,y:254,w:162,h:12,color:'#D7CCC8'},
+    {id:'qz9-s4',label:'层板(右格上)',x:220,y:90,w:162,h:12,color:'#D7CCC8'},
+    {id:'qz9-s5',label:'层板(右格中)',x:220,y:172,w:162,h:12,color:'#D7CCC8'},
+    {id:'qz9-s6',label:'层板(右格下)',x:220,y:254,w:162,h:12,color:'#D7CCC8'},
+    {id:'qz9-kick',label:'踢脚板',x:44,y:396,w:336,h:16,color:'#8D6E63'},
+    {id:'qz9-back',label:'背板',x:48,y:24,w:324,h:3,color:'#E8E0DB'},
+  ]},
+  {name:'滑轨安装(俯视)',w:360,h:220,parts:[
+    {id:'qz10-cab',label:'柜体侧板',x:30,y:20,w:14,h:190,color:'#A1887F'},
+    {id:'qz10-outer',label:'外轨(固定柜体)',x:44,y:70,w:5,h:100,color:'#9E9E9E'},
+    {id:'qz10-mid',label:'中轨',x:49,y:75,w:3,h:90,color:'#BDBDBD'},
+    {id:'qz10-inner',label:'内轨(固定抽屉)',x:52,y:80,w:2,h:80,color:'#BCAAA4'},
+    {id:'qz10-dside',label:'抽屉侧板',x:57,y:60,w:85,h:12,color:'#D7CCC8'},
+    {id:'qz10-dfront',label:'抽屉面板',x:135,y:38,w:12,h:56,color:'#8D6E63'},
+    {id:'qz10-screw1',label:'固定螺丝',x:46,y:90,w:3,h:3,color:'#757575'},
+    {id:'qz10-screw2',label:'固定螺丝',x:46,y:150,w:3,h:3,color:'#757575'},
+  ]},
+];
+
+// ==================== SHORTCUT DATA ====================
+// Only commonly-used daily shortcuts. sub = sub-commands available during the command.
+const shortcutData=[
+  // === AutoCAD 绘图 ===
+  {key:'L',name:'直线(Line)',desc:'画直线段',cat:'AutoCAD',grp:'绘图',sub:[{k:'C',n:'闭合',d:'连接终点到起点'},{k:'U',n:'撤销',d:'撤销上一段'},{k:'@',n:'相对坐标',d:'@x,y 精确长度'}]},
+  {key:'REC',name:'矩形(Rectangle)',desc:'画矩形',cat:'AutoCAD',grp:'绘图',sub:[{k:'C',n:'倒角',d:'画带倒角的矩形'},{k:'F',n:'圆角',d:'画带圆角的矩形'},{k:'W',n:'线宽',d:'设置边线宽度'},{k:'@',n:'尺寸',d:'@长,宽 精确尺寸'}]},
+  {key:'C',name:'圆(Circle)',desc:'画圆',cat:'AutoCAD',grp:'绘图',sub:[{k:'3P',n:'三点',d:'过三点画圆'},{k:'2P',n:'两点',d:'以两点为直径'},{k:'T',n:'切切半',d:'切点切点半径'},{k:'D',n:'直径',d:'直接输入直径'}]},
+  {key:'A',name:'圆弧(Arc)',desc:'画圆弧',cat:'AutoCAD',grp:'绘图',sub:[{k:'C',n:'圆心',d:'指定圆心起点'},{k:'E',n:'端点',d:'指定端点'},{k:'A',n:'角度',d:'指定弧度角度'},{k:'L',n:'弦长',d:'指定弦长'}]},
+  {key:'PL',name:'多段线(Pline)',desc:'画连续多段线',cat:'AutoCAD',grp:'绘图',sub:[{k:'A',n:'弧线',d:'切换到画弧模式'},{k:'L',n:'直线',d:'切回画直线模式'},{k:'W',n:'线宽',d:'设置起点终点线宽'},{k:'C',n:'闭合',d:'闭合回到起点'}]},
+  {key:'H',name:'填充(Hatch)',desc:'图案填充',cat:'AutoCAD',grp:'绘图',sub:[{k:'T',n:'设置',d:'打开填充设置对话框'},{k:'S',n:'选择',d:'选择内部点填充'},{k:'P',n:'属性',d:'修改填充属性'}]},
+  // === AutoCAD 修改 ===
+  {key:'E',name:'删除(Erase)',desc:'删除选中对象',cat:'AutoCAD',grp:'修改'},
+  {key:'TR',name:'修剪(Trim)',desc:'按边界修剪线段',cat:'AutoCAD',grp:'修改',sub:[{k:'F',n:'栏选',d:'画栏选线批量修剪'},{k:'E',n:'边模式',d:'延伸到隐含边界'},{k:'Shift',n:'延伸',d:'按住Shift切换为延伸'}]},
+  {key:'EX',name:'延伸(Extend)',desc:'延伸线段到边界',cat:'AutoCAD',grp:'修改',sub:[{k:'F',n:'栏选',d:'画栏选线批量延伸'},{k:'E',n:'边模式',d:'延伸到隐含边界'},{k:'Shift',n:'修剪',d:'按住Shift切换为修剪'}]},
+  {key:'O',name:'偏移(Offset)',desc:'等距复制线段',cat:'AutoCAD',grp:'修改',sub:[{k:'T',n:'通过点',d:'偏移通过指定点'},{k:'E',n:'删除源',d:'删除偏移源对象'},{k:'L',n:'图层',d:'偏移到当前图层'},{k:'M',n:'多个',d:'连续偏移多个'}]},
+  {key:'F',name:'圆角(Fillet)',desc:'两线倒圆角',cat:'AutoCAD',grp:'修改',sub:[{k:'R',n:'半径',d:'设置圆角半径'},{k:'P',n:'多段线',d:'多段线整体倒角'},{k:'T',n:'修剪',d:'切换修剪模式'},{k:'M',n:'多个',d:'连续倒多个圆角'}]},
+  {key:'CHA',name:'倒角(Chamfer)',desc:'两线倒斜角',cat:'AutoCAD',grp:'修改',sub:[{k:'D',n:'距离',d:'设置两边的倒角距离'},{k:'A',n:'角度',d:'用角度和距离倒角'},{k:'P',n:'多段线',d:'多段线整体倒角'},{k:'M',n:'多个',d:'连续倒多个斜角'}]},
+  {key:'M',name:'移动(Move)',desc:'移动对象',cat:'AutoCAD',grp:'修改'},
+  {key:'CO',name:'复制(Copy)',desc:'复制对象',cat:'AutoCAD',grp:'修改',sub:[{k:'M',n:'多个',d:'连续复制多个'},{k:'A',n:'阵列',d:'等距阵列复制'},{k:'O',n:'模式',d:'切换单个/多个模式'}]},
+  {key:'RO',name:'旋转(Rotate)',desc:'旋转对象',cat:'AutoCAD',grp:'修改',sub:[{k:'C',n:'复制',d:'旋转并保留原对象'},{k:'R',n:'参考',d:'指定参考角度旋转'}]},
+  {key:'SC',name:'缩放(Scale)',desc:'缩放对象',cat:'AutoCAD',grp:'修改',sub:[{k:'C',n:'复制',d:'缩放并保留原对象'},{k:'R',n:'参考',d:'按参考长度缩放'}]},
+  {key:'MI',name:'镜像(Mirror)',desc:'镜像复制',cat:'AutoCAD',grp:'修改'},
+  {key:'X',name:'分解(Explode)',desc:'分解块/多段线',cat:'AutoCAD',grp:'修改'},
+  {key:'MA',name:'特性匹配(Matchprop)',desc:'格式刷',cat:'AutoCAD',grp:'修改',sub:[{k:'S',n:'设置',d:'选择要匹配的属性'}]},
+  {key:'S',name:'拉伸(Stretch)',desc:'拉伸框选对象',cat:'AutoCAD',grp:'修改',sub:[{k:'C',n:'窗交',d:'用交叉窗口选择'},{k:'CP',n:'圈交',d:'用多边形交叉选择'}]},
+  {key:'AR',name:'阵列(Array)',desc:'矩形/环形阵列',cat:'AutoCAD',grp:'修改',sub:[{k:'R',n:'矩形',d:'矩形阵列'},{k:'PO',n:'环形',d:'环形/极轴阵列'},{k:'PA',n:'路径',d:'沿路径阵列'}]},
+  {key:'BR',name:'打断(Break)',desc:'在指定点打断线段',cat:'AutoCAD',grp:'修改',sub:[{k:'F',n:'第一点',d:'重新指定第一断点'},{k:'@',n:'同点',d:'在同一点打断(不断开)'}]},
+  // === AutoCAD 标注 ===
+  {key:'DLI',name:'线性标注(Dimlinear)',desc:'水平/垂直尺寸标注',cat:'AutoCAD',grp:'标注'},
+  {key:'DAL',name:'对齐标注',desc:'对齐斜线标注',cat:'AutoCAD',grp:'标注'},
+  {key:'DAN',name:'角度标注',desc:'标注角度',cat:'AutoCAD',grp:'标注'},
+  {key:'DRA',name:'半径标注(Dimradius)',desc:'标注圆/弧半径',cat:'AutoCAD',grp:'标注'},
+  {key:'DDI',name:'直径标注(Dimdiameter)',desc:'标注圆直径',cat:'AutoCAD',grp:'标注'},
+  {key:'DCO',name:'连续标注(Dimcontinue)',desc:'从前一标注线连续标注',cat:'AutoCAD',grp:'标注'},
+  // === AutoCAD 文字/块 ===
+  {key:'T',name:'文字(Text)',desc:'添加文字',cat:'AutoCAD',grp:'文字',sub:[{k:'J',n:'对齐',d:'设置文字对齐方式'},{k:'S',n:'样式',d:'选择文字样式'}]},
+  {key:'B',name:'创建块(Block)',desc:'定义图块',cat:'AutoCAD',grp:'块',sub:[{k:'名称',n:'块名',d:'输入块名称(必填)'},{k:'基点',n:'插入点',d:'指定块插入基点'},{k:'单位',n:'缩放',d:'指定块缩放方式'}]},
+  {key:'I',name:'插入块(Insert)',desc:'插入图块',cat:'AutoCAD',grp:'块',sub:[{k:'S',n:'缩放',d:'XY轴缩放比例'},{k:'R',n:'旋转',d:'插入后旋转角度'},{k:'X',n:'分解',d:'插入时分解图块'}]},
+  // === AutoCAD 视图/开关 ===
+  {key:'Z',name:'缩放视图(Zoom)',desc:'缩放视图',cat:'AutoCAD',grp:'视图',sub:[{k:'E',n:'全图',d:'显示全部对象'},{k:'W',n:'窗口',d:'框选区域放大'},{k:'P',n:'上一个',d:'回到上一个视图'},{k:'S',n:'比例',d:'按比例缩放'}]},
+  {key:'P',name:'平移(Pan)',desc:'平移视图',cat:'AutoCAD',grp:'视图'},
+  {key:'F3',name:'对象捕捉(Osnap)',desc:'开启/关闭对象捕捉',cat:'AutoCAD',grp:'开关'},
+  {key:'F8',name:'正交模式(Ortho)',desc:'锁定水平/垂直方向',cat:'AutoCAD',grp:'开关'},
+  // === AutoCAD 通用 ===
+  {key:'Ctrl+Z',name:'撤销(Undo)',desc:'撤销上一步操作',cat:'AutoCAD',grp:'通用'},
+  {key:'Ctrl+S',name:'保存(Save)',desc:'保存文件',cat:'AutoCAD',grp:'通用'},
+  {key:'Ctrl+C',name:'复制到剪贴板',desc:'复制选中对象',cat:'AutoCAD',grp:'通用'},
+  {key:'Ctrl+V',name:'粘贴',desc:'粘贴剪贴板内容',cat:'AutoCAD',grp:'通用'},
+  {key:'Ctrl+N',name:'新建(New)',desc:'新建图纸文件',cat:'AutoCAD',grp:'通用'},
+  {key:'Ctrl+O',name:'打开(Open)',desc:'打开已有文件',cat:'AutoCAD',grp:'通用'},
+  {key:'Ctrl+P',name:'打印(Print)',desc:'打印图纸',cat:'AutoCAD',grp:'通用'},
+  {key:'Ctrl+1',name:'属性面板',desc:'打开对象属性面板',cat:'AutoCAD',grp:'通用'},
+  // === AutoCAD 管理/查询 ===
+  {key:'LA',name:'图层(Layer)',desc:'打开图层管理器',cat:'AutoCAD',grp:'管理'},
+  {key:'DI',name:'测量距离(Dist)',desc:'测量两点间距离',cat:'AutoCAD',grp:'管理'},
+  {key:'PU',name:'清理(Purge)',desc:'清理未使用的图块/图层',cat:'AutoCAD',grp:'管理'},
+  // === 酷家乐 工具 ===
+  {key:'Space',name:'选择工具',desc:'切换到选择模式',cat:'酷家乐',grp:'工具'},
+  {key:'Q',name:'材质',desc:'进入材质编辑模式',cat:'酷家乐',grp:'工具'},
+  {key:'E',name:'编辑模式',desc:'进入物体编辑模式',cat:'酷家乐',grp:'工具'},
+  {key:'V',name:'选择工具',desc:'切换到选择/移动模式',cat:'酷家乐',grp:'工具'},
+  {key:'M',name:'材质刷',desc:'吸取材质并复制到其他面',cat:'酷家乐',grp:'工具'},
+  {key:'Delete',name:'删除',desc:'删除选中物体',cat:'酷家乐',grp:'工具'},
+  {key:'Shift+Click',name:'多选',desc:'按住Shift多选物体',cat:'酷家乐',grp:'工具'},
+  // === 酷家乐 建模 ===
+  {key:'W',name:'墙体',desc:'进入墙体绘制模式',cat:'酷家乐',grp:'建模'},
+  {key:'P',name:'吊顶设计',desc:'进入吊顶设计模式',cat:'酷家乐',grp:'建模'},
+  {key:'G',name:'组合',desc:'组合选中物体',cat:'酷家乐',grp:'建模'},
+  {key:'Ctrl+G',name:'取消组合',desc:'解散组合物体',cat:'酷家乐',grp:'建模'},
+  // === 酷家乐 修改 ===
+  {key:'R',name:'旋转',desc:'旋转选中物体',cat:'酷家乐',grp:'修改'},
+  {key:'S',name:'缩放',desc:'缩放选中物体',cat:'酷家乐',grp:'修改'},
+  {key:'Ctrl+D',name:'复制并粘贴',desc:'快速复制',cat:'酷家乐',grp:'修改'},
+  // === 酷家乐 视图 ===
+  {key:'1',name:'2D视角',desc:'切换到2D平面视图',cat:'酷家乐',grp:'视图'},
+  {key:'2',name:'3D视角',desc:'切换到3D视角',cat:'酷家乐',grp:'视图'},
+  {key:'3',name:'漫游视角',desc:'切换到漫游模式',cat:'酷家乐',grp:'视图'},
+  {key:'F',name:'聚焦',desc:'聚焦到选中物体',cat:'酷家乐',grp:'视图'},
+  {key:'H',name:'隐藏',desc:'隐藏选中物体',cat:'酷家乐',grp:'视图'},
+  {key:'Ctrl+0',name:'重置视角',desc:'恢复默认相机视角',cat:'酷家乐',grp:'视图'},
+];
+
+// ==================== QUIZ ====================
+let qState={correct:0,total:0,current:null,answered:false,sceneIdx:0,partIdx:0};
+function renderQuiz(){
+  qState.answered=false;qState.current=null;
+  document.getElementById('quiz-next').style.display='none';
+  document.getElementById('quiz-opts').innerHTML='';
+
+  // Pick random scene and part
+  const scene=quizScenes[Math.floor(Math.random()*quizScenes.length)];
+  const correctPart=scene.parts[Math.floor(Math.random()*scene.parts.length)];
+  qState.current=correctPart;
+
+  // Build SVG showing full structure with one part highlighted
+  const w=scene.w,h=scene.h;
+  let svg=`<svg viewBox="0 0 ${w} ${h}" width="100%" height="360" xmlns="http://www.w3.org/2000/svg">`;
+  scene.parts.forEach(p=>{
+    const isTarget=p.id===correctPart.id;
+    const fill=isTarget?'#E65100':p.color;
+    const sw=isTarget?'2.5':'1';
+    const sc=isTarget?'#BF360C':'#8D6E63';
+    const opacity=isTarget?'1':(p.id.includes('back')||p.id.includes('hole')||p.id.includes('seal')?'0.8':'1');
+    svg+=`<rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="${p.h<8?2:3}" fill="${fill}" stroke="${sc}" stroke-width="${sw}" opacity="${opacity}"/>`;
+  });
+  // Arrow pointing to highlighted part
+  const cx=correctPart.x+correctPart.w/2;
+  const cy=correctPart.y-12;
+  svg+=`<polygon points="${cx},${cy} ${cx-10},${cy-16} ${cx+10},${cy-16}" fill="#E65100"/>`;
+  svg+=`<text x="${Math.min(Math.max(cx,w-80),80)}" y="${cy-22}" text-anchor="middle" font-size="12" fill="#E65100" font-weight="700">这是？</text>`;
+  // Scene name watermark
+  svg+=`<text x="${w-8}" y="${h-8}" text-anchor="end" font-size="9" fill="#ccc">${scene.name}</text>`;
+  svg+=`</svg>`;
+  document.getElementById('quiz-diagram').innerHTML=svg;
+  document.getElementById('quiz-q').innerHTML=`下图中<span class="highlight-part">橙色高亮</span>的部件叫什么？<br><span style="font-size:.78rem;color:var(--text-secondary)">(${scene.name})</span>`;
+
+  // Generate options: correct answer + 3 random wrong answers from same scene
+  const otherParts=scene.parts.filter(p=>p.id!==correctPart.id);
+  const shuffledOthers=[...otherParts].sort(()=>Math.random()-.5);
+  const options=[correctPart,shuffledOthers[0],shuffledOthers[1],shuffledOthers[2]];
+  options.sort(()=>Math.random()-.5);
+
+  const opts=document.getElementById('quiz-opts');
+  options.forEach(o=>{
+    const btn=document.createElement('button');
+    btn.textContent=o.label;
+    btn.addEventListener('click',()=>handleQuizAnswer(btn,o.id===correctPart.id));
+    opts.appendChild(btn);
+  });
+}
+function handleQuizAnswer(btn,isCorrect){
+  if(qState.answered)return;
+  qState.answered=true;qState.total++;
+  if(isCorrect){qState.correct++;btn.classList.add('correct');}
+  else{btn.classList.add('wrong');document.querySelectorAll('#quiz-opts button').forEach(b=>{if(b.textContent===qState.current.label)b.classList.add('correct');});}
+  document.getElementById('sc').textContent=qState.correct;document.getElementById('st').textContent=qState.total;
+  document.getElementById('quiz-next').style.display='inline-block';
+}
+document.getElementById('quiz-next').addEventListener('click',renderQuiz);
+
+// ==================== SHORTCUT ====================
+let scFilter='all';
+function renderShortcut(key){
+  document.querySelectorAll('#sc-tabs button').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`#sc-tabs button[data-sc="${key}"]`).classList.add('active');
+  if(key==='ref')renderSCRef();
+  else if(key==='practice')renderSCPractice();
+  else if(key==='sub')renderSCSub();
+  else renderSCStats();
+}
+document.getElementById('sc-tabs').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  renderShortcut(e.target.dataset.sc);
+});
+
+function renderSCRef(){
+  const c=document.getElementById('sc-content');
+  const cats=['all','AutoCAD','酷家乐'];
+  const groups=[...new Set(shortcutData.map(d=>d.grp))];
+  let html=`<div style="margin-bottom:12px">
+    <input type="text" id="sc-search" placeholder="🔍 搜索快捷键或命令名..." style="padding:10px 14px;border:2px solid var(--border);border-radius:8px;font-size:.88rem;width:100%;max-width:400px" oninput="filterSCRef()">
+    <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+      ${cats.map(c=>`<button class="sc-cat-btn${c==='all'?' active':''}" data-cat="${c}" style="padding:5px 14px;border:1.5px solid var(--border);border-radius:16px;cursor:pointer;font-size:.78rem;background:${c==='all'?'var(--accent)':'var(--card)'};color:${c==='all'?'#fff':'var(--text-secondary)'}" onclick="setSCFilter('${c}')">${c==='all'?'全部':c}</button>`).join('')}
+    </div>
+  </div>
+  <div style="overflow-x:auto"><table style="width:100%;font-size:.82rem;border-collapse:collapse" id="sc-table">
+    <tr style="background:var(--accent-light)"><th style="padding:8px;text-align:left;color:var(--accent)">快捷键</th><th style="padding:8px;text-align:left">命令名称</th><th style="padding:8px;text-align:left">功能说明</th><th style="padding:8px;text-align:left">子命令</th><th style="padding:8px;text-align:left">分类</th></tr>`;
+  shortcutData.forEach((d,i)=>{
+    const subHTML=d.sub?d.sub.map(s=>`<span style="display:inline-block;background:#FFF8E1;padding:1px 6px;border-radius:3px;font-size:.7rem;margin:1px 2px;cursor:help" title="${s.d}"><b>${s.k}</b> ${s.n}</span>`).join(''):'—';
+    html+=`<tr class="sc-row" data-cat="${d.cat}" style="border-bottom:1px solid #f5f0ea"><td style="padding:7px 8px"><code style="background:#f5f0ea;padding:3px 8px;border-radius:4px;font-weight:700;color:var(--accent);white-space:nowrap">${d.key}</code></td><td style="padding:7px 8px">${d.name.replace(/\(.*\)/,'')}</td><td style="padding:7px 8px;color:var(--text-secondary)">${d.desc}</td><td style="padding:7px 8px">${subHTML}</td><td style="padding:7px 8px"><span class="tag ${d.cat==='AutoCAD'?'tag-blue':'tag-green'}">${d.cat}</span></td></tr>`;
+  });
+  html+=`</table></div>`;
+  html+=`<div class="note" style="margin-top:10px">💡 子命令：执行主命令后，在命令行输入括号内的子命令字母可切换模式或设置参数。悬停查看详细说明。</div>`;
+  c.innerHTML=html;
+}
+
+function setSCFilter(cat){
+  scFilter=cat;
+  document.querySelectorAll('.sc-cat-btn').forEach(b=>{b.style.background='var(--card)';b.style.color='var(--text-secondary)';});
+  document.querySelector(`.sc-cat-btn[data-cat="${cat}"]`).style.background='var(--accent)';
+  document.querySelector(`.sc-cat-btn[data-cat="${cat}"]`).style.color='#fff';
+  filterSCRef();
+}
+
+function filterSCRef(){
+  const q=document.getElementById('sc-search').value.toLowerCase();
+  document.querySelectorAll('.sc-row').forEach(r=>{
+    const cat=r.dataset.cat;
+    const text=r.textContent.toLowerCase();
+    const catMatch=scFilter==='all'||cat===scFilter;
+    const textMatch=!q||text.includes(q);
+    r.style.display=catMatch&&textMatch?'':'none';
+  });
+}
+
+// ==================== SHORTCUT PRACTICE ====================
+function loadSCStats(){try{return JSON.parse(localStorage.getItem('sc_error_stats')||'{}');}catch(e){return{};}}
+function saveSCStats(s){localStorage.setItem('sc_error_stats',JSON.stringify(s));}
+function recordSCAnswer(key,isCorrect){
+  const s=loadSCStats();
+  if(!s[key])s[key]={total:0,wrong:0};
+  s[key].total++;
+  if(!isCorrect)s[key].wrong++;
+  saveSCStats(s);
+}
+
+let scPState={correct:0,total:0,answered:false,current:null,mode:'key2name',cat:'all',grp:'all',wrongKeys:new Set(),redoActive:false,smartMode:true,askedKeys:new Set(),roundResults:new Map()};
+function renderSCPractice(){
+  scPState={correct:0,total:0,answered:false,current:null,mode:'key2name',cat:'all',grp:'all',wrongKeys:new Set(),redoActive:false,smartMode:true,askedKeys:new Set(),roundResults:new Map()};
+  const ac=shortcutData.filter(d=>d.cat==='AutoCAD').length;
+  const kj=shortcutData.filter(d=>d.cat==='酷家乐').length;
+  const grpCount=gid=>shortcutData.filter(d=>scGroupMatch(gid,d)).length;
+  const groups=[
+    {id:'all',label:'全部',icon:'📋'},
+    {id:'draw',label:'绘图',icon:'✏️'},
+    {id:'modify',label:'修改',icon:'🔧'},
+    {id:'dim',label:'标注',icon:'📏'},
+    {id:'toggle',label:'开关',icon:'⚙️'},
+    {id:'general',label:'通用',icon:'📁'},
+    {id:'kjl',label:'酷家乐',icon:'🏠'}
+  ];
+  document.getElementById('sc-content').innerHTML=`
+    <div style="text-align:center;margin-bottom:16px">
+      <div style="font-size:.82rem;color:var(--text-secondary);margin-bottom:8px">第一步：选择软件（共 ${shortcutData.length} 个快捷键）</div>
+      <div style="display:inline-flex;gap:6px;background:var(--bg);border-radius:8px;padding:4px;margin-bottom:10px">
+        <button id="sc-cat-all" style="padding:7px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600;background:var(--accent);color:#fff" onclick="switchSCCat('all')">全部 (${shortcutData.length})</button>
+        <button id="sc-cat-autocad" style="padding:7px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600;background:transparent;color:var(--text-secondary)" onclick="switchSCCat('AutoCAD')">AutoCAD (${ac})</button>
+        <button id="sc-cat-kjl" style="padding:7px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600;background:transparent;color:var(--text-secondary)" onclick="switchSCCat('酷家乐')">酷家乐 (${kj})</button>
+      </div>
+      <div style="font-size:.78rem;color:var(--text-secondary);margin-bottom:6px">第二步：选择功能分组</div>
+      <div style="display:inline-flex;gap:5px;background:var(--bg);border-radius:8px;padding:4px;margin-bottom:10px;flex-wrap:wrap;justify-content:center" id="sc-grp-btns">
+        ${groups.map(g=>`<button id="sc-grp-${g.id}" style="padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-size:.78rem;font-weight:600;background:${g.id==='all'?'var(--accent)':'transparent'};color:${g.id==='all'?'#fff':'var(--text-secondary)'}" onclick="switchSCGrp('${g.id}')">${g.icon} ${g.label} (${grpCount(g.id)})</button>`).join('')}
+      </div>
+      <div style="display:inline-flex;gap:6px;background:var(--bg);border-radius:8px;padding:4px;margin-bottom:8px">
+        <button id="sc-mode-kn" style="padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600;background:var(--accent);color:#fff" onclick="switchSCMode('key2name')">快捷键 → 命令名</button>
+        <button id="sc-mode-nk" style="padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600;background:transparent;color:var(--text-secondary)" onclick="switchSCMode('name2key')">命令名 → 快捷键</button>
+      </div>
+      <div style="font-size:.75rem;color:var(--text-secondary);margin-bottom:6px">
+        <button id="sc-smart-btn" style="padding:4px 12px;border:1.5px solid var(--success);border-radius:14px;cursor:pointer;font-size:.75rem;background:#E8F5E9;color:var(--success);font-weight:600" onclick="toggleSCSmart()">🎯 智能出题：ON</button>
+        <span style="margin-left:4px">错误率高的快捷键出现频率更高</span>
+      </div>
+    </div>
+    <div id="sc-redo-banner" style="display:none;text-align:center;background:#FFF3E0;border-radius:8px;padding:8px 14px;margin-bottom:12px;font-size:.82rem;color:var(--accent);font-weight:600"></div>
+    <div class="quiz-box" id="sc-practice-box">
+      <div class="q" id="sc-q"></div>
+      <div class="quiz-options" id="sc-opts"></div>
+      <div class="quiz-score"><span id="sc-cat-label" style="font-size:.75rem;color:var(--text-secondary);margin-right:8px"></span>正确：<span id="sc-sc">0</span> / <span id="sc-st">0</span> &nbsp; <span id="sc-progress" style="font-size:.75rem;color:var(--text-secondary)"></span></div>
+      <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;align-items:center">
+        <button id="sc-next" style="padding:10px 22px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:500;display:none" onclick="nextSCQuestion()">下一题 →</button>
+        <button id="sc-redo-btn" style="padding:10px 22px;background:transparent;color:var(--danger);border:2px solid var(--danger);border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:600;display:none" onclick="startSCRedo()">🔄 错题重做</button>
+      </div>
+    </div>`;
+  updateSCCatLabel();
+  nextSCQuestion();
+}
+
+// Group matching logic — AutoCAD groups exclude 酷家乐 shortcuts
+function scGroupMatch(gid,d){
+  if(gid==='all')return true;
+  if(gid==='draw')return d.grp==='绘图'&&d.cat==='AutoCAD';
+  if(gid==='modify')return d.grp==='修改'&&d.cat==='AutoCAD';
+  if(gid==='dim')return d.grp==='标注';
+  if(gid==='toggle')return (d.grp==='开关'||d.grp==='视图')&&d.cat==='AutoCAD';
+  if(gid==='general')return (d.grp==='通用'||d.grp==='管理'||d.grp==='文字'||d.grp==='块')&&d.cat==='AutoCAD';
+  if(gid==='kjl')return d.cat==='酷家乐';
+  return true;
+}
+
+function switchSCGrp(grp){
+  scPState.grp=grp;
+  scPState.correct=0;scPState.total=0;
+  scPState.wrongKeys=new Set();
+  scPState.redoActive=false;
+  ['all','draw','modify','dim','toggle','general','kjl'].forEach(g=>{
+    const btn=document.getElementById('sc-grp-'+g);
+    if(!btn)return;
+    btn.style.background=g===grp?'var(--accent)':'transparent';
+    btn.style.color=g===grp?'#fff':'var(--text-secondary)';
+  });
+  document.getElementById('sc-sc').textContent='0';
+  document.getElementById('sc-st').textContent='0';
+  updateSCWrongUI();
+  updateSCCatLabel();
+  hideSCRedoBanner();
+  nextSCQuestion();
+}
+
+function switchSCCat(cat){
+  scPState.cat=cat;
+  scPState.correct=0;scPState.total=0;
+  scPState.wrongKeys=new Set();
+  scPState.redoActive=false;
+  scPState.askedKeys=new Set();
+  scPState.roundResults=new Map();
+  ['all','AutoCAD','酷家乐'].forEach(c=>{
+    const id=c==='all'?'sc-cat-all':c==='AutoCAD'?'sc-cat-autocad':'sc-cat-kjl';
+    const btn=document.getElementById(id);
+    if(!btn)return;
+    btn.style.background=c===cat?'var(--accent)':'transparent';
+    btn.style.color=c===cat?'#fff':'var(--text-secondary)';
+  });
+  document.getElementById('sc-sc').textContent='0';
+  document.getElementById('sc-st').textContent='0';
+  updateSCWrongUI();
+  updateSCCatLabel();
+  hideSCRedoBanner();
+  nextSCQuestion();
+}
+
+function updateSCCatLabel(){
+  const lbl=document.getElementById('sc-cat-label');
+  if(!lbl)return;
+  const parts=[];
+  if(scPState.cat!=='all')parts.push(scPState.cat);
+  if(scPState.grp!=='all')parts.push(scPState.grp==='draw'?'绘图':scPState.grp==='modify'?'修改':scPState.grp==='dim'?'标注':scPState.grp==='toggle'?'开关':scPState.grp==='general'?'通用':scPState.grp==='kjl'?'酷家乐':scPState.grp);
+  lbl.textContent=parts.length>0?parts.join(' · ')+' · ':'';
+}
+
+function switchSCMode(mode){
+  scPState.mode=mode;
+  scPState.correct=0;scPState.total=0;
+  scPState.wrongKeys=new Set();
+  scPState.redoActive=false;
+  scPState.askedKeys=new Set();
+  scPState.roundResults=new Map();
+  document.getElementById('sc-mode-kn').style.background=mode==='key2name'?'var(--accent)':'transparent';
+  document.getElementById('sc-mode-kn').style.color=mode==='key2name'?'#fff':'var(--text-secondary)';
+  document.getElementById('sc-mode-nk').style.background=mode==='name2key'?'var(--accent)':'transparent';
+  document.getElementById('sc-mode-nk').style.color=mode==='name2key'?'#fff':'var(--text-secondary)';
+  document.getElementById('sc-sc').textContent='0';
+  document.getElementById('sc-st').textContent='0';
+  updateSCWrongUI();
+  hideSCRedoBanner();
+  nextSCQuestion();
+}
+
+function updateSCWrongUI(){
+  const btn=document.getElementById('sc-redo-btn');
+  if(!btn)return;
+  const n=scPState.wrongKeys.size;
+  btn.style.display=n>0&&!scPState.redoActive?'inline-block':'none';
+  btn.textContent='🔄 错题重做 ('+n+')';
+}
+
+function hideSCRedoBanner(){
+  const b=document.getElementById('sc-redo-banner');
+  if(b)b.style.display='none';
+}
+
+function toggleSCSmart(){
+  scPState.smartMode=!scPState.smartMode;
+  const btn=document.getElementById('sc-smart-btn');
+  if(!btn)return;
+  if(scPState.smartMode){
+    btn.style.borderColor='var(--success)';
+    btn.style.background='#E8F5E9';
+    btn.style.color='var(--success)';
+    btn.innerHTML='🎯 智能出题：ON';
+  }else{
+    btn.style.borderColor='var(--text-secondary)';
+    btn.style.background='var(--bg)';
+    btn.style.color='var(--text-secondary)';
+    btn.innerHTML='🎲 随机出题：OFF';
+  }
+}
+
+function startSCRedo(){
+  if(scPState.wrongKeys.size===0)return;
+  scPState.redoActive=true;
+  scPState.correct=0;scPState.total=0;
+  scPState.askedKeys=new Set();
+  scPState.roundResults=new Map();
+  document.getElementById('sc-sc').textContent='0';
+  document.getElementById('sc-st').textContent='0';
+  document.getElementById('sc-redo-btn').style.display='none';
+  const banner=document.getElementById('sc-redo-banner');
+  banner.textContent='🔁 错题重做模式 — 共 '+scPState.wrongKeys.size+' 题待攻克';
+  banner.style.display='block';
+  nextSCQuestion();
+}
+
+function nextSCQuestion(){
+  scPState.answered=false;scPState.current=null;
+  document.getElementById('sc-next').style.display='none';
+  document.getElementById('sc-opts').innerHTML='';
+
+  let pool;
+  if(scPState.redoActive){
+    pool=shortcutData.filter(d=>scPState.wrongKeys.has(d.key));
+    if(pool.length===0){
+      scPState.redoActive=false;
+      const banner=document.getElementById('sc-redo-banner');
+      banner.innerHTML='🎉 错题全部攻克！太棒了！';
+      banner.style.background='#E8F5E9';
+      banner.style.color='var(--success)';
+      banner.style.display='block';
+      document.getElementById('sc-q').innerHTML='<span style="font-size:1.1rem">✅ 本轮错题已全部掌握</span>';
+      document.getElementById('sc-opts').innerHTML='<div style="text-align:center;margin-top:14px"><button onclick="renderSCPractice()" style="padding:10px 22px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:600">🔀 返回练习</button></div>';
+      document.getElementById('sc-redo-btn').style.display='none';
+      document.getElementById('sc-next').style.display='none';
+      return;
+    }
+  }else{
+    pool=shortcutData;
+    if(scPState.cat!=='all')pool=pool.filter(d=>d.cat===scPState.cat);
+    if(scPState.grp!=='all')pool=pool.filter(d=>scGroupMatch(scPState.grp,d));
+    // Filter out already-asked keys in this round
+    const unasked=pool.filter(d=>!scPState.askedKeys.has(d.key));
+    if(unasked.length===0){
+      showSCRoundResults(pool);
+      return;
+    }
+    pool=unasked;
+  }
+  if(pool.length===0)return;
+
+  function getSCWeight(d){
+    const stats=loadSCStats();
+    const s=stats[d.key];
+    if(!s||s.total<2)return 3;
+    const rate=s.wrong/s.total;
+    return 1+rate*9;
+  }
+  function weightedPick(list,weightFn){
+    const total=list.reduce((s,i)=>s+weightFn(i),0);
+    let r=Math.random()*total;
+    for(const item of list){r-=weightFn(item);if(r<=0)return item;}
+    return list[list.length-1];
+  }
+
+  const correct=scPState.smartMode?weightedPick(pool,getSCWeight):pool[Math.floor(Math.random()*pool.length)];
+  scPState.current=correct;
+  scPState.askedKeys.add(correct.key);
+  // Update progress
+  const progEl=document.getElementById('sc-progress');
+  if(progEl&&!scPState.redoActive){
+    const fullPool=shortcutData.filter(d=>{let m=true;if(scPState.cat!=='all')m=m&&d.cat===scPState.cat;if(scPState.grp!=='all')m=m&&scGroupMatch(scPState.grp,d);return m;});
+    progEl.textContent='进度 '+scPState.askedKeys.size+'/'+fullPool.length;
+  }
+
+  const cStats=loadSCStats();
+  const cs=cStats[correct.key];
+  let errBadge='';
+  if(cs&&cs.total>=3){
+    const er=Math.round(cs.wrong/cs.total*100);
+    if(er>=50)errBadge=' <span style="font-size:.7rem;background:#FFEBEE;color:var(--danger);padding:2px 8px;border-radius:10px;font-weight:600">🔴 高频错题 '+er+'%</span>';
+    else if(er>=20)errBadge=' <span style="font-size:.7rem;background:#FFF3E0;color:var(--accent);padding:2px 8px;border-radius:10px;font-weight:600">🟠 易错题 '+er+'%</span>';
+  }
+
+  const used=new Set([correct.key]);
+  const options=[correct];
+  while(options.length<4 && options.length<pool.length){
+    const r=pool[Math.floor(Math.random()*pool.length)];
+    if(!used.has(r.key)){used.add(r.key);options.push(r);}
+  }
+  if(options.length<4){
+    const remaining=shortcutData.filter(d=>!used.has(d.key));
+    for(let i=0;i<remaining.length&&options.length<4;i++){
+      used.add(remaining[i].key);options.push(remaining[i]);
+    }
+  }
+  options.sort(()=>Math.random()-.5);
+  const catTag='<span class="tag '+(correct.cat==='AutoCAD'?'tag-blue':'tag-green')+'">'+correct.cat+'</span>';
+  if(scPState.mode==='key2name'){
+    document.getElementById('sc-q').innerHTML='快捷键 <span class="highlight-part">'+correct.key+'</span> 对应哪个命令？'+errBadge+'<br><span style="font-size:.75rem;color:var(--text-secondary);margin-top:4px;display:inline-block">'+catTag+' · '+correct.grp+'</span>';
+  }else{
+    document.getElementById('sc-q').innerHTML='<span class="highlight-part">'+correct.name.replace(/\(.*\)/,'')+'</span> 的快捷键是？'+errBadge+'<br><span style="font-size:.75rem;color:var(--text-secondary);margin-top:4px;display:inline-block">'+catTag+' · '+correct.grp+'</span>';
+  }
+  const opts=document.getElementById('sc-opts');
+  options.forEach(o=>{
+    const btn=document.createElement('button');
+    btn.textContent=scPState.mode==='key2name'?o.name.replace(/\(.*\)/,''):o.key;
+    btn.addEventListener('click',()=>handleSCAnswer(btn,o.key===correct.key));
+    opts.appendChild(btn);
+  });
+}
+
+function handleSCAnswer(btn,isCorrect){
+  if(scPState.answered)return;
+  scPState.answered=true;scPState.total++;
+  const key=scPState.current.key;
+  recordSCAnswer(key,isCorrect);
+  // Record first-attempt result for round summary
+  if(!scPState.redoActive && !scPState.roundResults.has(key)){
+    scPState.roundResults.set(key,isCorrect);
+  }
+  if(isCorrect){
+    scPState.correct++;
+    btn.classList.add('correct');
+    if(scPState.redoActive){
+      scPState.wrongKeys.delete(key);
+      updateSCWrongUI();
+      const banner=document.getElementById('sc-redo-banner');
+      banner.textContent='🔁 错题重做模式 — 还剩 '+scPState.wrongKeys.size+' 题待攻克';
+    }
+  }else{
+    btn.classList.add('wrong');
+    scPState.wrongKeys.add(key);
+    updateSCWrongUI();
+    document.querySelectorAll('#sc-opts button').forEach(b=>{
+      if(b.textContent===(scPState.mode==='key2name'?scPState.current.name.replace(/\(.*\)/,''):scPState.current.key))b.classList.add('correct');
+    });
+  }
+  document.getElementById('sc-sc').textContent=scPState.correct;
+  document.getElementById('sc-st').textContent=scPState.total;
+  document.getElementById('sc-next').style.display='inline-block';
+}
+
+function showSCRoundResults(fullPool){
+  const total=fullPool.length;
+  const correct=scPState.correct;
+  const pct=total>0?Math.round(correct/total*100):0;
+  const emoji=pct>=90?'🏆':pct>=70?'👍':pct>=50?'📚':'💪';
+  const gradeClr=pct>=90?'var(--success)':pct>=70?'var(--accent)':pct>=50?'var(--info)':'var(--danger)';
+
+  let resultsHTML='<div style="text-align:center;padding:20px 0">';
+  resultsHTML+='<div style="font-size:2.5rem;margin-bottom:8px">'+emoji+'</div>';
+  resultsHTML+='<div style="font-size:1.3rem;font-weight:700;margin-bottom:4px">本轮练习完成！</div>';
+  resultsHTML+='<div style="font-size:2rem;font-weight:700;color:'+gradeClr+';margin-bottom:10px">'+correct+' / '+total+' <span style="font-size:1.1rem">('+pct+'%)</span></div>';
+  if(!scPState.redoActive){
+    resultsHTML+='<div style="font-size:.82rem;color:var(--text-secondary);margin-bottom:16px">';
+    resultsHTML+='答对 <strong style="color:var(--success)">'+correct+'</strong> 题 · 答错 <strong style="color:var(--danger)">'+(total-correct)+'</strong> 题';
+    resultsHTML+='</div>';
+  }
+
+  // Per-shortcut detail
+  resultsHTML+='<div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:20px;max-height:200px;overflow-y:auto;padding:0 10px">';
+  fullPool.forEach(d=>{
+    const isCorrect=scPState.roundResults.get(d.key);
+    const bg=isCorrect===true?'#E8F5E9':isCorrect===false?'#FFEBEE':'#f5f0ea';
+    const clr=isCorrect===true?'var(--success)':isCorrect===false?'var(--danger)':'var(--text-secondary)';
+    const icon=isCorrect===true?'✅':isCorrect===false?'❌':'⬜';
+    resultsHTML+='<span style="background:'+bg+';padding:3px 8px;border-radius:4px;font-size:.72rem;color:'+clr+';white-space:nowrap" title="'+d.name.replace(/\(.*\)/,'')+'">'+icon+' <code style="font-weight:700">'+d.key+'</code> '+d.name.replace(/\(.*\)/,'')+'</span>';
+  });
+  resultsHTML+='</div>';
+
+  // Action buttons
+  resultsHTML+='<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">';
+  resultsHTML+='<button onclick="restartSCRound()" style="padding:10px 22px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:600">🔄 再来一轮</button>';
+  if(total-correct>0){
+    resultsHTML+='<button onclick="startSCRedoFromResults()" style="padding:10px 22px;background:transparent;color:var(--danger);border:2px solid var(--danger);border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:600">🔁 错题重做 ('+(total-correct)+')</button>';
+  }
+  resultsHTML+='<button onclick="renderSCPractice()" style="padding:10px 22px;background:transparent;color:var(--text-secondary);border:2px solid var(--border);border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:500">🔀 换分组</button>';
+  resultsHTML+='</div></div>';
+
+  document.getElementById('sc-practice-box').innerHTML=resultsHTML;
+  hideSCRedoBanner();
+}
+
+function restartSCRound(){
+  scPState.correct=0;scPState.total=0;
+  scPState.askedKeys=new Set();
+  scPState.roundResults=new Map();
+  scPState.wrongKeys=new Set();
+  scPState.redoActive=false;
+  hideSCRedoBanner();
+  // Re-render the practice box FIRST, then access elements
+  const box=document.getElementById('sc-practice-box');
+  box.innerHTML=`
+    <div class="q" id="sc-q"></div>
+    <div class="quiz-options" id="sc-opts"></div>
+    <div class="quiz-score"><span id="sc-cat-label" style="font-size:.75rem;color:var(--text-secondary);margin-right:8px"></span>正确：<span id="sc-sc">0</span> / <span id="sc-st">0</span> &nbsp; <span id="sc-progress" style="font-size:.75rem;color:var(--text-secondary)"></span></div>
+    <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;align-items:center">
+      <button id="sc-next" style="padding:10px 22px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:500;display:none" onclick="nextSCQuestion()">下一题 →</button>
+      <button id="sc-redo-btn" style="padding:10px 22px;background:transparent;color:var(--danger);border:2px solid var(--danger);border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:600;display:none" onclick="startSCRedo()">🔄 错题重做</button>
+    </div>`;
+  document.getElementById('sc-sc').textContent='0';
+  document.getElementById('sc-st').textContent='0';
+  updateSCWrongUI();
+  updateSCCatLabel();
+  nextSCQuestion();
+}
+
+function startSCRedoFromResults(){
+  // Populate wrongKeys from round results
+  const wrongKeys=new Set();
+  scPState.roundResults.forEach((isCorrect,key)=>{if(!isCorrect)wrongKeys.add(key);});
+  scPState.wrongKeys=wrongKeys;
+  scPState.correct=0;scPState.total=0;
+  scPState.redoActive=true;
+  scPState.askedKeys=new Set();
+  scPState.roundResults=new Map();
+  // Re-render the practice box
+  const box=document.getElementById('sc-practice-box');
+  box.innerHTML=`
+    <div class="q" id="sc-q"></div>
+    <div class="quiz-options" id="sc-opts"></div>
+    <div class="quiz-score"><span id="sc-cat-label" style="font-size:.75rem;color:var(--text-secondary);margin-right:8px"></span>正确：<span id="sc-sc">0</span> / <span id="sc-st">0</span></div>
+    <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;align-items:center">
+      <button id="sc-next" style="padding:10px 22px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:500;display:none" onclick="nextSCQuestion()">下一题 →</button>
+      <button id="sc-redo-btn" style="padding:10px 22px;background:transparent;color:var(--danger);border:2px solid var(--danger);border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:600;display:none" onclick="startSCRedo()">🔄 错题重做</button>
+    </div>`;
+  const banner=document.getElementById('sc-redo-banner');
+  banner.textContent='🔁 错题重做模式 — 共 '+wrongKeys.size+' 题待攻克';
+  banner.style.background='#FFF3E0';
+  banner.style.color='var(--accent)';
+  banner.style.display='block';
+  document.getElementById('sc-sc').textContent='0';
+  document.getElementById('sc-st').textContent='0';
+  updateSCWrongUI();
+  nextSCQuestion();
+}
+
+// ==================== SUB-COMMAND PRACTICE ====================
+let subState={correct:0,total:0,answered:false,current:null,subIdx:0,mode:'sub2name',grp:'all'};
+function renderSCSub(){
+  subState={correct:0,total:0,answered:false,current:null,subIdx:0,mode:'sub2name',grp:'all'};
+  const scPool=shortcutData.filter(d=>d.sub&&d.sub.length>0);
+  const grps=['all','draw','modify','dim','toggle','general'];
+  const grpLabels={all:'全部',draw:'绘图',modify:'修改',dim:'标注',toggle:'开关',general:'通用'};
+  document.getElementById('sc-content').innerHTML=`
+    <div style="text-align:center;margin-bottom:16px">
+      <div style="font-size:.82rem;color:var(--text-secondary);margin-bottom:8px">子命令练习（共 ${scPool.length} 个有子命令的快捷键）</div>
+      <div style="display:inline-flex;gap:6px;background:var(--bg);border-radius:8px;padding:4px;margin-bottom:12px">
+        <button id="sub-mode-sn" style="padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600;background:var(--accent);color:#fff" onclick="switchSubMode('sub2name')">子命令 → 作用</button>
+        <button id="sub-mode-ns" style="padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600;background:transparent;color:var(--text-secondary)" onclick="switchSubMode('name2sub')">作用 → 子命令</button>
+        <button id="sub-mode-cmd" style="padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600;background:transparent;color:var(--text-secondary)" onclick="switchSubMode('cmd2sub')">命令 → 子命令</button>
+      </div>
+      <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
+        ${grps.map(g=>`<button id="sub-grp-${g}" style="padding:5px 12px;border:1.5px solid var(--border);border-radius:16px;cursor:pointer;font-size:.76rem;background:${g==='all'?'var(--accent)':'var(--card)'};color:${g==='all'?'#fff':'var(--text-secondary)'}" onclick="setSubGrp('${g}')">${grpLabels[g]}</button>`).join('')}
+      </div>
+    </div>
+    <div class="quiz-box">
+      <div class="q" id="sub-q"></div>
+      <div class="quiz-options" id="sub-opts"></div>
+      <div class="quiz-score">正确：<span id="sub-sc">0</span> / <span id="sub-st">0</span></div>
+      <button id="sub-next" style="padding:10px 22px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:500;display:none;margin-top:8px" onclick="nextSubQuestion()">下一题 →</button>
+    </div>`;
+  nextSubQuestion();
+}
+
+function setSubGrp(grp){
+  subState.grp=grp;subState.correct=0;subState.total=0;
+  ['all','draw','modify','dim','toggle','general'].forEach(g=>{
+    const btn=document.getElementById('sub-grp-'+g);
+    if(!btn)return;
+    btn.style.background=g===grp?'var(--accent)':'var(--card)';
+    btn.style.color=g===grp?'#fff':'var(--text-secondary)';
+  });
+  document.getElementById('sub-sc').textContent='0';
+  document.getElementById('sub-st').textContent='0';
+  nextSubQuestion();
+}
+
+function switchSubMode(mode){
+  subState.mode=mode;subState.correct=0;subState.total=0;
+  const modeMap={sub2name:'sn',name2sub:'ns',cmd2sub:'cmd'};
+  Object.keys(modeMap).forEach(m=>{
+    const btn=document.getElementById('sub-mode-'+modeMap[m]);
+    if(!btn)return;
+    btn.style.background=m===mode?'var(--accent)':'transparent';
+    btn.style.color=m===mode?'#fff':'var(--text-secondary)';
+  });
+  document.getElementById('sub-sc').textContent='0';
+  document.getElementById('sub-st').textContent='0';
+  nextSubQuestion();
+}
+
+function nextSubQuestion(){
+  subState.answered=false;subState.current=null;
+  document.getElementById('sub-next').style.display='none';
+  document.getElementById('sub-opts').innerHTML='';
+
+  let scPool=shortcutData.filter(d=>d.sub&&d.sub.length>0);
+  if(subState.grp!=='all')scPool=scPool.filter(d=>scGroupMatch(subState.grp,d));
+  if(scPool.length===0){document.getElementById('sub-q').innerHTML='<span style=color:var(--text-secondary)>该分类下暂无带子命令的快捷键</span>';return;}
+  const cmd=scPool[Math.floor(Math.random()*scPool.length)];
+  const si=Math.floor(Math.random()*cmd.sub.length);
+  const correct=cmd.sub[si];
+  subState.current=cmd;subState.subIdx=si;
+
+  // Build 4 options: correct + 3 random from other commands
+  const allSubs=[];
+  shortcutData.filter(d=>d.sub).forEach(d=>{d.sub.forEach(s=>allSubs.push({n:s.n,d:s.d,k:s.k,parent:d}));});
+  const isCmdMode=subState.mode==='cmd2sub';
+  const used=isCmdMode?new Set([cmd.key]):new Set([correct.n]);
+  const options=[correct];
+  while(options.length<4&&options.length<allSubs.length){
+    const r=allSubs[Math.floor(Math.random()*allSubs.length)];
+    const dedupKey=isCmdMode?r.parent.key:r.n;
+    if(!used.has(dedupKey)){used.add(dedupKey);options.push(r);}
+  }
+  options.sort(()=>Math.random()-.5);
+
+  let qHTML='';
+  if(subState.mode==='sub2name'){
+    qHTML='<span class="highlight-part">'+cmd.key+' '+cmd.name.replace(/\(.*\)/,'')+'</span> 的子命令 <span class="highlight-part" style="background:#FFF8E1;padding:2px 8px;border-radius:4px">'+correct.k+'</span> 的作用是？<br><span style="font-size:.75rem;color:var(--text-secondary);margin-top:4px;display:inline-block">'+cmd.desc+'</span>';
+  }else if(subState.mode==='name2sub'){
+    qHTML='<span class="highlight-part">'+cmd.key+' '+cmd.name.replace(/\(.*\)/,'')+'</span> 中，哪个子命令可以 <span class="highlight-part" style="background:#FFF8E1;padding:2px 8px;border-radius:4px">'+correct.d+'</span>？<br><span style="font-size:.75rem;color:var(--text-secondary);margin-top:4px;display:inline-block">'+cmd.desc+'</span>';
+  }else{
+    qHTML='哪个命令执行后可以输入子命令 <span class="highlight-part" style="background:#FFF8E1;padding:2px 8px;border-radius:4px">'+correct.k+'</span>（'+correct.d+'）？';
+  }
+  document.getElementById('sub-q').innerHTML=qHTML;
+
+  const opts=document.getElementById('sub-opts');
+  options.forEach(o=>{
+    const btn=document.createElement('button');
+    if(subState.mode==='sub2name')btn.textContent=o.d;
+    else if(subState.mode==='name2sub')btn.textContent=o.k;
+    else btn.textContent=o.parent.key+' '+o.parent.name.replace(/\(.*\)/,'');
+    btn.addEventListener('click',()=>handleSubAnswer(btn,o.n===correct.n));
+    opts.appendChild(btn);
+  });
+}
+
+function handleSubAnswer(btn,isCorrect){
+  if(subState.answered)return;
+  subState.answered=true;subState.total++;
+  if(isCorrect){subState.correct++;btn.classList.add('correct');}
+  else{
+    btn.classList.add('wrong');
+    document.querySelectorAll('#sub-opts button').forEach(b=>{
+      let match=false;
+      if(subState.mode==='sub2name')match=b.textContent===subState.current.sub[subState.subIdx].d;
+      else if(subState.mode==='name2sub')match=b.textContent===subState.current.sub[subState.subIdx].k;
+      else match=b.textContent===subState.current.key+' '+subState.current.name.replace(/\(.*\)/,'');
+      if(match)b.classList.add('correct');
+    });
+  }
+  document.getElementById('sub-sc').textContent=subState.correct;
+  document.getElementById('sub-st').textContent=subState.total;
+  document.getElementById('sub-next').style.display='inline-block';
+}
+
+// ==================== SHORTCUT STATS ====================
+let scStatsCat='all',scStatsGrp='all';
+function renderSCStats(){
+  const stats=loadSCStats();
+  const cats=['all','AutoCAD','酷家乐'];
+  const grps=[{id:'all',label:'全部'},{id:'draw',label:'绘图'},{id:'modify',label:'修改'},{id:'dim',label:'标注'},{id:'toggle',label:'开关'},{id:'general',label:'通用'},{id:'kjl',label:'酷家乐'}];
+  let entries=[];
+  shortcutData.forEach(d=>{
+    const s=stats[d.key];
+    entries.push({
+      key:d.key,
+      name:d.name.replace(/\(.*\)/,''),
+      cat:d.cat,
+      grp:d.grp,
+      total:s?s.total:0,
+      wrong:s?s.wrong:0,
+      rate:s&&s.total>0?Math.round(s.wrong/s.total*100):0
+    });
+  });
+  entries.sort((a,b)=>b.rate-a.rate||b.wrong-a.wrong);
+
+  const totalAttempts=entries.reduce((s,e)=>s+e.total,0);
+  const totalWrong=entries.reduce((s,e)=>s+e.wrong,0);
+  const overallRate=totalAttempts>0?Math.round(totalWrong/totalAttempts*100):0;
+
+  let html='<div style="margin-bottom:14px">';
+  html+='<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:8px">';
+  html+='<span style="font-size:.78rem;color:var(--text-secondary)">软件：</span>';
+  html+=cats.map(c=>'<button class="sc-stats-cat'+(c===scStatsCat?' active':'')+'" data-scat="'+c+'" style="padding:4px 12px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;font-size:.75rem;background:'+(c===scStatsCat?'var(--accent)':'var(--card)')+';color:'+(c===scStatsCat?'#fff':'var(--text-secondary)')+'" onclick="filterSCStats(\''+c+'\',scStatsGrp)">'+(c==='all'?'全部':c)+'</button>').join('');
+  html+='</div>';
+  html+='<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:8px">';
+  html+='<span style="font-size:.78rem;color:var(--text-secondary)">功能：</span>';
+  html+=grps.map(g=>'<button class="sc-stats-grp'+(g.id===scStatsGrp?' active':'')+'" data-sgrp="'+g.id+'" style="padding:4px 12px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;font-size:.75rem;background:'+(g.id===scStatsGrp?'var(--accent)':'var(--card)')+';color:'+(g.id===scStatsGrp?'#fff':'var(--text-secondary)')+'" onclick="filterSCStats(scStatsCat,\''+g.id+'\')">'+g.label+'</button>').join('');
+  html+='</div>';
+  html+='<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">';
+  html+='<div style="font-size:.82rem;color:var(--text-secondary)">累计练习 <strong style="color:var(--accent)">'+totalAttempts+'</strong> 次，错误 <strong style="color:var(--danger)">'+totalWrong+'</strong> 次，错误率 <strong>'+(totalAttempts>0?overallRate+'%':'—')+'</strong></div>';
+  html+='<button onclick="clearSCStats()" style="margin-left:auto;padding:5px 14px;border:1px solid var(--danger);border-radius:6px;cursor:pointer;font-size:.75rem;color:var(--danger);background:transparent">清除统计</button>';
+  html+='</div></div>';
+
+  html+='<div style="overflow-x:auto"><table style="width:100%;font-size:.82rem;border-collapse:collapse" id="sc-stats-table">';
+  html+='<tr style="background:var(--accent-light)"><th style="padding:8px;text-align:left;color:var(--accent)">快捷键</th><th style="padding:8px;text-align:left">命令名</th><th style="padding:8px;text-align:left;width:60px">分组</th><th style="padding:8px;text-align:left;width:70px">软件</th><th style="padding:8px;text-align:center;width:50px">练习</th><th style="padding:8px;text-align:center;width:50px">错误</th><th style="padding:8px;text-align:center;width:65px">错误率</th><th style="padding:8px;text-align:left">掌握度</th></tr>';
+  entries.forEach((e,i)=>{
+    const barColor=e.rate>=50?'var(--danger)':e.rate>=20?'var(--accent)':'var(--success)';
+    const barWidth=e.total>0?Math.max(5,100-e.rate):0;
+    const bg=i%2===0?'#fff':'#faf7f4';
+    html+='<tr class="sc-stats-row" data-scat-row="'+e.cat+'" data-sgrp-row="'+e.grp+'" style="background:'+bg+';border-bottom:1px solid #f5f0ea"><td style="padding:7px 8px"><code style="background:#f5f0ea;padding:3px 8px;border-radius:4px;font-weight:700;color:var(--accent);white-space:nowrap">'+e.key+'</code></td><td style="padding:7px 8px">'+e.name+'</td><td style="padding:7px 8px;color:var(--text-secondary);font-size:.78rem">'+e.grp+'</td><td style="padding:7px 8px"><span class="tag '+(e.cat==='AutoCAD'?'tag-blue':'tag-green')+'">'+e.cat+'</span></td><td style="padding:7px 8px;text-align:center">'+e.total+'</td><td style="padding:7px 8px;text-align:center;color:'+(e.wrong>0?'var(--danger)':'var(--text-secondary)')+'">'+e.wrong+'</td><td style="padding:7px 8px;text-align:center;font-weight:700;color:'+barColor+'">'+(e.total>0?e.rate+'%':'—')+'</td><td style="padding:7px 8px"><div style="height:6px;background:#f0ece6;border-radius:3px;width:100%;min-width:60px"><div style="height:100%;width:'+barWidth+'%;background:'+barColor+';border-radius:3px;transition:width .3s"></div></div></td></tr>';
+  });
+  html+='</table></div>';
+  html+='<div class="note" style="margin-top:10px">💡 错误率 = 错误次数 / 练习总次数。掌握度条越长表示掌握越好（100% 为满分）。统计数据保存在浏览器中，关闭页面不会丢失。</div>';
+
+  document.getElementById('sc-content').innerHTML=html;
+}
+
+function filterSCStats(cat,grp){
+  scStatsCat=cat;scStatsGrp=grp;
+  document.querySelectorAll('.sc-stats-cat').forEach(b=>{
+    b.style.background=b.dataset.scat===cat?'var(--accent)':'var(--card)';
+    b.style.color=b.dataset.scat===cat?'#fff':'var(--text-secondary)';
+  });
+  document.querySelectorAll('.sc-stats-grp').forEach(b=>{
+    b.style.background=b.dataset.sgrp===grp?'var(--accent)':'var(--card)';
+    b.style.color=b.dataset.sgrp===grp?'#fff':'var(--text-secondary)';
+  });
+  document.querySelectorAll('.sc-stats-row').forEach(r=>{
+    const catMatch=cat==='all'||r.dataset.scatRow===cat;
+    const grpMatch=grp==='all'||scGroupMatch(grp,{grp:r.dataset.sgrpRow,cat:r.dataset.scatRow});
+    r.style.display=catMatch&&grpMatch?'':'none';
+  });
+}
+
+function clearSCStats(){
+  if(confirm('确定要清除所有快捷键错误统计记录吗？此操作不可恢复。')){
+    localStorage.removeItem('sc_error_stats');
+    renderSCStats();
+  }
+}
+
+// ==================== INIT ====================
+renderHardware('32mm');
+renderReference();
+</script>
+</body>
+</html>

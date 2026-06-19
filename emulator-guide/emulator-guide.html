@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google 安卓模拟器实用指南</title>
+<style>
+  :root { --bg: #0f0f0f; --card: #1a1a1a; --border: #2a2a2a; --text: #ddd; --dim: #888; --accent: #6cc; --warn: #e8a040; }
+  body { font-family: "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 40px 20px; }
+  h1 { text-align: center; color: #fff; margin-bottom: 8px; }
+  .sub { text-align: center; color: var(--dim); margin-bottom: 36px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 20px; max-width: 1400px; margin: 0 auto; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; }
+  .card h2 { margin: 0 0 14px; font-size: 17px; color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  td:first-child { font-weight: 600; width: 55%; color: #ddd; }
+  td:last-child { color: #aaa; }
+  tr:last-child td { border-bottom: none; }
+  .warn { color: var(--warn); }
+  .note { max-width: 1400px; margin: 32px auto 0; padding: 16px 24px; background: #1a2a2a; border: 1px solid #2a3a3a; border-radius: 8px; font-size: 13px; color: #aaa; }
+  .section-title { max-width: 1400px; margin: 36px auto 16px; font-size: 20px; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<h1>Google Android Emulator 实用指南</h1>
+<p class="sub">版本 36.6.11.0 &middot; 离线可查 &middot; 基于实测修正</p>
+
+<!-- ==================== 菜单对照 ==================== -->
+
+<div class="section-title">菜单中英对照</div>
+
+<div class="grid">
+
+<div class="card">
+<h2>General &middot; 通用</h2>
+<table>
+<tr><td>Emulator window position</td><td>窗口位置</td></tr>
+<tr><td>Dark theme</td><td>深色模式</td></tr>
+<tr><td>Auto-detect ADB</td><td>自动检测 ADB</td></tr>
+<tr><td>Delay ADB till boot complete</td><td>开机后再连 ADB</td></tr>
+<tr><td>Hide emulator window on startup</td><td>启动时隐藏窗口</td></tr>
+<tr><td class="warn">Send usage statistics to Google</td><td class="warn">发统计给 Google（建议关）</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Display &middot; 显示</h2>
+<table>
+<tr><td>Window scale</td><td>窗口缩放比例</td></tr>
+<tr><td>Always on top</td><td>窗口置顶</td></tr>
+<tr><td>Show window frame around device</td><td>显示手机边框</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Camera &middot; 摄像头</h2>
+<table>
+<tr><td>Front camera</td><td>前置摄像头来源</td></tr>
+<tr><td>Back camera</td><td>后置摄像头来源</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Microphone &middot; 麦克风</h2>
+<table>
+<tr><td>Enable microphone</td><td>启用麦克风</td></tr>
+<tr><td>Microphone source</td><td>来源</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Mouse &middot; 鼠标</h2>
+<table>
+<tr><td>Enable mouse input</td><td>鼠标输入开关</td></tr>
+<tr><td>Mouse wheel simulation</td><td>滚轮模拟（缩放/滚动）</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Proxy &middot; 代理</h2>
+<table>
+<tr><td>No proxy</td><td>不使用代理</td></tr>
+<tr><td>Studio proxy</td><td>使用 AS 代理</td></tr>
+<tr><td>Manual proxy configuration</td><td>手动配代理</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Advanced &middot; 高级</h2>
+<table>
+<tr><td>OpenGL ES renderer</td><td>图形渲染器</td></tr>
+<tr><td>OpenGL ES API level</td><td>图形 API 版本</td></tr>
+<tr><td>Multi-core CPU</td><td>启用多核</td></tr>
+<tr><td>Memory (RAM)</td><td>内存大小</td></tr>
+<tr><td>VM heap size</td><td>虚拟机堆内存</td></tr>
+<tr><td>Internal storage</td><td>内部存储</td></tr>
+<tr><td>SD card</td><td>SD 卡操作</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Cellular &middot; 蜂窝网络</h2>
+<table>
+<tr><td>Network type</td><td>网络类型 (2G~5G)</td></tr>
+<tr><td>Signal strength</td><td>信号强度</td></tr>
+<tr><td>Voice status</td><td>通话状态</td></tr>
+<tr><td>Data status</td><td>数据状态</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Battery &middot; 电池</h2>
+<table>
+<tr><td>Battery level</td><td>电量百分比</td></tr>
+<tr><td>Charging connection</td><td>充电方式 (AC/无线)</td></tr>
+<tr><td>Battery health</td><td>健康度</td></tr>
+<tr><td>Battery status</td><td>充放电状态</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Fingerprint &middot; 指纹</h2>
+<table>
+<tr><td>Finger 1 ~ 10</td><td>点一下 = 指纹按了一次</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Location &middot; 定位</h2>
+<table>
+<tr><td>Single point</td><td>单点（地图点 / 输经纬度）</td></tr>
+<tr><td>Routes</td><td>路径 (GPX/KML)</td></tr>
+<tr><td>Playback speed</td><td>回放速度</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Phone &middot; 电话</h2>
+<table>
+<tr><td>Incoming phone number</td><td>模拟来电号码</td></tr>
+<tr><td>Send SMS message</td><td>发短信到模拟器</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Sensors &middot; 虚拟传感器</h2>
+<table>
+<tr><td>Accelerometer</td><td>加速度计</td></tr>
+<tr><td>Gyroscope</td><td>陀螺仪</td></tr>
+<tr><td>Magnetometer</td><td>磁力计</td></tr>
+<tr><td>Light</td><td>光线传感器</td></tr>
+<tr><td>Pressure</td><td>气压计</td></tr>
+<tr><td>Temperature</td><td>温度传感器</td></tr>
+<tr><td>Proximity</td><td>距离传感器</td></tr>
+<tr><td>Humidity</td><td>湿度传感器</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Toolbar &middot; 工具栏</h2>
+<table>
+<tr><td>&#9665; Back</td><td>返回</td></tr>
+<tr><td>&#9675; Home</td><td>主页</td></tr>
+<tr><td>&#9633; Overview</td><td>多任务</td></tr>
+<tr><td>&#128247; Screenshot</td><td>截图</td></tr>
+<tr><td>&#128264; Volume</td><td>音量</td></tr>
+<tr><td>&#8635; Rotate</td><td>横竖屏</td></tr>
+<tr><td>&#8942; More</td><td>展开控制面板</td></tr>
+<tr><td>&#9888; Bug report</td><td>诊断报告</td></tr>
+<tr><td>? Help</td><td>官方文档</td></tr>
+</table>
+</div>
+
+</div>
+
+<!-- ==================== 实测踩坑 ==================== -->
+
+<div class="section-title">安装 / 配置实测记录</div>
+
+<div class="grid">
+
+<div class="card">
+<h2>&#9989; 键盘输入 &middot; 已解决</h2>
+<table>
+<tr><td>问题</td><td>点了输入框敲键盘没反应</td></tr>
+<tr><td>原因</td><td>config.ini 里 hw.keyboard=no，模拟器以为没键盘</td></tr>
+<tr><td>修复</td><td>F:\1\avd\android-35.avd\config.ini 中 hw.keyboard=yes</td></tr>
+<tr><td>备注</td><td>v36 已移除 UI 里的键盘开关，只能改配置文件</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>&#9989; 网络 / DNS &middot; 已解决</h2>
+<table>
+<tr><td>问题</td><td>开机后浏览器打不开网页</td></tr>
+<tr><td>原因</td><td>DNS 为空，域名无法解析</td></tr>
+<tr><td>修复</td><td>启动脚本加 -dns-server 8.8.8.8,114.114.114.114</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>&#9989; "未连接网络"提示 &middot; 已解决</h2>
+<table>
+<tr><td>原因</td><td>Android 连不上 Google 服务器就显示未连接，实际网络正常</td></tr>
+<tr><td>修复</td><td>adb shell settings put global captive_portal_mode 0</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>&#9989; C 盘空间不足 &middot; 已解决</h2>
+<table>
+<tr><td>问题</td><td>AVD 默认写 C:\Users\...，userdata 需要 ~8GB</td></tr>
+<tr><td>修复</td><td>设 ANDROID_AVD_HOME=F:\1\avd 并重建 AVD</td></tr>
+<tr><td>补充</td><td>config.ini 里 disk.dataPartition.path 需改成相对路径</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>&#9989; 硬件加速 &middot; AEHD 2.2</h2>
+<table>
+<tr><td>驱动</td><td>extras;google;Android_Emulator_Hypervisor_Driver</td></tr>
+<tr><td>GPU</td><td>NVIDIA RTX 3060 Ti，Vulkan 直通</td></tr>
+</table>
+</div>
+
+</div>
+
+<!-- ==================== 常用 ADB 命令 ==================== -->
+
+<div class="section-title">常用 ADB 命令速查</div>
+
+<div class="grid">
+
+<div class="card">
+<h2>基础控制</h2>
+<table>
+<tr><td>查看设备</td><td style="font-family:monospace;font-size:13px;">adb devices</td></tr>
+<tr><td>输入文字</td><td style="font-family:monospace;font-size:13px;">adb shell input text "hello"</td></tr>
+<tr><td>按回车键</td><td style="font-family:monospace;font-size:13px;">adb shell input keyevent 66</td></tr>
+<tr><td>返回键</td><td style="font-family:monospace;font-size:13px;">adb shell input keyevent 4</td></tr>
+<tr><td>主页键</td><td style="font-family:monospace;font-size:13px;">adb shell input keyevent 3</td></tr>
+<tr><td>锁屏</td><td style="font-family:monospace;font-size:13px;">adb shell input keyevent 26</td></tr>
+<tr><td>截图到电脑</td><td style="font-family:monospace;font-size:13px;">adb exec-out screencap -p > screen.png</td></tr>
+<tr><td>安装 APK</td><td style="font-family:monospace;font-size:13px;">adb install xxx.apk</td></tr>
+<tr><td>杀模拟器</td><td style="font-family:monospace;font-size:13px;">adb emu kill</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>虚拟定位</h2>
+<table>
+<tr><td>定到经纬度</td><td style="font-family:monospace;font-size:13px;">adb emu geo fix &lt;经度&gt; &lt;纬度&gt;</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>网络诊断</h2>
+<table>
+<tr><td>ping 测试</td><td style="font-family:monospace;font-size:13px;">adb shell ping -c 2 baidu.com</td></tr>
+<tr><td>检查 DNS</td><td style="font-family:monospace;font-size:13px;">adb shell getprop net.dns1</td></tr>
+<tr><td>关掉未连接提示</td><td style="font-family:monospace;font-size:13px;">adb shell settings put global captive_portal_mode 0</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>语言切换</h2>
+<table>
+<tr><td>设为中文</td><td style="font-family:monospace;font-size:13px;">adb shell settings put system system_locales zh-CN</td></tr>
+<tr><td>重启生效</td><td style="font-family:monospace;font-size:13px;">adb reboot</td></tr>
+</table>
+</div>
+
+</div>
+
+<!-- ==================== 底部 ==================== -->
+
+<div class="note">
+<strong>本机配置：</strong>
+F:\1\启动模拟器.bat | Android 15 + Google APIs | Pixel 6 | Android Emulator 36.6.11.0 |
+JDK 21 | AEHD 2.2 | RTX 3060 Ti (Vulkan) | 所有数据本地 F 盘 |
+<strong>启动参数：</strong> -avd android-35 -no-metrics -dns-server 8.8.8.8,114.114.114.114
+</div>
+
+</body>
+</html>

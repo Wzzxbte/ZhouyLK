@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔢 舒尔特方格训练</title>
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --surface: #1a1a30;
+    --card: #222240;
+    --text: #e8e8f0;
+    --muted: #8888aa;
+    --accent: #44d9a0;
+    --danger: #ff5e7a;
+    --warning: #f0a040;
+    --border: #2a2a48;
+    --cell-bg: #1e1e3a;
+    --cell-hover: #2a2a55;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'PingFang SC', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .container {
+    width: 460px;
+    padding: 40px 36px 32px;
+    background: var(--surface);
+    border-radius: 28px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  /* Size selector */
+  .size-selector {
+    display: flex;
+    gap: 6px;
+  }
+
+  .size-btn {
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .size-btn:hover { background: var(--card); color: var(--text); }
+  .size-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
+
+  /* Stats bar */
+  .stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-label {
+    color: var(--muted);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+  }
+
+  .stat-value.best { color: var(--accent); }
+
+  /* Grid */
+  .grid-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 6px;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1;
+  }
+
+  .cell {
+    background: var(--cell-bg);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.12s, border-color 0.12s, color 0.12s;
+    color: var(--text);
+  }
+
+  .cell:hover:not(.done) {
+    background: var(--cell-hover);
+    border-color: var(--muted);
+    transform: scale(1.04);
+  }
+
+  .cell.done {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    cursor: default;
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+
+  .cell.wrong {
+    animation: shake 0.4s ease;
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+  }
+
+  .cell.hint:not(.done) {
+    border-color: var(--warning);
+    box-shadow: 0 0 12px rgba(240, 160, 64, 0.3);
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    gap: 10px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+  }
+
+  .btn:hover { background: #2a2a55; border-color: var(--muted); }
+  .btn.primary { background: var(--accent); color: #000; border-color: var(--accent); }
+  .btn.primary:hover { filter: brightness(1.1); }
+
+  /* Status */
+  .status {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 16px;
+    min-height: 20px;
+    transition: color 0.3s;
+  }
+
+  .status.done-text { color: var(--accent); font-weight: 700; font-size: 0.95rem; }
+
+  /* Notification */
+  .toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #000;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="container">
+  <div class="header">
+    <span class="logo">SHULTE GRID</span>
+    <div class="size-selector" id="sizeSelector">
+      <button class="size-btn" data-size="3">3×3</button>
+      <button class="size-btn" data-size="4">4×4</button>
+      <button class="size-btn active" data-size="5">5×5</button>
+      <button class="size-btn" data-size="6">6×6</button>
+      <button class="size-btn" data-size="7">7×7</button>
+    </div>
+  </div>
+
+  <div class="status" id="status">按顺序从 1 开始点击</div>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-label">当前用时</span>
+      <span class="stat-value" id="currentTime">00.00</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">最佳成绩</span>
+      <span class="stat-value best" id="bestTime">--</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">进度</span>
+      <span class="stat-value" id="progress">0/25</span>
+    </div>
+  </div>
+
+  <div class="grid-wrapper">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="hintBtn">💡 提示</button>
+    <button class="btn primary" id="resetBtn">🔄 重新开始</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'schulte_v1';
+
+  // --- DOM refs ---
+  const gridEl = document.getElementById('grid');
+  const statusEl = document.getElementById('status');
+  const currentTimeEl = document.getElementById('currentTime');
+  const bestTimeEl = document.getElementById('bestTime');
+  const progressEl = document.getElementById('progress');
+  const resetBtn = document.getElementById('resetBtn');
+  const hintBtn = document.getElementById('hintBtn');
+  const toastEl = document.getElementById('toast');
+  const sizeSelector = document.getElementById('sizeSelector');
+
+  // --- State ---
+  let gridSize = 5;
+  let cells = [];           // flat array of numbers in grid order
+  let expectedNext = 1;
+  let totalCells = 25;
+  let startTime = null;
+  let timerId = null;
+  let elapsedMs = 0;
+  let bestTimes = {};       // { '3': ms, '4': ms, ... }
+  let done = false;
+
+  // --- Load best times ---
+  function loadBestTimes() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) bestTimes = JSON.parse(raw);
+      else bestTimes = {};
+    } catch {
+      bestTimes = {};
+    }
+  }
+
+  function saveBestTimes() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(bestTimes)); } catch {}
+  }
+
+  // --- Shuffle (Fisher-Yates) ---
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  // --- Build cell array ---
+  function buildCells() {
+    totalCells = gridSize * gridSize;
+    const nums = [];
+    for (let i = 1; i <= totalCells; i++) nums.push(i);
+    return shuffle(nums);
+  }
+
+  // --- Timer ---
+  function startTimer() {
+    if (timerId) return;
+    startTime = performance.now() - elapsedMs;
+    timerId = setInterval(tick, 50);
+  }
+
+  function stopTimer() {
+    if (timerId) { clearInterval(timerId); timerId = null; }
+  }
+
+  function tick() {
+    elapsedMs = performance.now() - startTime;
+    currentTimeEl.textContent = formatTime(elapsedMs);
+  }
+
+  function formatTime(ms) {
+    const sec = ms / 1000;
+    return sec.toFixed(2);
+  }
+
+  function updateCurrentDisplay() {
+    currentTimeEl.textContent = formatTime(elapsedMs);
+  }
+
+  // --- Render ---
+  function renderGrid() {
+    gridEl.innerHTML = '';
+    gridEl.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+
+    // Adjust font size for larger grids
+    const fontSize = gridSize <= 5 ? '1.3rem' : gridSize === 6 ? '1.05rem' : '0.9rem';
+
+    for (let i = 0; i < cells.length; i++) {
+      const div = document.createElement('div');
+      div.className = 'cell';
+      div.textContent = cells[i];
+      div.style.fontSize = fontSize;
+      div.dataset.index = i;
+      div.dataset.num = cells[i];
+      div.addEventListener('click', () => onCellClick(div, cells[i]));
+      gridEl.appendChild(div);
+    }
+  }
+
+  function updateProgress() {
+    progressEl.textContent = `${expectedNext - 1}/${totalCells}`;
+  }
+
+  function updateBestDisplay() {
+    const best = bestTimes[gridSize];
+    if (best !== undefined) {
+      bestTimeEl.textContent = formatTime(best);
+    } else {
+      bestTimeEl.textContent = '--';
+    }
+  }
+
+  // --- Toast ---
+  let toastTimer = null;
+  function showToast(msg) {
+    if (toastTimer) clearTimeout(toastTimer);
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1800);
+  }
+
+  // --- Cell click ---
+  function onCellClick(el, num) {
+    if (done) return;
+
+    // Already completed this number
+    if (num < expectedNext) return;
+
+    // Wrong number
+    if (num !== expectedNext) {
+      // Re-trigger animation by removing and re-adding the class
+      el.classList.remove('wrong');
+      void el.offsetWidth;
+      el.classList.add('wrong');
+      // Per-cell timer to clear the wrong state
+      if (el._wrongTimer) clearTimeout(el._wrongTimer);
+      el._wrongTimer = setTimeout(() => {
+        el.classList.remove('wrong');
+        el._wrongTimer = null;
+      }, 400);
+      return;
+    }
+
+    // Correct!
+    if (expectedNext === 1) startTimer();
+
+    el.classList.add('done');
+    expectedNext++;
+    updateProgress();
+
+    // Check completion
+    if (expectedNext > totalCells) {
+      complete();
+    } else {
+      // Small hint: briefly highlight next target
+      hintNext(400);
+    }
+  }
+
+  function complete() {
+    done = true;
+    stopTimer();
+    const finalMs = elapsedMs;
+    updateCurrentDisplay();
+
+    // Check best
+    const prevBest = bestTimes[gridSize];
+    let isNewBest = false;
+    if (prevBest === undefined || finalMs < prevBest) {
+      bestTimes[gridSize] = finalMs;
+      saveBestTimes();
+      updateBestDisplay();
+      isNewBest = true;
+    }
+
+    statusEl.textContent = isNewBest
+      ? `🎉 新纪录！用时 ${formatTime(finalMs)} 秒`
+      : `✅ 完成！用时 ${formatTime(finalMs)} 秒`;
+    statusEl.classList.add('done-text');
+
+    const seconds = (finalMs / 1000).toFixed(1);
+    showToast(isNewBest
+      ? `🏆 新纪录 ${seconds}s！`
+      : `完成 ${seconds}s`);
+  }
+
+  function hintNext(duration) {
+    const cellEls = gridEl.querySelectorAll('.cell');
+    cellEls.forEach(el => {
+      const num = parseInt(el.dataset.num);
+      if (num === expectedNext) {
+        el.classList.add('hint');
+        setTimeout(() => el.classList.remove('hint'), duration);
+      }
+    });
+  }
+
+  // --- Reset ---
+  function reset() {
+    stopTimer();
+    done = false;
+    elapsedMs = 0;
+    expectedNext = 1;
+    startTime = null;
+    cells = buildCells();
+    updateCurrentDisplay();
+    updateBestDisplay();
+    updateProgress();
+    statusEl.textContent = '按顺序从 1 开始点击';
+    statusEl.classList.remove('done-text');
+    renderGrid();
+  }
+
+  // --- Change grid size ---
+  function setGridSize(size) {
+    gridSize = size;
+    // Update buttons
+    sizeSelector.querySelectorAll('.size-btn').forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.size) === size);
+    });
+    reset();
+  }
+
+  // --- Show hint ---
+  function showHint() {
+    if (done) return;
+    hintNext(800);
+  }
+
+  // --- Keyboard ---
+  function onKeyDown(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    if (e.key === 'r' || e.key === 'R') {
+      e.preventDefault();
+      reset();
+      return;
+    }
+
+    if (e.key === 'h' || e.key === 'H') {
+      e.preventDefault();
+      showHint();
+      return;
+    }
+  }
+
+  // --- Init ---
+  function init() {
+    loadBestTimes();
+    sizeSelector.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => setGridSize(parseInt(btn.dataset.size)));
+    });
+    resetBtn.addEventListener('click', reset);
+    hintBtn.addEventListener('click', showHint);
+    document.addEventListener('keydown', onKeyDown);
+    reset();
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
